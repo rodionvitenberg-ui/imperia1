@@ -140,7 +140,19 @@ class NotificationManager:
         customer_info = "👤 Гостевой заказ"
         if order.customer:
             customer_info = f"👤 Клиент: {order.customer.email}"
+
+        # --- ИСПРАВЛЕНИЕ: Выносим логику с f-строками наружу ---
+        # Это нужно для совместимости с Python 3.10, который не поддерживает backslash в f-строках
         
+        phone2_part = ""
+        if order.phone2:
+            phone2_part = f"• Доп. телефон: {order.phone2}"
+
+        comments_part = ""
+        if order.comments:
+            comments_part = f"💬 <b>Комментарий:</b>\n{order.comments}\n"
+        
+        # Собираем сообщение, используя подготовленные переменные
         message = f"""
 🛒 <b>НОВЫЙ ЗАКАЗ!</b>
 
@@ -154,12 +166,12 @@ class NotificationManager:
 • Имя: {order.first_name} {order.last_name}
 • Email: {order.email}
 • Телефон: {order.phone1}
-{f'• Доп. телефон: {order.phone2}' if order.phone2 else ''}
+{phone2_part}
 
 📍 <b>Адрес доставки:</b>
 {order.address}
 
-{f'💬 <b>Комментарий:</b>\n{order.comments}\n' if order.comments else ''}
+{comments_part}
 
 🛍️ <b>Товары в заказе:</b>
 {items_text}
