@@ -5,14 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # Мы пока создали только customers, поэтому раскомментируем по мере наполнения файлов urls.py в приложениях
-    
-    # path('api/auth/', include('auth_app.urls')),
-    # path('api/products/', include('products.urls')),
-    
-    # Если в customers уже есть urls.py - раскомментируй, иначе пока держи так:
-    # path('api/customers/', include('customers.urls')),
+path('api/auth/', include('auth_app.urls')),
+path('api/products/', include('products.urls')),
+path('api/customers/', include('customers.urls')),
 ]
 
 # Раздача медиа-файлов в режиме отладки (для картинок товаров)
