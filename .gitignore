@@ -1,0 +1,28 @@
+# --- СИСТЕМНЫЕ ФАЙЛЫ ---
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- PYTHON / DJANGO (Backend) ---
+backend/venv/
+backend/__pycache__/
+backend/*.py[cod]
+backend/db.sqlite3
+backend/.env
+backend/staticfiles/
+# Медиа-файлы (картинки товаров) обычно не хранят в гите, но для старта можно оставить.
+# Если папка станет тяжелой — раскомментируй строку ниже:
+# backend/media/
+
+# --- NODE / NEXT.JS (Frontend) ---
+frontend/node_modules/
+frontend/.next/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.vercel/

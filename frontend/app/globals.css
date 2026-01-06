@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #2a2a2a;
+  --soft-black: #002fff; /* Твой цвет */
+  --soft-white: #fdfdfd;
+  --primary-dark: #333333;
+  --primary-light: #f8f9fa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* --- ДОБАВИЛ ЭТУ СТРОКУ --- */
+  /* Теперь можно писать text-soft-black, bg-soft-black и т.д. */
+  --color-soft-black: var(--soft-black);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f0f;
+    --foreground: #e8e8e8;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Дополнительные стили */
+.soft-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+}
+
+.soft-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Кастомные классы (можно оставить для совместимости) */
+.bg-soft-dark { background-color: var(--soft-black); }
+.bg-soft-light { background-color: var(--soft-white); }
+.text-soft-dark { color: var(--primary-dark); }
+.text-soft-light { color: var(--primary-light); }

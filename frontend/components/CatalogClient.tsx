@@ -1,0 +1,234 @@
+// src/components/CatalogClient.tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Product,
+  NestedCategory,
+  fetchProductsWithFilters,
+  fetchProductsByCategorySlugs,
+} from '@/lib/api';
+import { FilterState } from '@/components/FilterSidebar';
+import ProductGrid from '@/components/ProductGrid';
+import FilterDrawer from '@/components/FilterDrawer';
+import FilterButton from '@/components/FilterButton';
+import UniversalBreadcrumbs from '@/components/UniversalBreadcrumbs';
+import PageLayout from '@/components/PageLayout';
+
+// Хук для определения мобильного устройства
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
+interface CatalogClientProps {
+  initialProducts: Product[];
+  categoryPath: NestedCategory[];
+  categorySlugs: string[];
+}
+
+const CatalogClient: React.FC<CatalogClientProps> = ({
+  initialProducts,
+  categoryPath,
+  categorySlugs,
+}) => {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [loading, setLoading] = useState(false);
+  const [showFilters, setShowFilters] = useState(true);
+  const [sortOrder, setSortOrder] = useState<'price-asc' | 'price-desc' | null>(null);
+  const [filters, setFilters] = useState<FilterState>({
+    brands: [], attributes: {}, isNew: false, isFavorite: false,
+  });
+  const [showSortMenu, setShowSortMenu] = useState(false);
+  const isMobile = useIsMobile();
+
+  const handleToggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
+  const handleSortChange = (newSortOrder: 'price-asc' | 'price-desc' | null) => {
+    setSortOrder(newSortOrder);
+    setShowSortMenu(false);
+    const sortedProducts = [...products];
+    
+    if (newSortOrder === 'price-asc') {
+      sortedProducts.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (newSortOrder === 'price-desc') {
+      sortedProducts.sort((a, b) => Number(b.price) - Number(a.price));
+    }
+    
+    setProducts(sortedProducts);
+  };
+
+  const currentCategoryId =
+    categoryPath.length > 0 ? categoryPath[categoryPath.length - 1].id : undefined;
+
+  const handleFiltersChange = async (newFilters: FilterState) => {
+    setFilters(newFilters);
+    setLoading(true);
+    try {
+      const hasActiveFilters =
+        newFilters.brands.length > 0 ||
+        Object.keys(newFilters.attributes).length > 0 ||
+        newFilters.isNew ||
+        newFilters.isFavorite;
+
+      let next: Product[];
+
+      if (hasActiveFilters) {
+        next = await fetchProductsWithFilters({
+          categorySlugs,
+          brands: newFilters.brands.length > 0 ? newFilters.brands : undefined,
+          attributes: Object.keys(newFilters.attributes).length > 0 ? newFilters.attributes : undefined,
+          isNew: newFilters.isNew || undefined,
+          isFavorite: newFilters.isFavorite || undefined,
+        });
+      } else {
+        next = await fetchProductsByCategorySlugs(categorySlugs);
+      }
+      
+      if (sortOrder === 'price-asc') {
+        next.sort((a, b) => Number(a.price) - Number(b.price));
+      } else if (sortOrder === 'price-desc') {
+        next.sort((a, b) => Number(b.price) - Number(a.price));
+      }
+      
+      setProducts(next);
+    } catch (error) {
+      console.error('Failed to apply filters:', error);
+      setProducts(initialProducts);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filtersActive =
+    filters.brands.length > 0 ||
+    Object.keys(filters.attributes).length > 0 ||
+    filters.isNew ||
+    filters.isFavorite;
+
+  const getSortLabel = () => {
+    if (sortOrder === 'price-asc') return 'Дешевле';
+    if (sortOrder === 'price-desc') return 'Дороже';
+    return 'Сортировка';
+  };
+
+  return (
+    <PageLayout
+      breadcrumbs={<UniversalBreadcrumbs categoryPath={categoryPath} />}
+      actions={
+        // ДЕСКТОПНЫЕ КНОПКИ
+        <>
+          <div className="hidden md:block relative">
+            <button 
+              onClick={() => setShowSortMenu(!showSortMenu)}
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+              </svg>
+              {sortOrder === 'price-asc' ? 'Дешевле-дороже' : 
+               sortOrder === 'price-desc' ? 'Дороже-дешевле' : 'Сортировка'}
+            </button>
+            
+            {showSortMenu && (
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                <div className="py-1">
+                  <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${sortOrder === null ? 'bg-gray-100' : ''}`}>По умолчанию</button>
+                  <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-100' : ''}`}>Цена: дешевле-дороже</button>
+                  <button onClick={() => handleSortChange('price-desc')} className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${sortOrder === 'price-desc' ? 'bg-gray-100' : ''}`}>Цена: дороже-дешевле</button>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <button
+            onClick={handleToggleFilters}
+            className={`hidden md:flex items-center gap-2 px-4 py-2 text-sm border rounded-full transition-colors ${
+              showFilters 
+                ? 'border-gray-700 bg-gray-100 text-gray-800' 
+                : 'border-gray-300 hover:bg-gray-100'
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+            </svg>
+            {showFilters ? 'Скрыть фильтры' : 'Показать фильтры'}
+          </button>
+        </>
+      }
+      sidebar={
+        <FilterDrawer
+          categoryId={currentCategoryId}
+          onFiltersChange={handleFiltersChange}
+          filtersActive={filtersActive}
+        />
+      }
+      showSidebar={!isMobile && showFilters}
+      maxWidth="full"
+    >
+      {/* МОБИЛЬНАЯ ПАНЕЛЬ: 50/50 по ширине, 48px по высоте */}
+      {isMobile && (
+        <div className="grid grid-cols-2 gap-3 mb-6 relative z-20 h-12">
+          
+          {/* Мобильная Сортировка */}
+          <div className="relative h-full">
+            <button
+              onClick={() => setShowSortMenu(!showSortMenu)}
+              className="w-full h-full flex items-center justify-center gap-2 px-3 text-sm font-medium border border-gray-200 rounded-lg bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-sm"
+            >
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+              </svg>
+              <span className="truncate">{getSortLabel()}</span>
+            </button>
+
+             {showSortMenu && (
+              <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-xl border border-gray-100 z-30 overflow-hidden">
+                <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === null ? 'bg-gray-50 font-medium' : ''}`}>По умолчанию</button>
+                <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дешевле</button>
+                <button onClick={() => handleSortChange('price-desc')} className={`w-full text-left px-4 py-3 text-sm ${sortOrder === 'price-desc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дороже</button>
+              </div>
+            )}
+          </div>
+
+          {/* Мобильные Фильтры */}
+          <div className="h-full">
+            {/* Магия CSS: заставляем кнопку внутри FilterButton быть такой же, как Сортировка */}
+            <div className="w-full h-full [&_button]:!w-full [&_button]:!h-full [&_button]:!rounded-lg [&_button]:!shadow-sm [&_button]:!border-gray-200 [&_button]:!border [&_button]:!bg-white [&_button]:!static [&_button]:!flex [&_button]:!items-center [&_button]:!justify-center [&_button]:!py-0 [&_button]:!m-0 [&_button]:!text-sm [&_button]:!font-medium [&_button]:!text-gray-900">
+              <FilterButton
+                categoryId={currentCategoryId}
+                onFiltersChange={handleFiltersChange}
+                filtersActive={filtersActive}
+              />
+            </div>
+          </div>
+
+        </div>
+      )}
+
+      {loading && <div className="text-center py-8">Загрузка...</div>}
+      {!loading && products.length > 0 && <ProductGrid products={products} />}
+      {!loading && products.length === 0 && (
+        <div className="text-center py-12">
+          <p>Товары не найдены.</p>
+        </div>
+      )}
+    </PageLayout>
+  );
+};
+
+export default CatalogClient;
