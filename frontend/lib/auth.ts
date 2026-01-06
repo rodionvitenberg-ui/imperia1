@@ -67,7 +67,7 @@ async function apiRequest<T>(
       return {
         success: false,
         errors: responseData,
-        message: Object.values(responseData)[0]?.[0] || 'Произошла ошибка',
+        message: (Object.values(responseData as Record<string, any>)[0] as any)?.[0] || 'Произошла ошибка',
       };
     }
   } catch (error) {
