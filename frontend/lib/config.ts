@@ -1,28 +1,27 @@
 // src/lib/config.ts
 
-/**
- * Конфигурация API для приложения
- * Все URL централизованы здесь для удобства управления
- */
-
-// Базовый URL API из переменных окружения
 const getApiBaseUrl = (): string => {
-  // Проверяем на стороне клиента
-  if (typeof window !== 'undefined') {
-    return process.env.NEXT_PUBLIC_API_BASE_URL || 'http://92.113.146.158:8000';
+  // 1. Если задано через .env (высший приоритет)
+  if (process.env.NEXT_PUBLIC_API_BASE_URL) {
+    return process.env.NEXT_PUBLIC_API_BASE_URL;
   }
-  // На стороне сервера (сборка)
-  return process.env.NEXT_PUBLIC_API_BASE_URL || 'http://92.113.146.158:8000';
+
+  // 2. Если код выполняется в браузере (у клиента)
+  if (typeof window !== 'undefined') {
+    // Возвращаем внешний адрес (Nginx на порту 80 перенаправит /api куда надо)
+    return 'http://92.113.146.158';
+  }
+
+  // 3. Если код выполняется на сервере (во время сборки npm run build)
+  // Мы внутри, поэтому стучимся прямо в Gunicorn
+  return 'http://127.0.0.1:8000';
 };
 
 const API_BASE_URL = getApiBaseUrl();
 
-// Экспортируем конфигурацию API
 export const API_CONFIG = {
-  // Базовые URL
   BASE_URL: API_BASE_URL,
   
-  // Эндпоинты для продуктов
   PRODUCTS: {
     BASE: `${API_BASE_URL}/api/products`,
     CATEGORIES: `${API_BASE_URL}/api/products/categories/`,
@@ -31,7 +30,6 @@ export const API_CONFIG = {
     CATEGORY_FILTERS: (categoryId: number) => `${API_BASE_URL}/api/products/categories/${categoryId}/filters/`,
   },
   
-  // Эндпоинты для аутентификации
   AUTH: {
     BASE: `${API_BASE_URL}/api/auth`,
     STATUS: `${API_BASE_URL}/api/auth/status/`,
@@ -41,7 +39,6 @@ export const API_CONFIG = {
     CSRF: `${API_BASE_URL}/api/auth/csrf/`,
   },
   
-  // Эндпоинты для заказов
   ORDERS: {
     BASE: `${API_BASE_URL}/api/customers`,
     CREATE: `${API_BASE_URL}/api/customers/orders/create/`,
@@ -49,7 +46,6 @@ export const API_CONFIG = {
     DETAIL: (orderId: number) => `${API_BASE_URL}/api/customers/orders/${orderId}/`,
   },
   
-  // Медиа файлы
   MEDIA: {
     BASE: API_BASE_URL,
     buildImageUrl: (imagePath: string) => {
@@ -62,7 +58,6 @@ export const API_CONFIG = {
   }
 } as const;
 
-// Проверка доступности API (для отладки)
 export const checkApiHealth = async (): Promise<boolean> => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/products/categories/`, {
@@ -74,4 +69,3 @@ export const checkApiHealth = async (): Promise<boolean> => {
     return false;
   }
 };
-
