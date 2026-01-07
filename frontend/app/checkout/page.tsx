@@ -14,7 +14,15 @@ export default function CheckoutPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Функция для создания полного URL изображения
+  // Функция для получения CSRF токена из куки
+  const getCSRFToken = (): string | null => {
+    if (typeof document !== 'undefined') {
+      const match = document.cookie.match(/csrftoken=([^;]+)/);
+      return match ? match[1] : null;
+    }
+    return null;
+  };
+
   const buildImageUrl = (imagePath: string) => {
     if (!imagePath) return '/placeholder.jpg';
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
@@ -36,10 +44,6 @@ export default function CheckoutPage() {
   const handleOrderSubmit = async (formData: OrderFormData) => {
     setIsSubmitting(true);
     try {
-      // Подготовка данных заказа
-      // В OrderForm поля называются firstName, lastName (camelCase),
-      // а бэкенд ждет first_name, last_name (snake_case).
-      // Преобразуем данные:
       const orderData = {
         first_name: formData.firstName,
         last_name: formData.lastName,
@@ -48,8 +52,6 @@ export default function CheckoutPage() {
         phone2: formData.phone2,
         address: formData.address,
         comments: formData.comments,
-        
-        // Данные о товарах
         items: items.map(item => ({
           product_id: item.product.id,
           quantity: item.quantity,
@@ -61,12 +63,21 @@ export default function CheckoutPage() {
 
       console.log('Sending order data:', orderData);
 
+      // ИЩЕМ ТОКЕН И ГОТОВИМ ЗАГОЛОВКИ
+      const csrfToken = getCSRFToken();
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      
+      // Если токен есть - добавляем его (это решит ошибку 403)
+      if (csrfToken) {
+        headers['X-CSRFToken'] = csrfToken;
+      }
+
       const response = await fetch(API_CONFIG.ORDERS.CREATE, {
         method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        credentials: 'include', // Передаем куки (сессию)
+        headers: headers,       // Передаем заголовки с токеном
         body: JSON.stringify(orderData),
       });
 
@@ -81,7 +92,6 @@ export default function CheckoutPage() {
 
       clearCart();
       showCustomToast.success('Заказ успешно оформлен!');
-      
       router.push('/');
       
     } catch (error) {
@@ -103,11 +113,8 @@ export default function CheckoutPage() {
         <h1 className="text-3xl font-bold mb-8 text-center">Оформление заказа</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Order Form */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-6">Контактные данные</h2>
-            
-            {/* ИСПРАВЛЕНИЕ: Передаем просто user, компонент сам разберется с полями */}
             <OrderForm 
               onSubmit={handleOrderSubmit} 
               isSubmitting={isSubmitting} 
@@ -115,23 +122,16 @@ export default function CheckoutPage() {
             />
           </div>
 
-          {/* Order Summary */}
           <div className="bg-white p-6 rounded-lg shadow-md h-fit">
             <h2 className="text-xl font-semibold mb-6">Ваш заказ</h2>
-            
             <div className="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
               {items.map((item) => {
                 const imageUrl = buildImageUrl(item.product.images?.[0]?.image);
-                
                 return (
                 <div key={item.product.id} className="flex gap-4 py-2 border-b last:border-0">
                   <div className="relative w-16 h-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src={imageUrl} 
-                      alt={item.product.name}
-                      className="object-cover w-full h-full"
-                    />
+                    <img src={imageUrl} alt={item.product.name} className="object-cover w-full h-full"/>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-medium line-clamp-2">{item.product.name}</h3>
@@ -146,32 +146,11 @@ export default function CheckoutPage() {
                 );
               })}
             </div>
-
-            {/* Summary */}
             <div className="border-t pt-4 space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Товары:</span>
-                <span className="font-medium">{totalPrice.toLocaleString('ru-RU')} сом</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Доставка:</span>
-                <span className="font-medium text-green-600">Бесплатно</span>
-              </div>
               <div className="flex justify-between text-lg font-bold border-t pt-2">
                 <span>Итого:</span>
                 <span>{totalPrice.toLocaleString('ru-RU')} сом</span>
               </div>
-            </div>
-
-            {/* Info */}
-            <div className="mt-6 text-xs text-gray-500 space-y-1">
-              <p>
-                <strong>Обратите внимание:</strong> После оформления заказа с вами свяжется менеджер 
-                для подтверждения деталей заказа и согласования времени доставки.
-              </p>
-              <p>
-                Оплата производится при получении товара. Принимаем наличные и банковские карты.
-              </p>
             </div>
           </div>
         </div>
