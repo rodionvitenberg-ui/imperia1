@@ -67,7 +67,7 @@ export const fetchCategories = async (): Promise<Category[]> => {
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store', // Предотвращаем кеширование при SSR
+      next: { revalidate: 60 }
     });
     
     if (!response.ok) {

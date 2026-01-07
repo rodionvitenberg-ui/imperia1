@@ -1,4 +1,3 @@
-// src/app/checkout/page.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -6,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import { showCustomToast } from '@/components/CustomToast';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
-import OrderForm from '@/components/OrderForm';
-
-const API_BASE_URL = 'http://92.113.146.158';
+import OrderForm, { OrderFormData } from '@/components/OrderForm';
+import { API_CONFIG } from '@/lib/config';
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
@@ -22,7 +20,8 @@ export default function CheckoutPage() {
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
       return imagePath;
     }
-    return `${API_BASE_URL}${imagePath.startsWith('/') ? imagePath : '/' + imagePath}`;
+    const baseUrl = API_CONFIG.BASE_URL; 
+    return `${baseUrl}${imagePath.startsWith('/') ? imagePath : '/' + imagePath}`;
   };
 
   // Redirect to cart if no items
@@ -34,121 +33,111 @@ export default function CheckoutPage() {
   }, [items.length, router]);
 
   // Handle successful order
-  const handleOrderSuccess = () => {
-    
-    // Clear cart
-    clearCart();
-    
-    // Show success toast
-    showCustomToast.success('🎉 Заказ успешно оформлен!\n\nНаш менеджер свяжется с вами в течение часа.', 4000);
-    
-    // Redirect to home page
-    router.push('/');
-  };
-
-  // Handle form submission
-  const handleSubmitOrder = async (orderData: any) => {
+  const handleOrderSubmit = async (formData: OrderFormData) => {
     setIsSubmitting(true);
-    
     try {
-      // Prepare data for backend
-      const orderPayload = {
-        first_name: orderData.firstName,
-        last_name: orderData.lastName,
-        email: orderData.email,
-        phone1: orderData.phone1,
-        phone2: orderData.phone2 || '',
-        address: orderData.address,
-        comments: orderData.comments || '',
+      // Подготовка данных заказа
+      // В OrderForm поля называются firstName, lastName (camelCase),
+      // а бэкенд ждет first_name, last_name (snake_case).
+      // Преобразуем данные:
+      const orderData = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone1: formData.phone1,
+        phone2: formData.phone2,
+        address: formData.address,
+        comments: formData.comments,
+        
+        // Данные о товарах
         items: items.map(item => ({
           product_id: item.product.id,
-          quantity: item.quantity
-        }))
+          quantity: item.quantity,
+          price: item.product.price
+        })),
+        total_amount: totalPrice,
+        customer: user?.id || null 
       };
-      
-      // Submit order to backend
-      const response = await fetch('http://localhost:8000/api/customers/orders/create/', {
+
+      console.log('Sending order data:', orderData);
+
+      const response = await fetch(API_CONFIG.ORDERS.CREATE, {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(orderPayload),
+        body: JSON.stringify(orderData),
       });
-      
-      const data = await response.json();
-      
-      if (response.ok && data.success) {
-        handleOrderSuccess();
-      } else {
-        throw new Error(data.message || 'Ошибка при создании заказа');
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Order creation error:', errorData);
+        throw new Error(errorData.detail || errorData.message || 'Ошибка при создании заказа');
       }
+
+      const result = await response.json();
+      console.log('Order created:', result);
+
+      clearCart();
+      showCustomToast.success('Заказ успешно оформлен!');
+      
+      router.push('/');
+      
     } catch (error) {
-      console.error('❌ Ошибка при оформлении заказа:', error);
+      console.error('Checkout error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Произошла ошибка при оформлении заказа';
+      showCustomToast.error(errorMessage);
+    } finally {
       setIsSubmitting(false);
-      showCustomToast.error('Произошла ошибка при оформлении заказа. Попробуйте еще раз.');
     }
   };
 
-  // Don't render if no items (will redirect)
   if (items.length === 0) {
     return null;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Оформление заказа</h1>
-          <p className="text-gray-600">Заполните данные для доставки заказа</p>
-        </div>
+        <h1 className="text-3xl font-bold mb-8 text-center">Оформление заказа</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Order Form */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Данные для доставки</h2>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-6">Контактные данные</h2>
+            
+            {/* ИСПРАВЛЕНИЕ: Передаем просто user, компонент сам разберется с полями */}
             <OrderForm 
-              onSubmit={handleSubmitOrder}
-              isSubmitting={isSubmitting}
+              onSubmit={handleOrderSubmit} 
+              isSubmitting={isSubmitting} 
               user={user}
             />
           </div>
 
           {/* Order Summary */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Ваш заказ</h2>
+          <div className="bg-white p-6 rounded-lg shadow-md h-fit">
+            <h2 className="text-xl font-semibold mb-6">Ваш заказ</h2>
             
-            {/* Items list */}
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
               {items.map((item) => {
-                // Найдем главное изображение или возьмем первое
-                const mainImage = item.product.images?.find(img => img.is_main) || item.product.images?.[0];
+                const imageUrl = buildImageUrl(item.product.images?.[0]?.image);
                 
                 return (
-                <div key={item.product.id} className="flex gap-4">
-                  <div className="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0">
-                    {mainImage ? (
-                      <img 
-                        src={buildImageUrl(mainImage.image)}
-                        alt={item.product.name}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    )}
+                <div key={item.product.id} className="flex gap-4 py-2 border-b last:border-0">
+                  <div className="relative w-16 h-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src={imageUrl} 
+                      alt={item.product.name}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 text-sm line-clamp-2">
-                      {item.product.name}
-                    </h3>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-sm text-gray-600">Количество: {item.quantity}</span>
-                      <span className="font-semibold text-gray-900">
+                    <h3 className="text-sm font-medium line-clamp-2">{item.product.name}</h3>
+                    <div className="flex justify-between mt-1 text-sm text-gray-500">
+                      <span>{item.quantity} шт.</span>
+                      <span className="font-medium text-gray-900">
                         {(parseFloat(item.product.price) * item.quantity).toLocaleString('ru-RU')} сом
                       </span>
                     </div>
