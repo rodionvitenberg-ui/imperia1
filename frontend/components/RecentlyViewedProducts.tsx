@@ -26,7 +26,7 @@ const RecentlyViewedProducts: React.FC = () => {
   if (!isHydrated) {
     return (
       <div className="container mx-auto my-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>
           Недавно просмотренные
         </h2>
         <div className="text-center py-8 text-gray-500">
@@ -39,7 +39,7 @@ const RecentlyViewedProducts: React.FC = () => {
   // Показываем секцию всегда для теста
   return (
     <div className="container mx-auto my-12 px-4">
-      <h2 className="text-3xl font-bold text-center mb-8">
+      <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>
         Недавно просмотренные
       </h2>
       {recentlyViewed.length === 0 ? (

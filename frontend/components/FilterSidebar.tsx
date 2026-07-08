@@ -120,7 +120,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 />
                 <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
                   filters.isNew 
-                    ? 'bg-black border-black' 
+                    ? 'bg-primary border-primary' 
                     : 'border-gray-300 group-hover:border-gray-400'
                 }`}>
                   {filters.isNew && (
@@ -144,7 +144,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 />
                 <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
                   filters.isFavorite 
-                    ? 'bg-black border-black' 
+                    ? 'bg-primary border-primary' 
                     : 'border-gray-300 group-hover:border-gray-400'
                 }`}>
                   {filters.isFavorite && (
@@ -176,7 +176,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     />
                     <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
                       filters.brands.includes(brand.slug) 
-                        ? 'bg-black border-black' 
+                        ? 'bg-primary border-primary' 
                         : 'border-gray-300 group-hover:border-gray-400'
                     }`}>
                       {filters.brands.includes(brand.slug) && (
@@ -213,7 +213,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     />
                     <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
                       filters.attributes[attr.slug]?.includes(value) 
-                        ? 'bg-black border-black' 
+                        ? 'bg-primary border-primary' 
                         : 'border-gray-300 group-hover:border-gray-400'
                     }`}>
                       {filters.attributes[attr.slug]?.includes(value) && (

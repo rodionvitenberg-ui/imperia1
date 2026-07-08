@@ -42,7 +42,7 @@ export default function CartItem({ item }: CartItemProps) {
   const totalPrice = productPrice * quantity;
 
   return (
-    <div className="bg-gray-50 rounded-lg p-4 transition-all duration-200 hover:bg-gray-100">
+    <div className="bg-white border border-[#e5e7eb] rounded-[8px] p-4 transition-all duration-200 hover:border-primary/30">
       <div className="flex items-start gap-4">
         {/* Product Image */}
         <Link href={`/products/${product.slug}`} className="flex-shrink-0">
@@ -69,14 +69,14 @@ export default function CartItem({ item }: CartItemProps) {
             href={`/products/${product.slug}`}
             className="block group"
           >
-            <h3 className="text-sm font-semibold text-gray-900 group-hover:text-black transition-colors line-clamp-2">
+            <h3 className="text-sm font-semibold text-[#212121] group-hover:text-primary transition-colors line-clamp-2">
               {product.name}
             </h3>
           </Link>
           
           {/* Price per item */}
           <div className="mt-2">
-            <span className="text-sm font-medium text-gray-900">
+            <span className="text-sm font-medium text-[#212121]">
               {productPrice.toLocaleString('ru-RU')} сом
             </span>
             <span className="text-xs text-gray-500 ml-1">за шт.</span>
@@ -88,7 +88,7 @@ export default function CartItem({ item }: CartItemProps) {
               <div className="flex flex-wrap gap-1">
                 {product.attributes.map((attr, index) => (
                   <span key={index} className="inline-block px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded">
-                    {attr.value}
+                    {typeof attr.value === 'object' ? attr.value.display : String(attr.value)}
                   </span>
                 ))}
               </div>
@@ -157,7 +157,7 @@ export default function CartItem({ item }: CartItemProps) {
 
         {/* Total Price */}
         <div className="text-right">
-          <div className="text-lg font-semibold text-gray-900">
+          <div className="text-lg font-semibold text-[#212121]">
             {totalPrice.toLocaleString('ru-RU')} сом
           </div>
           {quantity > 1 && (

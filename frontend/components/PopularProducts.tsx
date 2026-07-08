@@ -28,7 +28,7 @@ const PopularProducts: React.FC = () => {
   if (loading) {
     return (
       <div className="container mx-auto my-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Популярные товары</h2>
+        <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>Популярные товары</h2>
         <div className="text-center py-8">
           <div className="text-gray-500">Загрузка...</div>
         </div>
@@ -39,7 +39,7 @@ const PopularProducts: React.FC = () => {
   if (products.length === 0) {
     return (
       <div className="container mx-auto my-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Популярные товары</h2>
+        <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>Популярные товары</h2>
         <div className="text-center py-8">
           <div className="text-gray-500">Популярные товары не найдены</div>
         </div>
@@ -49,7 +49,7 @@ const PopularProducts: React.FC = () => {
 
   return (
     <div className="container mx-auto my-12 px-4">
-      <h2 className="text-3xl font-bold text-center mb-8">Популярные товары</h2>
+      <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>Популярные товары</h2>
       <ProductGrid products={products} />
     </div>
   );

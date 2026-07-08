@@ -5,20 +5,21 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { FavoritesProvider } from '@/contexts/FavoritesContext';
 import { RecentlyViewedProvider } from '@/contexts/RecentlyViewedContext';
 import { Toaster } from 'react-hot-toast';
-import { Inter } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import { fetchCategories, buildCategoryTree, NestedCategory } from '@/lib/api';
 import { CompareProvider } from '@/contexts/CompareContext';
 
-const inter = Inter({ 
+const openSans = Open_Sans({ 
   subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '600', '700'],
   display: 'swap',
+  variable: '--font-open-sans',
 });
 
 export const metadata = {
-  title: 'Империя Электроники',
-  description: 'Nike в мире компьютерного оборудования',
+  title: 'Империя Электроники — Каракол',
+  description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -34,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body className={`${openSans.className} ${openSans.variable}`}>
         <AuthProvider>
           <CartProvider>
             <CompareProvider>

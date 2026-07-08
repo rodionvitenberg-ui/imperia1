@@ -12,29 +12,6 @@ from .services import NotificationManager
 logger = logging.getLogger(__name__)
 
 
-@receiver(post_save, sender=Order)
-def send_order_notification_signal(sender, instance, created, **kwargs):
-    """
-    Сигнал для отправки уведомления при создании нового заказа
-    """
-    if created:  # Только для новых заказов
-        try:
-            logger.info(f"🔔 Отправка уведомления о новом заказе: {instance.order_number}")
-            
-            # Отправляем уведомления
-            results = NotificationManager.send_order_notifications(instance)
-            
-            # Логируем результаты
-            for service, result in results.items():
-                if result.get('success'):
-                    logger.info(f"✅ Уведомление через {service} отправлено успешно для заказа {instance.order_number}")
-                else:
-                    logger.error(f"❌ Ошибка отправки через {service} для заказа {instance.order_number}: {result.get('error')}")
-                    
-        except Exception as e:
-            logger.error(f"❌ Критическая ошибка при отправке уведомлений для заказа {instance.order_number}: {e}")
-
-
 @receiver(pre_save, sender=Order)
 def order_status_change_notification(sender, instance, **kwargs):
     """
@@ -135,12 +112,30 @@ def send_status_change_notification(order, old_status, new_status):
 # Дополнительные сигналы для других событий (можно расширить в будущем)
 
 @receiver(post_save, sender=Order)
-def log_order_creation(sender, instance, created, **kwargs):
+def handle_new_order(sender, instance, created, **kwargs):
     """
-    Логирование создания заказов
+    Единый обработчик для нового заказа: логирование + уведомления
     """
-    if created:
-        logger.info(f"🛒 Создан новый заказ: {instance.order_number} на сумму {instance.total_amount} сом ")
+    if not created:
+        return
+    
+    logger.info(f"🛒 Создан новый заказ: {instance.order_number} на сумму {instance.total_amount} сом")
+    
+    try:
+        logger.info(f"🔔 Отправка уведомления о новом заказе: {instance.order_number}")
+        
+        # Отправляем уведомления
+        results = NotificationManager.send_order_notifications(instance)
+        
+        # Логируем результаты
+        for service, result in results.items():
+            if result.get('success'):
+                logger.info(f"✅ Уведомление через {service} отправлено успешно для заказа {instance.order_number}")
+            else:
+                logger.error(f"❌ Ошибка отправки через {service} для заказа {instance.order_number}: {result.get('error')}")
+                
+    except Exception as e:
+        logger.error(f"❌ Критическая ошибка при отправке уведомлений для заказа {instance.order_number}: {e}")
 
 
 # Сигнал для тестирования (можно использовать в разработке)

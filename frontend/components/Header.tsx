@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
 
   return (
     <header 
-      className="relative w-full z-50 bg-white border-b border-gray-200 shadow-sm"
+      className="relative w-full z-50 bg-white border-b border-[#e5e7eb]"
       onMouseEnter={handleHeaderEnter}
       onMouseLeave={handleHeaderLeave}
     >
@@ -130,11 +130,11 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
             >
               <Link 
                 href={link.href}
-                className="text-gray-700 font-medium hover:text-soft-black transition-colors py-2"
+                className="text-[#212121] font-medium hover:text-primary transition-colors py-2"
               >
                 {link.name}
               </Link>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-soft-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
             </div>
           ))}
         </nav>
@@ -145,7 +145,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
           {/* ПОИСК */}
           <button 
             onClick={() => isMobile ? setSearchModalOpen(true) : toggleDropdown('search')}
-            className={`p-2 transition-colors relative ${activeDropdown === 'search' ? 'text-soft-black' : 'text-gray-600 hover:text-soft-black'}`}
+            className={`p-2 transition-colors relative ${activeDropdown === 'search' ? 'text-primary' : 'text-[#212121] hover:text-primary'}`}
             aria-label="Поиск"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -156,14 +156,14 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
           {/* --- НОВАЯ КНОПКА: СРАВНЕНИЕ --- */}
           <Link 
             href="/compare"
-            className="hidden md:block p-2 text-gray-600 hover:text-soft-black transition-colors relative"
+            className="hidden md:block p-2 text-[#212121] hover:text-primary transition-colors relative"
             aria-label="Сравнение"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
             {compareCount > 0 && (
-              <span className="absolute top-0 right-0 bg-soft-black text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+              <span className="absolute top-0 right-0 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
                 {compareCount}
               </span>
             )}
@@ -172,14 +172,14 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
           {/* КОРЗИНА */}
           <button 
             onClick={() => toggleDropdown('cart')}
-            className={`hidden md:block p-2 transition-colors relative ${activeDropdown === 'cart' ? 'text-soft-black' : 'text-gray-600 hover:text-soft-black'}`}
+            className={`hidden md:block p-2 transition-colors relative ${activeDropdown === 'cart' ? 'text-primary' : 'text-[#212121] hover:text-primary'}`}
             aria-label="Корзина"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
             {totalItems > 0 && (
-              <span className="absolute top-0 right-0 bg-soft-black text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+              <span className="absolute top-0 right-0 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
                 {totalItems}
               </span>
             )}
@@ -187,7 +187,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
 
           {/* БУРГЕР МЕНЮ */}
           <button 
-            className="md:hidden p-2 text-gray-600 hover:text-soft-black transition-colors"
+            className="md:hidden p-2 text-[#212121] hover:text-primary transition-colors"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Меню"
           >

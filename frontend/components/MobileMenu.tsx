@@ -62,7 +62,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
             />
           <button 
             onClick={closeMenu}
-            className="p-2 text-gray-500 hover:text-soft-black transition-colors"
+            className="p-2 text-[#212121] hover:text-primary transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -79,7 +79,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
                    <Link 
                       href={`/catalog/${category.slug}`}
                       onClick={closeMenu}
-                      className="text-lg font-medium text-gray-800 hover:text-soft-black"
+                       className="text-lg font-medium text-[#212121] hover:text-primary"
                    >
                      {category.name}
                    </Link>
@@ -117,7 +117,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
                           <Link 
                             href={`/catalog/${child.slug}`}
                             onClick={closeMenu}
-                            className="block text-gray-600 text-sm py-1 hover:text-soft-black"
+                             className="block text-[#212121] text-sm py-1 hover:text-primary"
                           >
                             {child.name}
                           </Link>
@@ -136,14 +136,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
             <Link 
               href="/cart" 
               onClick={closeMenu}
-              className="flex items-center justify-center gap-3 w-full py-4 bg-soft-black text-white rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+              className="flex items-center justify-center gap-3 w-full py-4 bg-primary text-white rounded-[20px] hover:opacity-90 transition-opacity"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
               <span className="text-base font-medium">Корзина</span>
               {totalItems > 0 && (
-                <span className="ml-2 bg-white text-soft-black text-xs font-bold h-6 min-w-[24px] px-1.5 flex items-center justify-center rounded-full">
+                <span className="ml-2 bg-white text-primary text-xs font-bold h-6 min-w-[24px] px-1.5 flex items-center justify-center rounded-full">
                   {totalItems}
                 </span>
               )}

@@ -5,18 +5,18 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-800 px-6 py-8 mt-16">
+    <footer className="bg-white text-[#212121] px-6 py-8 mt-16 border-t border-[#e5e7eb]">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Левая часть - социальные иконки */}
           <div className="flex-shrink-0">
             <div className="flex flex-col items-start gap-4">
-              <h3 className="text-lg font-medium mb-2 text-gray-900">Мы в соцсетях</h3>
+              <h3 className="text-lg font-semibold mb-2 text-[#212121]">Мы в соцсетях</h3>
               <div className="flex items-center space-x-4">
                 {/* Telegram */}
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                   aria-label="Telegram"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -27,7 +27,7 @@ const Footer = () => {
                 {/* WhatsApp */}
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                   aria-label="WhatsApp"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@ const Footer = () => {
                 {/* Instagram */}
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                   aria-label="Instagram"
                 >
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -56,13 +56,13 @@ const Footer = () => {
               <div className="flex flex-col space-y-2">
                 <Link
                   href="/about"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
                   О компании
                 </Link>
                 <Link
                   href="/contacts"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
                   Контакты
                 </Link>
@@ -74,13 +74,13 @@ const Footer = () => {
               <div className="flex flex-col space-y-2">
                 <Link
                   href="/how-to-order"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
                   Как сделать заказ
                 </Link>
                 <Link
                   href="/delivery-payment"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
                   Доставка и оплата
                 </Link>
@@ -90,9 +90,9 @@ const Footer = () => {
         </div>
 
         {/* Нижняя часть - копирайт */}
-        <div className="border-t border-gray-300 mt-8 pt-8">
+        <div className="border-t border-[#e5e7eb] mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-sm">
+            <p className="text-[#212121] text-sm">
               © 2026 Империя Электроники. Все права защищены.
             </p>
           </div>

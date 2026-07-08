@@ -32,8 +32,8 @@ const FilterButton: React.FC<FilterButtonProps> = ({
           rounded-full shadow-lg hover:shadow-xl 
           transition-all duration-200 touch-manipulation
           ${filtersActive 
-            ? 'bg-black text-white' 
-            : 'bg-white text-gray-900 border border-gray-200'
+            ? 'bg-primary text-white' 
+            : 'bg-white text-[#212121] border border-[#bfbfbf]'
           }
         `}
       >
@@ -80,7 +80,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
               className="absolute top-0 right-0 h-full w-full max-w-sm bg-white flex flex-col shadow-2xl"
             >
               {/* Шапка */}
-              <div className="bg-black text-white p-4 flex justify-between items-center">
+              <div className="bg-primary text-white p-4 flex justify-between items-center">
                 <h2 className="text-lg font-semibold">Фильтры товаров</h2>
                 <button 
                   onClick={handleClose}
@@ -109,7 +109,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
               <div className="border-t border-gray-200 p-4 space-y-3">
                 <button
                   onClick={handleClose}
-                  className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
+                  className="w-full bg-primary text-white py-3 rounded-[20px] hover:bg-primary/90 transition-colors font-bold text-[14px] min-h-[40px]"
                 >
                   Применить фильтры
                 </button>
@@ -122,7 +122,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
                       isFavorite: false,
                     });
                   }}
-                  className="w-full bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                  className="w-full bg-white text-[#212121] border border-[#bfbfbf] py-2 rounded-[20px] hover:bg-gray-50 transition-colors font-bold text-[14px] min-h-[40px]"
                 >
                   Сбросить всё
                 </button>

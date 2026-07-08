@@ -38,7 +38,7 @@ const fetchRecommendedProducts = async (
           if (!attributeFilters[attr.attribute.slug]) {
             attributeFilters[attr.attribute.slug] = [];
           }
-          attributeFilters[attr.attribute.slug].push(attr.value);
+          attributeFilters[attr.attribute.slug].push(typeof attr.value === 'object' ? String(attr.value.value) : attr.value);
         }
       });
       
@@ -141,7 +141,7 @@ export default function RelatedProducts({
   if (loading) {
     return (
       <div className="my-12">
-        <h2 className="text-3xl font-bold text-center mb-8">{title}</h2>
+        <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>{title}</h2>
         <div className="text-center py-8">
           <div className="text-gray-500">Загрузка...</div>
         </div>
@@ -155,7 +155,7 @@ export default function RelatedProducts({
 
   return (
     <div className="my-12">
-      <h2 className="text-3xl font-bold text-center mb-8">{title}</h2>
+      <h2 className="text-[24px] leading-[34px] font-bold text-center mb-8 text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>{title}</h2>
       <ProductCarousel products={products} />
     </div>
   );

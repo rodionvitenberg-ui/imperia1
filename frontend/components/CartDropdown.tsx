@@ -20,7 +20,7 @@ const CartDropdown: React.FC = () => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="absolute top-full left-0 w-full bg-white text-gray-700 shadow-lg border-t border-gray-200 overflow-hidden z-50"
+      className="absolute top-full left-0 w-full bg-white text-[#212121] border-t border-[#e5e7eb] overflow-hidden z-50"
     >
       <motion.div
         variants={dropdownContentVariants}
@@ -30,11 +30,11 @@ const CartDropdown: React.FC = () => {
         {/* Контент */}
         {items.length === 0 ? (
           <motion.div variants={dropdownContentVariants} className="text-center py-8">
-            <svg className="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 mx-auto mb-4 text-[#bfbfbf]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            <p className="text-gray-600 mb-4">Корзина пуста</p>
-            <p className="text-gray-500 text-sm">Добавьте товары для покупки</p>
+            <p className="text-[#212121] mb-4">Корзина пуста</p>
+            <p className="text-[#212121] text-sm">Добавьте товары для покупки</p>
           </motion.div>
         ) : (
           <motion.div variants={dropdownContentVariants}>
@@ -44,7 +44,7 @@ const CartDropdown: React.FC = () => {
                 const mainImage = item.product.images?.find((img: ProductImage) => img.is_main) || item.product.images?.[0];
                 
                 return (
-                  <div key={item.product.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg group">
+                  <div key={item.product.id} className="flex items-center space-x-3 p-3 bg-white border border-[#e5e7eb] rounded-[8px] group">
                     {/* Изображение */}
                     <Link href={`/products/${item.product.slug}`} className="flex-shrink-0">
                       <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
@@ -67,11 +67,11 @@ const CartDropdown: React.FC = () => {
                     {/* Информация о товаре */}
                     <div className="flex-1 min-w-0">
                       <Link href={`/products/${item.product.slug}`}>
-                        <h4 className="font-medium text-gray-900 hover:text-black transition-colors truncate">
+                        <h4 className="font-medium text-[#212121] hover:text-primary transition-colors truncate">
                           {item.product.name}
                         </h4>
                       </Link>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-[#212121] text-sm">
                         {item.product.price} сом × {item.quantity} = {(Number(item.product.price) * item.quantity).toFixed(0)} сом
                       </p>
                     </div>
@@ -124,14 +124,14 @@ const CartDropdown: React.FC = () => {
               )}
               
               <div className="flex items-center justify-between mb-4">
-                <span className="text-lg font-medium text-gray-900">Итого:</span>
-                <span className="text-xl font-bold text-gray-900">{totalPrice} сом</span>
+                <span className="text-lg font-medium text-[#212121]">Итого:</span>
+                <span className="text-xl font-bold text-[#212121]">{totalPrice} сом</span>
               </div>
               
               <div className="flex space-x-3">
                 <Link
                   href="/cart"
-                  className="flex-1 bg-black text-white py-3 px-4 rounded-full hover:bg-gray-800 transition-colors font-medium text-center"
+                  className="flex-1 bg-primary text-white py-3 px-6 rounded-[20px] hover:bg-primary/90 transition-colors font-bold text-[14px] min-h-[40px] text-center"
                 >
                   Перейти в корзину
                 </Link>

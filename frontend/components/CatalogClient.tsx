@@ -135,7 +135,7 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
           <div className="hidden md:block relative">
             <button 
               onClick={() => setShowSortMenu(!showSortMenu)}
-              className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-[#bfbfbf] rounded-[20px] hover:bg-gray-50 transition-colors font-bold text-[#212121]"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
@@ -145,7 +145,7 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
             </button>
             
             {showSortMenu && (
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-[8px] border border-[#e5e7eb] z-10">
                 <div className="py-1">
                   <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${sortOrder === null ? 'bg-gray-100' : ''}`}>По умолчанию</button>
                   <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-100' : ''}`}>Цена: дешевле-дороже</button>
@@ -157,10 +157,10 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
           
           <button
             onClick={handleToggleFilters}
-            className={`hidden md:flex items-center gap-2 px-4 py-2 text-sm border rounded-full transition-colors ${
+            className={`hidden md:flex items-center gap-2 px-4 py-2 text-sm border rounded-[20px] transition-colors font-bold ${
               showFilters 
-                ? 'border-gray-700 bg-gray-100 text-gray-800' 
-                : 'border-gray-300 hover:bg-gray-100'
+                ? 'border-primary bg-primary/5 text-primary' 
+                : 'border-[#bfbfbf] hover:bg-gray-50 text-[#212121]'
             }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,7 +188,7 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
           <div className="relative h-full">
             <button
               onClick={() => setShowSortMenu(!showSortMenu)}
-              className="w-full h-full flex items-center justify-center gap-2 px-3 text-sm font-medium border border-gray-200 rounded-lg bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-sm"
+              className="w-full h-full flex items-center justify-center gap-2 px-3 text-sm font-bold border border-[#bfbfbf] rounded-[8px] bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors"
             >
               <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
@@ -197,7 +197,7 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
             </button>
 
              {showSortMenu && (
-              <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-lg shadow-xl border border-gray-100 z-30 overflow-hidden">
+              <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-[8px] border border-[#e5e7eb] z-30 overflow-hidden">
                 <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === null ? 'bg-gray-50 font-medium' : ''}`}>По умолчанию</button>
                 <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дешевле</button>
                 <button onClick={() => handleSortChange('price-desc')} className={`w-full text-left px-4 py-3 text-sm ${sortOrder === 'price-desc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дороже</button>

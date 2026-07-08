@@ -4,21 +4,35 @@ import { API_CONFIG } from './config';
 
 // --- ТИПЫ ДАННЫХ ---
 
+export interface SEOFields {
+  meta_title?: string;
+  meta_description?: string;
+  h1?: string;
+}
+
 export interface Category {
   id: number;
   name: string;
   slug: string;
   parent: number | null;
+  header_order?: number;
+  children?: Category[];
+  meta_title?: string;
+  meta_description?: string;
+  h1?: string;
 }
 
 export interface NestedCategory extends Category {
-  header_order?: number;
   children?: NestedCategory[];
 }
 
 export interface ProductImage {
+  id?: number;
   image: string;
   is_main: boolean;
+  alt_text?: string;
+  image_type?: 'main' | 'gallery' | '360' | 'video_poster';
+  sort_order?: number;
 }
 
 export interface Tag {
@@ -26,34 +40,105 @@ export interface Tag {
   slug: string;
 }
 
-export interface Attribute {
+export interface Brand {
+  id?: number;
   name: string;
-  unit: string;
   slug: string;
+  logo?: string;
+  description?: string;
+  country?: string;
+  website?: string;
+}
+
+export interface Attribute {
+  id?: number;
+  name: string;
+  slug: string;
+  unit: string;
+  type?: 'str' | 'int' | 'bool' | 'enum';
+  enum_options?: string[];
+}
+
+export interface AttributeValue {
+  type: 'str' | 'int' | 'bool' | 'enum';
+  value: string | number | boolean;
+  display: string;
+  unit?: string;
 }
 
 export interface ProductAttribute {
+  id?: number;
   attribute: Attribute;
-  value: string;
+  value: string | AttributeValue; // строка для обратной совместимости, объект для новой версии
 }
 
-export interface Product {
+export interface WarehouseStock {
+  warehouse: string;
+  quantity: number;
+  reserved: number;
+  available: number;
+  in_stock: boolean;
+}
+
+export interface StockSummary {
+  total_available: number;
+  in_stock: boolean;
+  warehouses?: WarehouseStock[];
+}
+
+export interface ProductVariant {
   id: number;
-  slug: string;
+  sku: string;
   name: string;
-  description: string;
   price: string;
-  categories: Category[]; // Массив категорий вместо одной категории
-  tags: Tag[]; // Массив объектов тегов, а не строк
-  attributes: ProductAttribute[]; // Массив объектов атрибутов, а не строк
-  images: ProductImage[];
+  price_override: string | null;
+  is_active: boolean;
+  sort_order: number;
+  attributes?: ProductAttribute[];
+  images?: ProductImage[];
+  stock?: StockSummary;
+}
+
+/**
+ * Продукт в списке (ProductListSerializer).
+ */
+export interface ProductListItem {
+  id: number;
+  name: string;
+  slug: string;
+  price: string;
+  min_variant_price?: string;
+  has_variants?: boolean;
+  categories: Category[];
+  brands?: Brand[];
+  feature_tags?: Tag[];
+  tags?: Tag[]; // обратная совместимость
+  attributes?: ProductAttribute[];
+  images?: ProductImage[];
   is_favorite: boolean;
   is_new: boolean;
   is_active: boolean;
-  // Поля рейтинга (опциональные для совместимости)
+  main_image?: ProductImage | null;
   average_rating?: number;
   reviews_count?: number;
 }
+
+/**
+ * Продукт на детальной странице (ProductSerializer).
+ */
+export interface ProductDetail extends ProductListItem {
+  description: string;
+  attributes: ProductAttribute[];
+  images: ProductImage[];
+  variants?: ProductVariant[];
+  stock?: StockSummary;
+  meta_title?: string;
+  meta_description?: string;
+  h1?: string;
+}
+
+/** Обратно-совместимый тип (старые компоненты могут всё ещё использовать Product) */
+export type Product = ProductDetail;
 
 export const fetchCategories = async (): Promise<Category[]> => {
   try {

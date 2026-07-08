@@ -10,6 +10,7 @@ export interface User {
   email: string;
   first_name: string;
   last_name: string;
+  nickname?: string;
   date_joined: string;
 }
 
@@ -218,7 +219,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Функция смены пароля
   const changePassword = async (oldPassword: string, newPassword: string, confirmPassword: string) => {
     try {
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/auth/change-password/`, {
+      const response = await fetch(API_CONFIG.AUTH.CHANGE_PASSWORD, {
         method: 'POST',
         credentials: 'include',
         headers: {

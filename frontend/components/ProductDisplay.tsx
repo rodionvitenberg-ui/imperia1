@@ -71,7 +71,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
           {/* ПРАВАЯ КОЛОНКА: ИНФОРМАЦИЯ */}
           <div className="flex flex-col py-4">
             <div className="mb-2">
-              <h1 className="text-3xl md:text-4xl font-bold">{product.name}</h1>
+              <h1 className="text-[32px] leading-[38px] font-bold text-[#212121]">{product.name}</h1>
             </div>
             
 
@@ -83,13 +83,13 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
                 {product.tags.map((tag, index) => (
                   <span key={tag.slug}>
                     <span className="text-sm font-medium text-gray-900">{tag.name}</span>
-                    {index < product.tags.length - 1 && <span className="text-gray-400">, </span>}
+                    {product.tags && index < product.tags.length - 1 && <span className="text-gray-400">, </span>}
                   </span>
                 ))}
               </div>
             )}
             
-            <p className="text-4xl md:text-5xl font-light my-6">{product.price} сом</p>
+            <p className="text-4xl md:text-5xl font-semibold my-6 text-[#212121]">{product.price} сом</p>
 
             <div className="prose max-w-none text-gray-700">
               <p>{product.description}</p>
@@ -98,16 +98,16 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
             {/* Характеристики товара */}
             {product.attributes && product.attributes.length > 0 && (
               <div className="mt-6">
-                <h3 className="text-lg font-semibold mb-3">Характеристики</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-[20px] leading-[24px] font-semibold mb-3 text-[#212121]">Характеристики</h3>
+                <div className="bg-white border border-[#e5e7eb] rounded-[8px] p-4">
                   <dl className="grid grid-cols-1 gap-3">
                     {product.attributes.map((attr, index) => (
                       <div key={index} className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
-                        <dt className="text-sm font-medium text-gray-600">
+                        <dt className="text-sm font-medium text-[#212121]">
                           {attr.attribute.name}
                         </dt>
-                        <dd className="text-sm text-gray-900 font-medium">
-                          {attr.value}
+                        <dd className="text-sm text-[#212121] font-semibold">
+                          {typeof attr.value === 'object' ? attr.value.display : String(attr.value)}
                           {attr.attribute.unit && (
                             <span className="text-gray-500 ml-1">{attr.attribute.unit}</span>
                           )}
@@ -122,7 +122,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
             <div className="mt-8 space-y-3">
               <button 
                 onClick={handleAddToCart}
-                className="w-full bg-black text-white py-3 px-6 text-base font-medium hover:bg-gray-800 transition-colors rounded-full flex items-center justify-center gap-2"
+                className="w-full bg-primary text-white py-3 px-6 text-[14px] font-bold hover:bg-primary/90 transition-colors rounded-[20px] min-h-[40px] flex items-center justify-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />

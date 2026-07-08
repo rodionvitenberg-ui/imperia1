@@ -18,7 +18,7 @@ const MegaMenu = ({ content }: MegaMenuProps) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="absolute top-full left-0 w-full bg-white text-sm text-gray-700 shadow-lg border-t border-gray-200 overflow-hidden"
+      className="absolute top-full left-0 w-full bg-white text-sm text-[#212121] border-t border-[#e5e7eb] overflow-hidden"
     >
       <motion.div
         variants={dropdownContentVariants}
@@ -31,7 +31,7 @@ const MegaMenu = ({ content }: MegaMenuProps) => {
             <div className="mb-4">
               <Link 
                 href={`/catalog/${column.slug}`} 
-                className="block font-bold text-gray-900 hover:text-soft-black transition-colors"
+                className="block font-bold text-[#212121] hover:text-primary transition-colors"
               >
                 {column.name}
               </Link>
@@ -43,7 +43,7 @@ const MegaMenu = ({ content }: MegaMenuProps) => {
                 <li key={link.id}>
                   <Link 
                     href={`/catalog/${link.slug}`} 
-                    className="text-gray-600 hover:text-soft-black transition-colors"
+                    className="text-[#212121] hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>

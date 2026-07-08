@@ -57,7 +57,7 @@ const SearchDropdown: React.FC = () => {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="absolute top-full left-0 w-full bg-white text-gray-700 shadow-lg border-t border-gray-200 overflow-hidden z-50"
+      className="absolute top-full left-0 w-full bg-white text-[#212121] border-t border-[#e5e7eb] overflow-hidden z-50"
     >
       <motion.div
         variants={dropdownContentVariants}
@@ -72,7 +72,7 @@ const SearchDropdown: React.FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Поиск товаров..."
-              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none text-lg"
+              className="w-full pl-12 pr-4 py-3 border border-[#e5e7eb] rounded-[8px] focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-lg"
             />
             <svg 
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" 
@@ -88,7 +88,7 @@ const SearchDropdown: React.FC = () => {
         {/* Результаты поиска */}
         {isLoading ? (
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-2"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
             <p className="text-gray-600">Поиск...</p>
           </div>
         ) : products.length > 0 ? (
@@ -104,7 +104,7 @@ const SearchDropdown: React.FC = () => {
                     key={product.id}
                     href={`/products/${product.slug}`}
                     // Добавил bg-gray-50 как в корзине для визуального единства
-                    className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                    className="flex items-center space-x-3 p-3 bg-white border border-[#e5e7eb] rounded-[8px] hover:border-primary transition-colors group"
                   >
                     <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                       {mainImage ? (
@@ -122,10 +122,10 @@ const SearchDropdown: React.FC = () => {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 group-hover:text-black transition-colors truncate">
+                      <h3 className="font-medium text-[#212121] group-hover:text-primary transition-colors truncate">
                         {product.name}
                       </h3>
-                      <p className="text-sm font-bold text-gray-900 mt-1">
+                      <p className="text-sm font-bold text-[#212121] mt-1">
                         {product.price} сом
                       </p>
                     </div>
@@ -138,7 +138,7 @@ const SearchDropdown: React.FC = () => {
             <div className="text-center pt-4 border-t border-gray-200">
               <Link
                 href={`/search?q=${encodeURIComponent(query)}`}
-                className="inline-flex items-center text-black hover:text-gray-700 font-medium"
+                className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
               >
                 Показать все результаты
                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,11 +149,11 @@ const SearchDropdown: React.FC = () => {
           </motion.div>
         ) : query.trim() && !isLoading ? (
           <motion.div variants={dropdownContentVariants} className="text-center py-8">
-            <p className="text-gray-600">Ничего не найдено по запросу "{query}"</p>
+            <p className="text-[#212121]">Ничего не найдено по запросу "{query}"</p>
           </motion.div>
         ) : (
           <motion.div variants={dropdownContentVariants} className="text-center py-8">
-            <p className="text-gray-600">Введите запрос для поиска товаров</p>
+            <p className="text-[#212121]">Введите запрос для поиска товаров</p>
           </motion.div>
         )}
       </motion.div>

@@ -28,7 +28,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
     <div className="flex flex-col min-h-screen">
       {/* Хедер с хлебными крошками и кнопками - ВСЕГДА показывается если есть хлебные крошки */}
       {breadcrumbs && (
-        <div className="bg-gray-50 border-b border-gray-200">
+        <div className="bg-white border-b border-[#e5e7eb]">
           <div className="container mx-auto max-w-full px-4 py-3"> {/* Всегда max-w-full для хедера */}
             <div className="flex items-center justify-between min-h-[40px]"> {/* Фиксированная минимальная высота */}
               {/* Левая часть - хлебные крошки */}

@@ -1,3 +1,4 @@
+import logging
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -12,6 +13,8 @@ from .serializers import (
     ChangePasswordSerializer, 
     UserSerializer
 )
+
+logger = logging.getLogger(__name__)
 
 
 @ensure_csrf_cookie
@@ -42,8 +45,7 @@ def register_view(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Ошибка при регистрации пользователя")
         return Response({
             'error': 'Внутренняя ошибка сервера',
             'details': str(e)
@@ -91,8 +93,7 @@ def login_view(request):
             
             return response
         except Exception as login_error:
-            import traceback
-            traceback.print_exc()
+            logger.exception("Ошибка при входе в систему")
             return Response({
                 'error': 'Ошибка при входе в систему'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

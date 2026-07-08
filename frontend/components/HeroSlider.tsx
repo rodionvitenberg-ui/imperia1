@@ -67,7 +67,7 @@ const HeroSlider = () => {
                 </p>
                 <a
                   href={slide.buttonLink}
-                  className="mt-8 inline-block bg-white text-black font-bold py-3 px-8 uppercase hover:bg-gray-200 transition-colors duration-300"
+                  className="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-[20px] hover:bg-primary/90 transition-colors duration-300 text-[14px] min-w-[300px] min-h-[40px] text-center"
                 >
                   {slide.buttonText}
                 </a>
