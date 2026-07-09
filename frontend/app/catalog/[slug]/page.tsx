@@ -89,38 +89,41 @@ export async function generateStaticParams() {
 async function getProductsForCategory(slug: string): Promise<{
   products: Product[];
   categoryPath: NestedCategory[];
+  allSlugs: string[];
 }> {
   try {
     const categories = await fetchCategories();
+    console.log(`[page.tsx] fetchCategories → ${categories.length} categories`);
     const categoryTree = buildCategoryTree(categories);
     const categoryPath = getCategoryPath(categoryTree, slug);
+    console.log(`[page.tsx] slug="${slug}" → categoryPath length: ${categoryPath.length}`, categoryPath.map(c => c.slug));
     
     if (categoryPath.length === 0) {
-      return { products: [], categoryPath: [] };
+      console.warn(`[page.tsx] ⚠️ Category not found for slug "${slug}"`);
+      return { products: [], categoryPath: [], allSlugs: [] };
     }
     
     // Получаем все слаги категории и её дочерних
     const allSlugs = getAllCategorySlugs(categoryTree, slug);
+    console.log(`[page.tsx] getAllCategorySlugs → ${allSlugs.length} slugs:`, allSlugs);
     
     // Получаем все товары из этих категорий
     const products = await fetchProductsByCategorySlugs(allSlugs);
     
-    return { products, categoryPath };
+    return { products, categoryPath, allSlugs };
   } catch (error) {
-    console.error(error);
-    return { products: [], categoryPath: [] };
+    console.error('[page.tsx] getProductsForCategory error:', error);
+    return { products: [], categoryPath: [], allSlugs: [] };
   }
 }
 
 // Это сам компонент страницы
 export default async function CatalogPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const { products, categoryPath } = await getProductsForCategory(slug);
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
+  const { products, categoryPath, allSlugs } = await getProductsForCategory(slug);
   
-  // Получаем все слаги для передачи в клиентский компонент
-  const categories = await fetchCategories();
-  const categoryTree = buildCategoryTree(categories);
-  const allSlugs = getAllCategorySlugs(categoryTree, slug);
+  console.log(`[page.tsx] Rendering CatalogPage for "${slug}" (raw: "${rawSlug}") → ${products.length} products, path: ${categoryPath.length}`);
 
   return (
     <CatalogClient 

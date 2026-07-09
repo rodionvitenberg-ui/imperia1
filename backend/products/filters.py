@@ -68,7 +68,7 @@ class ProductFilter(django_filters.FilterSet):
             if key.startswith('attributes[') and key.endswith(']'):
                 attr_slug = key[key.find('[') + 1:key.find(']')]
                 if values:
-                    self._apply_attribute_filter(queryset, attr_slug, values.split(','))
+                    queryset = self._apply_attribute_filter(queryset, attr_slug, values.split(','))
                     queryset = queryset.distinct()
 
         # Обработка JSON-формата: attributes={"slug": ["val1","val2"]}
@@ -79,7 +79,7 @@ class ProductFilter(django_filters.FilterSet):
                 attributes = json.loads(attributes_param)
                 for attr_slug, vals in attributes.items():
                     if vals and isinstance(vals, list):
-                        self._apply_attribute_filter(queryset, attr_slug, vals)
+                        queryset = self._apply_attribute_filter(queryset, attr_slug, vals)
                         queryset = queryset.distinct()
             except (json.JSONDecodeError, ValueError):
                 pass

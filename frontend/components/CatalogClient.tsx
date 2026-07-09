@@ -130,8 +130,8 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
     <PageLayout
       breadcrumbs={<UniversalBreadcrumbs categoryPath={categoryPath} />}
       actions={
-        // ДЕСКТОПНЫЕ КНОПКИ
         <>
+          {/* ДЕСКТОПНЫЕ КНОПКИ */}
           <div className="hidden md:block relative">
             <button 
               onClick={() => setShowSortMenu(!showSortMenu)}
@@ -168,6 +168,39 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
             </svg>
             {showFilters ? 'Скрыть фильтры' : 'Показать фильтры'}
           </button>
+
+          {/* МОБИЛЬНЫЕ КНОПКИ — перенесены в actions */}
+          <div className="md:hidden grid grid-cols-2 gap-2 w-full">
+            <div className="relative h-9">
+              <button
+                onClick={() => setShowSortMenu(!showSortMenu)}
+                className="w-full h-full flex items-center justify-center gap-2 px-3 text-sm font-bold border border-[#bfbfbf] rounded-[8px] bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors"
+              >
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                </svg>
+                <span className="truncate">{getSortLabel()}</span>
+              </button>
+
+              {showSortMenu && (
+                <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-[8px] border border-[#e5e7eb] z-30 overflow-hidden">
+                  <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === null ? 'bg-gray-50 font-medium' : ''}`}>По умолчанию</button>
+                  <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дешевле</button>
+                  <button onClick={() => handleSortChange('price-desc')} className={`w-full text-left px-4 py-3 text-sm ${sortOrder === 'price-desc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дороже</button>
+                </div>
+              )}
+            </div>
+
+            <div className="h-9">
+              <div className="w-full h-full [&>button]:!w-full [&>button]:!h-full [&>button]:!rounded-lg [&>button]:!shadow-sm [&>button]:!border-gray-200 [&>button]:!border [&>button]:!bg-white [&>button]:!static [&>button]:!flex [&>button]:!items-center [&>button]:!justify-center [&>button]:!py-0 [&>button]:!m-0 [&>button]:!text-sm [&>button]:!font-medium [&>button]:!text-gray-900">
+                <FilterButton
+                  categoryId={currentCategoryId}
+                  onFiltersChange={handleFiltersChange}
+                  filtersActive={filtersActive}
+                />
+              </div>
+            </div>
+          </div>
         </>
       }
       sidebar={
@@ -180,46 +213,6 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
       showSidebar={!isMobile && showFilters}
       maxWidth="full"
     >
-      {/* МОБИЛЬНАЯ ПАНЕЛЬ: 50/50 по ширине, 48px по высоте */}
-      {isMobile && (
-        <div className="grid grid-cols-2 gap-3 mb-6 relative z-20 h-12">
-          
-          {/* Мобильная Сортировка */}
-          <div className="relative h-full">
-            <button
-              onClick={() => setShowSortMenu(!showSortMenu)}
-              className="w-full h-full flex items-center justify-center gap-2 px-3 text-sm font-bold border border-[#bfbfbf] rounded-[8px] bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors"
-            >
-              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
-              </svg>
-              <span className="truncate">{getSortLabel()}</span>
-            </button>
-
-             {showSortMenu && (
-              <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-[8px] border border-[#e5e7eb] z-30 overflow-hidden">
-                <button onClick={() => handleSortChange(null)} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === null ? 'bg-gray-50 font-medium' : ''}`}>По умолчанию</button>
-                <button onClick={() => handleSortChange('price-asc')} className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 ${sortOrder === 'price-asc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дешевле</button>
-                <button onClick={() => handleSortChange('price-desc')} className={`w-full text-left px-4 py-3 text-sm ${sortOrder === 'price-desc' ? 'bg-gray-50 font-medium' : ''}`}>Сначала дороже</button>
-              </div>
-            )}
-          </div>
-
-          {/* Мобильные Фильтры */}
-          <div className="h-full">
-            {/* Магия CSS: заставляем кнопку внутри FilterButton быть такой же, как Сортировка */}
-            <div className="w-full h-full [&_button]:!w-full [&_button]:!h-full [&_button]:!rounded-lg [&_button]:!shadow-sm [&_button]:!border-gray-200 [&_button]:!border [&_button]:!bg-white [&_button]:!static [&_button]:!flex [&_button]:!items-center [&_button]:!justify-center [&_button]:!py-0 [&_button]:!m-0 [&_button]:!text-sm [&_button]:!font-medium [&_button]:!text-gray-900">
-              <FilterButton
-                categoryId={currentCategoryId}
-                onFiltersChange={handleFiltersChange}
-                filtersActive={filtersActive}
-              />
-            </div>
-          </div>
-
-        </div>
-      )}
-
       {loading && <div className="text-center py-8">Загрузка...</div>}
       {!loading && products.length > 0 && <ProductGrid products={products} />}
       {!loading && products.length === 0 && (

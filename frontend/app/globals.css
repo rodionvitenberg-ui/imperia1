@@ -5,7 +5,7 @@
   --color-primary: #1061cd;
   --color-secondary: #212121;
   --color-tertiary: #bfbfbf;
-  --color-surface: #ffffff;
+  --color-surface: #f8f9fb;
   --color-on-surface: #212121;
   --color-border: #e5e7eb;
   --color-error: #d92d20;
@@ -76,3 +76,24 @@ a, button {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+/* Тонкий скроллбар для фильтров */
+.filter-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+.filter-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.filter-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+.filter-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+/* Firefox */
+.filter-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+

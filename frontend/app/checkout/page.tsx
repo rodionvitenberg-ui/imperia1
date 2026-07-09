@@ -91,8 +91,8 @@ export default function CheckoutPage() {
       console.log('Order created:', result);
 
       clearCart();
-      showCustomToast.success('Заказ успешно оформлен!');
-      router.push('/');
+      const orderId = result?.id || '';
+      router.push(`/order-success${orderId ? '?orderId=' + orderId : ''}`);
       
     } catch (error) {
       console.error('Checkout error:', error);
@@ -108,48 +108,99 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8 text-center">Оформление заказа</h1>
+    <div className="min-h-screen">
+      <div className="max-w-[1400px] mx-auto px-5 py-12">
+        {/* Заголовок */}
+        <div className="mb-8">
+          <h1 
+            className="text-[24px] md:text-[32px] leading-[34px] md:leading-[38px] font-bold text-[#212121]"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Оформление заказа
+          </h1>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-6">Контактные данные</h2>
-            <OrderForm 
-              onSubmit={handleOrderSubmit} 
-              isSubmitting={isSubmitting} 
-              user={user}
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Левая колонка - форма */}
+          <div className="lg:col-span-3">
+            <div className="bg-white border border-[#e5e7eb] rounded-[8px] p-6">
+              <h2 
+                className="text-[16px] leading-[24px] font-bold text-[#212121] mb-6"
+                style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+              >
+                Контактные данные
+              </h2>
+              <OrderForm 
+                onSubmit={handleOrderSubmit} 
+                isSubmitting={isSubmitting} 
+                user={user}
+              />
+            </div>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md h-fit">
-            <h2 className="text-xl font-semibold mb-6">Ваш заказ</h2>
-            <div className="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
-              {items.map((item) => {
-                const imageUrl = buildImageUrl(item.product.images?.[0]?.image);
-                return (
-                <div key={item.product.id} className="flex gap-4 py-2 border-b last:border-0">
-                  <div className="relative w-16 h-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imageUrl} alt={item.product.name} className="object-cover w-full h-full"/>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-medium line-clamp-2">{item.product.name}</h3>
-                    <div className="flex justify-between mt-1 text-sm text-gray-500">
-                      <span>{item.quantity} шт.</span>
-                      <span className="font-medium text-gray-900">
-                        {(parseFloat(item.product.price) * item.quantity).toLocaleString('ru-RU')} сом
-                      </span>
+          {/* Правая колонка - заказ */}
+          <div className="lg:col-span-2">
+            <div className="bg-white border border-[#e5e7eb] rounded-[8px] p-6 sticky top-8">
+              <h2 
+                className="text-[16px] leading-[24px] font-bold text-[#212121] mb-6"
+                style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+              >
+                Ваш заказ
+              </h2>
+              
+              {/* Список товаров */}
+              <div className="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
+                {items.map((item) => {
+                  const imageUrl = buildImageUrl(item.product.images?.[0]?.image);
+                  return (
+                    <div key={item.product.id} className="flex gap-3 pb-4 border-b border-[#e5e7eb] last:border-0 last:pb-0">
+                      <div className="relative w-14 h-14 flex-shrink-0 bg-gray-100 rounded-[8px] overflow-hidden border border-[#e5e7eb]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={imageUrl} alt={item.product.name} className="object-cover w-full h-full"/>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 
+                          className="text-[13px] leading-[18px] font-bold text-[#212121] line-clamp-2"
+                          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                        >
+                          {item.product.name}
+                        </h3>
+                        <div className="flex justify-between mt-1">
+                          <span 
+                            className="text-[12px] leading-[16px] text-gray-500"
+                            style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                          >
+                            {item.quantity} шт.
+                          </span>
+                          <span 
+                            className="text-[13px] leading-[18px] font-bold text-[#212121]"
+                            style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                          >
+                            {(parseFloat(item.product.price) * item.quantity).toLocaleString('ru-RU')} сом
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  );
+                })}
+              </div>
+
+              {/* Итого */}
+              <div className="border-t border-[#e5e7eb] pt-4">
+                <div className="flex justify-between items-center">
+                  <span 
+                    className="text-[16px] leading-[24px] font-bold text-[#212121]"
+                    style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                  >
+                    Итого:
+                  </span>
+                  <span 
+                    className="text-[20px] leading-[24px] font-bold text-[#212121]"
+                    style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                  >
+                    {totalPrice.toLocaleString('ru-RU')} сом
+                  </span>
                 </div>
-                );
-              })}
-            </div>
-            <div className="border-t pt-4 space-y-2">
-              <div className="flex justify-between text-lg font-bold border-t pt-2">
-                <span>Итого:</span>
-                <span>{totalPrice.toLocaleString('ru-RU')} сом</span>
               </div>
             </div>
           </div>

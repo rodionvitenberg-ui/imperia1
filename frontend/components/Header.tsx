@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import MegaMenu from './MegaMenu';
 import { NestedCategory } from '@/lib/api';
@@ -36,10 +36,39 @@ interface HeaderProps {
   topBarLinks: TopBarLink[];
 }
 
+const HARDCODED_SERVICES: NestedCategory = {
+  id: -1,
+  name: 'Услуги и ремонт',
+  slug: 'services',
+  parent: null,
+  header_order: 999,
+  children: [
+    {
+      id: -2,
+      name: 'Ремонт ПК и оргтехники',
+      slug: 'services#pc-repair',
+      parent: -1,
+      children: [],
+    } as NestedCategory,
+    {
+      id: -3,
+      name: 'Обслуживание',
+      slug: 'services#maintenance',
+      parent: -1,
+      children: [],
+    } as NestedCategory,
+  ],
+};
+
 type DropdownType = 'search' | 'cart' | null;
 
 const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
   const isMobile = useIsMobile();
+
+  const extendedCategories = useMemo(
+    () => [...allCategories, HARDCODED_SERVICES],
+    [allCategories],
+  );
   
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
@@ -56,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
   const compareCount = compareItems.length;
 
   // Динамическое меню
-  const mainNavLinks = allCategories
+  const mainNavLinks = extendedCategories
     .filter((cat) => (cat.header_order || 0) > 0)
     .sort((a, b) => (a.header_order || 0) - (b.header_order || 0))
     .map((cat) => ({
@@ -67,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
     }));
 
   const currentMenuContent = hoveredLink 
-    ? allCategories.find((c) => c.slug === hoveredLink.slug)?.children || [] 
+    ? extendedCategories.find((c) => c.slug === hoveredLink.slug)?.children || [] 
     : [];
 
   // --- ЛОГИКА ---
@@ -100,11 +129,11 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
 
   return (
     <header 
-      className="relative w-full z-50 bg-white border-b border-[#e5e7eb]"
+      className="sticky top-0 w-full z-50 bg-white border-b border-[#e5e7eb]"
       onMouseEnter={handleHeaderEnter}
       onMouseLeave={handleHeaderLeave}
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-5 h-16 flex items-center justify-between">
         
         {/* ЛОГОТИП */}
         <div className="flex-shrink-0 mr-4">
@@ -114,8 +143,9 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
               alt="Electronics Store"
               width={160}
               height={40}
-              className="h-22 w-auto object-contain object-left"
+              className="h-14 w-auto object-contain object-left"
               priority
+              unoptimized
             />
           </Link>
         </div>
@@ -130,6 +160,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
             >
               <Link 
                 href={link.href}
+                onClick={() => setHoveredLink(null)}
                 className="text-[#212121] font-medium hover:text-primary transition-colors py-2"
               >
                 {link.name}
@@ -153,9 +184,44 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
             </svg>
           </button>
 
-          {/* --- НОВАЯ КНОПКА: СРАВНЕНИЕ --- */}
+          {/* КОРЗИНА (мобилка — ссылка на /cart; десктоп — кнопка с дропдауном) */}
+          {isMobile ? (
+            <Link
+              href="/cart"
+              onClick={() => setHoveredLink(null)}
+              className="p-2 text-[#212121] hover:text-primary transition-colors relative"
+              aria-label="Корзина"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          ) : (
+            <button 
+              onClick={() => toggleDropdown('cart')}
+              className={`p-2 transition-colors relative ${activeDropdown === 'cart' ? 'text-primary' : 'text-[#212121] hover:text-primary'}`}
+              aria-label="Корзина"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          )}
+
+          {/* --- КНОПКА: СРАВНЕНИЕ (десктоп) --- */}
           <Link 
             href="/compare"
+            onClick={() => setHoveredLink(null)}
             className="hidden md:block p-2 text-[#212121] hover:text-primary transition-colors relative"
             aria-label="Сравнение"
           >
@@ -169,31 +235,21 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
             )}
           </Link>
 
-          {/* КОРЗИНА */}
-          <button 
-            onClick={() => toggleDropdown('cart')}
-            className={`hidden md:block p-2 transition-colors relative ${activeDropdown === 'cart' ? 'text-primary' : 'text-[#212121] hover:text-primary'}`}
-            aria-label="Корзина"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            {totalItems > 0 && (
-              <span className="absolute top-0 right-0 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
-                {totalItems}
-              </span>
-            )}
-          </button>
-
-          {/* БУРГЕР МЕНЮ */}
+          {/* БУРГЕР / КРЕСТИК (только мобилка) */}
           <button 
             className="md:hidden p-2 text-[#212121] hover:text-primary transition-colors"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(prev => !prev)}
             aria-label="Меню"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {isMobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
@@ -201,7 +257,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
       <AnimatePresence>
         {!isMobile && hoveredLink && currentMenuContent.length > 0 && (
           <div onMouseEnter={handleHeaderEnter}>
-            <MegaMenu content={currentMenuContent} />
+            <MegaMenu content={currentMenuContent} onClose={() => setHoveredLink(null)} />
           </div>
         )}
       </AnimatePresence>
@@ -217,7 +273,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <MobileMenu
-            navLinks={allCategories}
+            navLinks={extendedCategories}
             closeMenu={() => setMobileMenuOpen(false)}
           />
         )}

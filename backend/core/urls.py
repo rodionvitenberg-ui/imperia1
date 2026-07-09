@@ -8,6 +8,7 @@ urlpatterns = [
 path('api/auth/', include('auth_app.urls')),
 path('api/products/', include('products.urls')),
 path('api/customers/', include('customers.urls')),
+path('api/services/', include('services.urls')),
 ]
 
 # Раздача медиа-файлов в режиме отладки (для картинок товаров)

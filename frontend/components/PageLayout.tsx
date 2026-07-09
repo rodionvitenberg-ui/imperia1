@@ -26,19 +26,20 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Хедер с хлебными крошками и кнопками - ВСЕГДА показывается если есть хлебные крошки */}
+      {/* Хедер с хлебными крошками и кнопками — sticky под основным хедером */}
       {breadcrumbs && (
-        <div className="bg-white border-b border-[#e5e7eb]">
-          <div className="container mx-auto max-w-full px-4 py-3"> {/* Всегда max-w-full для хедера */}
-            <div className="flex items-center justify-between min-h-[40px]"> {/* Фиксированная минимальная высота */}
+        <div className="bg-white border-b border-[#e5e7eb] sticky top-16 z-40">
+          <div className="container mx-auto max-w-full px-4 py-1.5 md:py-2">
+            {/* Мобилка: колонка. Десктоп: строка */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1.5 md:gap-0">
               {/* Левая часть - хлебные крошки */}
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 {breadcrumbs}
               </div>
               
-              {/* Правая часть - кнопки (всегда резервируем место) */}
-              <div className="flex items-center gap-4 min-w-[200px] justify-end">
-                {actions || <div />} {/* Пустой div если нет кнопок */}
+              {/* Правая часть - кнопки */}
+              <div className="flex items-center gap-4 md:min-w-[200px] md:justify-end">
+                {actions || <div />}
               </div>
             </div>
           </div>
@@ -46,14 +47,25 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       )}
 
       {/* Основной контент */}
-      <div className={`container mx-auto ${containerClass} px-4 ${breadcrumbs ? 'py-2' : 'py-8 md:py-12'}`}>
-        {showSidebar ? (
-          /* Сетка с сайдбаром (каталог) */
-          <div className="grid grid-cols-1 gap-x-6 lg:grid-cols-8">
-            <aside className="lg:col-span-1 lg:sticky lg:top-4 lg:h-fit lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
+      <div className={`container mx-auto ${containerClass} px-4 ${showSidebar ? 'py-0' : breadcrumbs ? 'py-2' : 'py-8 md:py-12'}`}>
+        {sidebar ? (
+          /* Сетка с сайдбаром (каталог) — единый relative-контейнер, overflow-hidden на десктопе */
+          <div className="relative lg:overflow-hidden" style={{ minHeight: 'calc(100vh - 120px)' }}>
+            {/* Сайдбар: абсолютный, анимируется через transform. Закрыт → уходит за левый край контейнера */}
+            <aside
+              className={`hidden lg:block lg:absolute lg:top-0 lg:bottom-0 lg:left-0 lg:overflow-y-auto filter-scrollbar transition-transform duration-300 ease-in-out ${
+                showSidebar ? 'translate-x-0' : '-translate-x-full'
+              }`}
+              style={{ width: 'calc(25% - 0.75rem)' }}
+            >
               {sidebar}
             </aside>
-            <main className="mt-6 lg:mt-0 lg:col-span-7">
+            {/* Main: анимируется через margin-left синхронно с сайдбаром */}
+            <main
+              className={`transition-[margin] duration-300 ease-in-out ${
+                showSidebar ? 'lg:ml-[25%]' : 'ml-0'
+              }`}
+            >
               {children}
             </main>
           </div>

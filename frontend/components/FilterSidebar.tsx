@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Tag, fetchCategoryFilters } from '@/lib/api';
+import { Tag, fetchCategoryFilters, fetchCategoryBrands } from '@/lib/api';
 import AccordionFilterGroup from './AccordionFilterGroup'; // <-- ШАГ 1: Импортируем наш новый компонент
 
 // Интерфейсы FilterAttribute, FilterState, FilterSidebarProps остаются без изменений
@@ -21,11 +21,29 @@ export interface FilterState {
   isFavorite: boolean;
 }
 
+function FilterPill({ label, checked, onChange, compact }: { label: string; checked: boolean; onChange: () => void; compact?: boolean }) {
+  return (
+    <button
+      onClick={onChange}
+      className={`shrink-0 inline-flex items-center rounded-full font-medium transition-all duration-200 border ${
+        compact ? 'px-2 py-0.5 text-[11px] leading-[18px]' : 'px-2.5 py-1 text-xs'
+      } ${
+        checked
+          ? 'bg-[#1061cd] text-white border-[#1061cd]'
+          : 'bg-white text-[#212121] border-gray-200 hover:border-[#1061cd] hover:text-[#1061cd]'
+      }`}
+    >
+      {label}
+    </button>
+  );
+}
+
 interface FilterSidebarProps {
   categoryId?: number;
   onFiltersChange: (filters: FilterState) => void;
   hideTitle?: boolean;
   hideFeaturesTitle?: boolean;
+  variant?: 'desktop' | 'mobile';
 }
 
 
@@ -34,8 +52,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onFiltersChange,
   hideTitle = false,
   // hideFeaturesTitle больше не нужен, но оставим для совместимости
-  hideFeaturesTitle = false, 
+  hideFeaturesTitle = false,
+  variant = 'desktop',
 }) => {
+  const isMobile = variant === 'mobile';
   // Вся эта логика остается БЕЗ ИЗМЕНЕНИЙ. Она работает, и мы ее не трогаем.
   const [brands, setBrands] = useState<Tag[]>([]);
   const [attributes, setAttributes] = useState<FilterAttribute[]>([]);
@@ -52,9 +72,12 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     const loadFilters = async () => {
       setLoading(true);
       try {
-        const attributesData = await fetchCategoryFilters(categoryId);
-        setBrands([]);
+        const [attributesData, brandsData] = await Promise.all([
+          fetchCategoryFilters(categoryId),
+          fetchCategoryBrands(categoryId),
+        ]);
         setAttributes(attributesData);
+        setBrands(brandsData);
       } catch (e) {
         console.error('Failed to load filters:', e);
       } finally {
@@ -94,7 +117,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   // Логика загрузки тоже остается прежней
   if (loading) {
     return (
-      <aside>
+      <aside className="filter-scrollbar">
         {!hideTitle && <h3 className="mb-4 text-lg font-bold">Фильтры</h3>}
         <div className="text-gray-500">Загрузка фильтров...</div>
       </aside>
@@ -103,94 +126,23 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
   // 👇 --- НАЧАЛО ИЗМЕНЕНИЙ В JSX --- 👇
   return (
-    <aside>
-      {<h3 className="mb-4 text-lg font-bold">Фильтры</h3>}
-
+    <aside className={`filter-scrollbar pb-8 ${isMobile ? '' : ''}`}>
       {/* ШАГ 2: Оборачиваем "Особенности" в наш аккордеон */}
-      <AccordionFilterGroup title="Особенности" startOpen={true}>
-        <ul className="space-y-1">
-          <li>
-            <label className="flex items-center cursor-pointer group">
-              <div className="relative mr-2">
-                <input
-                  type="checkbox"
-                  className="sr-only"
-                  checked={filters.isNew}
-                  onChange={(e) => updateFilters({ isNew: e.target.checked })}
-                />
-                <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                  filters.isNew 
-                    ? 'bg-primary border-primary' 
-                    : 'border-gray-300 group-hover:border-gray-400'
-                }`}>
-                  {filters.isNew && (
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </div>
-              </div>
-              Новинка
-            </label>
-          </li>
-          <li>
-            <label className="flex items-center cursor-pointer group">
-              <div className="relative mr-2">
-                <input
-                  type="checkbox"
-                  className="sr-only"
-                  checked={filters.isFavorite}
-                  onChange={(e) => updateFilters({ isFavorite: e.target.checked })}
-                />
-                <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                  filters.isFavorite 
-                    ? 'bg-primary border-primary' 
-                    : 'border-gray-300 group-hover:border-gray-400'
-                }`}>
-                  {filters.isFavorite && (
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </div>
-              </div>
-              Популярный
-            </label>
-          </li>
-        </ul>
+      <AccordionFilterGroup title="Особенности" startOpen={true} variant={isMobile ? 'mobile' : 'default'}>
+        <div className="flex flex-wrap gap-2">
+          <FilterPill compact={isMobile} label="Новинка" checked={filters.isNew} onChange={() => updateFilters({ isNew: !filters.isNew })} />
+          <FilterPill compact={isMobile} label="Популярный" checked={filters.isFavorite} onChange={() => updateFilters({ isFavorite: !filters.isFavorite })} />
+        </div>
       </AccordionFilterGroup>
 
       {/* ШАГ 3: Оборачиваем "Бренды" (если они есть) в аккордеон */}
       {brands.length > 0 && (
-        <AccordionFilterGroup title="Бренд">
-          <ul className="max-h-48 space-y-1 overflow-y-auto">
+        <AccordionFilterGroup title="Бренд" variant={isMobile ? 'mobile' : 'default'}>
+          <div className="flex flex-wrap gap-2">
             {brands.map((brand) => (
-              <li key={brand.slug}>
-                <label className="flex items-center cursor-pointer group">
-                  <div className="relative mr-2">
-                    <input
-                      type="checkbox"
-                      className="sr-only"
-                      checked={filters.brands.includes(brand.slug)}
-                      onChange={(e) => handleBrandChange(brand.slug, e.target.checked)}
-                    />
-                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                      filters.brands.includes(brand.slug) 
-                        ? 'bg-primary border-primary' 
-                        : 'border-gray-300 group-hover:border-gray-400'
-                    }`}>
-                      {filters.brands.includes(brand.slug) && (
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                  </div>
-                  {brand.name}
-                </label>
-              </li>
+              <FilterPill compact={isMobile} key={brand.slug} label={brand.name} checked={filters.brands.includes(brand.slug)} onChange={() => handleBrandChange(brand.slug, !filters.brands.includes(brand.slug))} />
             ))}
-          </ul>
+          </div>
         </AccordionFilterGroup>
       )}
 
@@ -199,35 +151,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <AccordionFilterGroup 
           key={attr.id} 
           title={`${attr.name}`}
+          variant={isMobile ? 'mobile' : 'default'}
         >
-          <ul className="max-h-48 space-y-1 overflow-y-auto">
+          <div className="flex flex-wrap gap-2">
             {attr.values.map((value) => (
-              <li key={value}>
-                <label className="flex items-center cursor-pointer group">
-                  <div className="relative mr-2">
-                    <input
-                      type="checkbox"
-                      className="sr-only"
-                      checked={filters.attributes[attr.slug]?.includes(value) || false}
-                      onChange={(e) => handleAttributeChange(attr.slug, value, e.target.checked)}
-                    />
-                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                      filters.attributes[attr.slug]?.includes(value) 
-                        ? 'bg-primary border-primary' 
-                        : 'border-gray-300 group-hover:border-gray-400'
-                    }`}>
-                      {filters.attributes[attr.slug]?.includes(value) && (
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                  </div>
-                  {value}
-                </label>
-              </li>
+              <FilterPill compact={isMobile} key={value} label={value} checked={filters.attributes[attr.slug]?.includes(value) || false} onChange={() => handleAttributeChange(attr.slug, value, !filters.attributes[attr.slug]?.includes(value))} />
             ))}
-          </ul>
+          </div>
         </AccordionFilterGroup>
       ))}
       
@@ -237,6 +167,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           Выберите категорию для отображения фильтров
         </div>
       )}
+
+      {/* Невидимый spacer для дополнительного скролла на десктопе */}
+      <div className="hidden md:block h-[1000px]" aria-hidden="true" />
     </aside>
   );
   // 👆 --- КОНЕЦ ИЗМЕНЕНИЙ В JSX --- 👆

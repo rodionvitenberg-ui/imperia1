@@ -23,7 +23,7 @@ export default function Layout({ children, categoryTree }: LayoutProps) {
     <div className="flex min-h-screen flex-col">
       <TopBar links={topBarLinks} />
       <Header allCategories={categoryTree} topBarLinks={topBarLinks} />
-      <main className="flex-grow bg-white">{children}</main>
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );

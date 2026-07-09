@@ -3,22 +3,12 @@
 import React from 'react';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { useCart } from '@/contexts/CartContext';
+import { API_CONFIG } from '@/lib/config';
 import Link from 'next/link';
-
-const API_BASE_URL = 'http://92.113.146.158';
 
 export default function FavoritesPage() {
   const { favorites, removeFromFavorites, clearFavorites } = useFavorites();
   const { addToCart } = useCart();
-
-  // Функция для создания полного URL изображения
-  const buildImageUrl = (imagePath: string) => {
-    if (!imagePath) return '/placeholder.jpg';
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-      return imagePath;
-    }
-    return `${API_BASE_URL}${imagePath.startsWith('/') ? imagePath : '/' + imagePath}`;
-  };
 
   const handleAddToCart = (product: any) => {
     addToCart(product, 1);
@@ -106,7 +96,7 @@ export default function FavoritesPage() {
                       <Link href={`/products/${product.slug}`}>
                         {mainImage ? (
                           <img
-                            src={buildImageUrl(mainImage.image)}
+                            src={API_CONFIG.MEDIA.buildImageUrl(mainImage.image)}
                             alt={product.name}
                             className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
                           />

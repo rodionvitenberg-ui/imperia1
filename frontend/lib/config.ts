@@ -1,19 +1,21 @@
 // src/lib/config.ts
 
 const getApiBaseUrl = (): string => {
-  // 1. Если задано через .env (высший приоритет)
+  // 1. Если код выполняется в браузере (у клиента)
+  // В Turbopack (Next.js 16) rewrites не работают для клиентских fetch,
+  // поэтому браузер стучится напрямую в Django (CORS разрешён)
+  if (typeof window !== 'undefined') {
+    if (process.env.NEXT_PUBLIC_API_BASE_URL) {
+      return process.env.NEXT_PUBLIC_API_BASE_URL;
+    }
+    return 'http://127.0.0.1:8000';
+  }
+
+  // 2. На сервере (SSR/SSG) — из .env или фоллбэк
   if (process.env.NEXT_PUBLIC_API_BASE_URL) {
     return process.env.NEXT_PUBLIC_API_BASE_URL;
   }
 
-  // 2. Если код выполняется в браузере (у клиента)
-  if (typeof window !== 'undefined') {
-    // Используем относительный путь, чтобы запросы шли через Next.js rewrites
-    return '';
-  }
-
-  // 3. Если код выполняется на сервере (SSR/SSG)
-  // Стучимся прямо в Gunicorn, Next.js rewrites перехватит /api/
   return 'http://127.0.0.1:8000';
 };
 
@@ -47,6 +49,11 @@ export const API_CONFIG = {
     CREATE: `${API_BASE_URL}/api/customers/orders/create/`,
     LIST: `${API_BASE_URL}/api/customers/orders/`,
     DETAIL: (orderId: number) => `${API_BASE_URL}/api/customers/orders/${orderId}/`,
+  },
+
+  SERVICES: {
+    BASE: `${API_BASE_URL}/api/services`,
+    ITEMS: `${API_BASE_URL}/api/services/items/`,
   },
 
   CUSTOMERS: {

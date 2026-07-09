@@ -17,10 +17,10 @@ export interface OrderFormData {
 interface OrderFormProps {
   onSubmit: (data: OrderFormData) => void;
   isSubmitting: boolean;
-  user?: User | null; // Добавляем пользователя для автозаполнения
+  user?: User | null;
 }
 
-// Компонент поля ввода (вынесен наружу, чтобы не пересоздавался)
+// Компонент поля ввода
 const InputField = ({ 
   label, 
   field, 
@@ -39,7 +39,10 @@ const InputField = ({
   isSubmitting: boolean;
 }) => (
   <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">
+    <label 
+      className="block text-[13px] leading-[18px] font-bold text-[#212121] mb-1.5"
+      style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+    >
       {label} {required && <span className="text-red-500">*</span>}
     </label>
     <input
@@ -47,7 +50,8 @@ const InputField = ({
       value={formData[field] || ''}
       onChange={(e) => onChange(field, e.target.value)}
       placeholder={placeholder}
-      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-colors"
+      className="w-full px-3 py-2.5 border border-[#bfbfbf] rounded-[8px] text-[14px] leading-[20px] text-[#212121] focus:ring-0 focus:border-[#1061cd] transition-colors outline-none"
+      style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
       disabled={isSubmitting}
     />
   </div>
@@ -73,24 +77,21 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
         firstName: user.first_name || '',
         lastName: user.last_name || '',
         email: user.email || '',
-        // Оставляем телефоны и адрес пустыми, так как их нет в модели пользователя
       }));
     }
   }, [user]);
 
-  // Обработка изменения полей
   const handleInputChange = (field: keyof OrderFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // Отправка формы
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {/* Имя и Фамилия */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InputField
@@ -117,7 +118,6 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
       <InputField
         label="Email"
         field="email"
-        required
         placeholder="example@mail.com"
         formData={formData}
         onChange={handleInputChange}
@@ -147,7 +147,10 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
 
       {/* Адрес */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label 
+          className="block text-[13px] leading-[18px] font-bold text-[#212121] mb-1.5"
+          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+        >
           Адрес доставки <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -155,14 +158,18 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
           onChange={(e) => handleInputChange('address', e.target.value)}
           placeholder="Укажите полный адрес доставки (город, улица, дом, квартира)"
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-colors resize-none"
+          className="w-full px-3 py-2.5 border border-[#bfbfbf] rounded-[8px] text-[14px] leading-[20px] text-[#212121] focus:ring-0 focus:border-[#1061cd] transition-colors resize-none outline-none"
+          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
           disabled={isSubmitting}
         />
       </div>
 
       {/* Комментарии */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label 
+          className="block text-[13px] leading-[18px] font-bold text-[#212121] mb-1.5"
+          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+        >
           Комментарии к заказу
         </label>
         <textarea
@@ -170,24 +177,30 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
           onChange={(e) => handleInputChange('comments', e.target.value)}
           placeholder="Дополнительные пожелания или комментарии (не обязательно)"
           rows={2}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black transition-colors resize-none"
+          className="w-full px-3 py-2.5 border border-[#bfbfbf] rounded-[8px] text-[14px] leading-[20px] text-[#212121] focus:ring-0 focus:border-[#1061cd] transition-colors resize-none outline-none"
+          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
           disabled={isSubmitting}
         />
       </div>
 
       {/* Информационный блок */}
-      <div className="bg-opacity-30 backdrop-blur-sm border border-gray-200 rounded-lg p-4 text-sm">
+      <div className="border border-[#e5e7eb] rounded-[8px] p-4">
         <div className="flex items-start gap-2">
-          <svg className="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-[#1061cd] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <div className="text-gray-800">
-            <p className="font-medium mb-1">Важная информация:</p>
-            <ul className="space-y-0.5 text-xs">
-              <li>• Доставка осуществляется бесплатно по всему городу</li>
-              <li>• Менеджер свяжется с вами для подтверждения заказа</li>
-              <li>• Оплата при получении (наличные или карта)</li>
-              <li>• Время доставки: в день заказа или на следующий день</li>
+          <div>
+            <p 
+              className="text-[13px] leading-[18px] font-bold text-[#212121] mb-1"
+              style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+            >
+              Важная информация:
+            </p>
+            <ul className="space-y-0.5 text-[12px] leading-[16px] text-gray-500">
+              <li style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}>• Доставка осуществляется бесплатно по всему городу</li>
+              <li style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}>• Менеджер свяжется с вами для подтверждения заказа</li>
+              <li style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}>• Оплата при получении (наличные или карта)</li>
+              <li style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}>• Время доставки: в день заказа или на следующий день</li>
             </ul>
           </div>
         </div>
@@ -197,7 +210,8 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-black text-white py-3 px-4 rounded-full font-semibold text-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-2"
+        className="w-full bg-[#1061cd] text-white py-3 px-4 rounded-full text-[14px] leading-[20px] font-bold hover:bg-[#0f54b3] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-2"
+        style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
       >
         {isSubmitting ? (
           <>

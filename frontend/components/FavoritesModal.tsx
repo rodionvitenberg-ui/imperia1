@@ -3,10 +3,9 @@
 import React from 'react';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { useCart } from '@/contexts/CartContext';
+import { API_CONFIG } from '@/lib/config';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-
-const API_BASE_URL = 'http://92.113.146.158';
 
 interface FavoritesModalProps {
   isOpen: boolean;
@@ -17,15 +16,6 @@ export default function FavoritesModal({ isOpen, onClose }: FavoritesModalProps)
   const { favorites, removeFromFavorites, favoritesCount } = useFavorites();
   const { addToCart } = useCart();
   const router = useRouter();
-
-  // Функция для создания полного URL изображения
-  const buildImageUrl = (imagePath: string) => {
-    if (!imagePath) return '/placeholder.jpg';
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-      return imagePath;
-    }
-    return `${API_BASE_URL}${imagePath.startsWith('/') ? imagePath : '/' + imagePath}`;
-  };
 
   const handleRemoveFromFavorites = (productId: number) => {
     removeFromFavorites(productId);
@@ -98,7 +88,7 @@ export default function FavoritesModal({ isOpen, onClose }: FavoritesModalProps)
                       <Link href={`/products/${product.slug}`} onClick={onClose}>
                         {mainImage ? (
                           <img
-                            src={buildImageUrl(mainImage.image)}
+                            src={API_CONFIG.MEDIA.buildImageUrl(mainImage.image)}
                             alt={product.name}
                             className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
                           />

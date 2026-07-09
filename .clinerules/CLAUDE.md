@@ -24,3 +24,13 @@ A classic monorepo architecture:
 ## 📜 Domain Conventions
 1. **Catalog Complexity:** Computer hardware requires flexible specifications. When designing models, account for diverse attributes (e.g., RAM size vs. GPU architecture) without hardcoding every possible spec into direct database columns (consider JSONB or EAV patterns if necessary).
 2. **Type Synchronization:** Any changes to Django Serializers MUST be immediately reflected in the corresponding TypeScript interfaces in the `./frontend/` directory.
+
+CRITICAL TERMINAL EXECUTION RULES:
+1. NEVER chain multiple commands using '&&', '||', or ';'. 
+2. NEVER redirect streams using '2>&1' or similar syntax.
+3. You are strictly FORBIDDEN from executing more than ONE standalone command per terminal tool call.
+4. If you need to navigate and run a tool, do it sequentially: 
+   - Call 1: cd into directory.
+   - Call 2: execute the single atomic command.
+5. Always append '--noinput' or '--no-input' to any Django management commands.
+6. Failure to follow this single-command protocol will break the SSH TTY transport layer. Execute atomitically.

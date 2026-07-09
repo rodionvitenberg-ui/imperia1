@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-[#212121] px-6 py-8 mt-16 border-t border-[#e5e7eb]">
+    <footer className="bg-[#f8f9fb] text-[#212121] px-6 py-8 mt-16 border-t border-[#e5e7eb]">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Левая часть - социальные иконки */}
@@ -79,10 +79,10 @@ const Footer = () => {
                   Как сделать заказ
                 </Link>
                 <Link
-                  href="/delivery-payment"
+                  href="/store-location"
                   className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
-                  Доставка и оплата
+                  Найти магазин
                 </Link>
               </div>
             </div>

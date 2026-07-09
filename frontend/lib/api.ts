@@ -22,6 +22,15 @@ export interface Category {
   h1?: string;
 }
 
+export interface ServiceItem {
+  id: number;
+  name: string;
+  price: string;
+  category: 'repair' | 'maintenance';
+  is_active: boolean;
+  sort_order: number;
+}
+
 export interface NestedCategory extends Category {
   children?: NestedCategory[];
 }
@@ -260,12 +269,17 @@ export const fetchProductsByCategorySlugs = async (slugs: string[]): Promise<Pro
     const query = slugs.map(slug => `categories__slug=${encodeURIComponent(slug)}`).join('&');
     const url = `${API_CONFIG.PRODUCTS.PRODUCTS}?${query}`;
     
-    const res = await fetch(url);
+    console.log(`[SSR] fetchProductsByCategorySlugs → ${url}`);
+    const res = await fetch(url, { next: { revalidate: 0 } });
+    console.log(`[SSR] fetchProductsByCategorySlugs → status ${res.status}`);
     if (!res.ok) {
-      console.error(`Failed to fetch products for categories ${slugs.join(', ')}, status: ${res.status}`);
+      const errorText = await res.text();
+      console.error(`Failed to fetch products for categories ${slugs.join(', ')}, status: ${res.status}, body: ${errorText.substring(0, 300)}`);
       return [];
     }
-    return res.json();
+    const data = await res.json();
+    console.log(`[SSR] fetchProductsByCategorySlugs → ${data.length} products`);
+    return data;
   } catch (error) {
     console.error("Failed to fetch products by category slugs:", error);
     return [];
@@ -332,12 +346,12 @@ export const fetchProductsWithFilters = async (params: {
       queryParams.append('categories__slug', slug);
     });
     
-    // Пока убираем бренды, так как они не работают через теги
-    // if (params.brands && params.brands.length > 0) {
-    //   params.brands.forEach(brand => {
-    //     queryParams.append('tags__slug', brand);
-    //   });
-    // }
+    // Бренды
+    if (params.brands && params.brands.length > 0) {
+      params.brands.forEach(brand => {
+        queryParams.append('brands__slug', brand);
+      });
+    }
     
     // Добавляем атрибуты
     if (params.attributes) {
@@ -479,6 +493,37 @@ export const fetchRelatedProductsSimple = async (product: Product, limit: number
   }
 };
 
+// Функция для получения новых товаров (с тегом new)
+export const fetchNewProducts = async (limit: number = 8): Promise<Product[]> => {
+  try {
+    const queryParams = new URLSearchParams();
+    queryParams.append('is_new', 'true');
+
+    if (limit > 0) {
+      queryParams.append('limit', limit.toString());
+    }
+
+    const url = `${API_CONFIG.PRODUCTS.PRODUCTS}?${queryParams.toString()}`;
+    console.log('🆕 Fetching new products:', { limit, url });
+
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.error(`Failed to fetch new products, status: ${res.status}`);
+      const errorText = await res.text();
+      console.error('Error response:', errorText);
+      return [];
+    }
+
+    const products: Product[] = await res.json();
+    console.log('✅ New products found:', products.length);
+
+    return products;
+  } catch (error) {
+    console.error('Failed to fetch new products:', error);
+    return [];
+  }
+};
+
 // Функция для получения популярных товаров
 export const fetchPopularProducts = async (limit: number = 8): Promise<Product[]> => {
   try {
@@ -506,6 +551,25 @@ export const fetchPopularProducts = async (limit: number = 8): Promise<Product[]
     return products;
   } catch (error) {
     console.error('Failed to fetch popular products:', error);
+    return [];
+  }
+};
+
+// Функция для получения услуг
+export const fetchServices = async (): Promise<ServiceItem[]> => {
+  try {
+    const res = await fetch(API_CONFIG.SERVICES.ITEMS, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) {
+      console.error(`Failed to fetch services, status: ${res.status}`);
+      return [];
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Failed to fetch services:', error);
     return [];
   }
 };
@@ -551,4 +615,3 @@ export const submitReview = async (productSlug: string, rating: number): Promise
     throw error;
   }
 };
-

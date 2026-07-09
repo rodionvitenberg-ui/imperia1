@@ -78,7 +78,7 @@ class Order(models.Model):
     # Контактная информация
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
-    email = models.EmailField(verbose_name='Email')
+    email = models.EmailField(blank=True, verbose_name='Email')
     phone1 = models.CharField(max_length=20, verbose_name='Основной телефон')
     phone2 = models.CharField(max_length=20, blank=True, verbose_name='Дополнительный телефон')
     address = models.TextField(verbose_name='Адрес доставки')

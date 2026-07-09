@@ -1,107 +1,247 @@
-// src/components/HeroSlider.tsx
 'use client';
 
 import React from 'react';
-// Импортируем компоненты Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Добавляем новый модуль EffectFade для плавной смены слайдов
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
-
-// Импортируем стили Swiper, включая новый стиль для эффекта "fade"
+import { Autoplay } from 'swiper/modules';
+import { motion } from 'framer-motion';
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
-const slideData = [
-  { id: 1, imageUrl: '/hero-1.jpg', title: '5% скидка за покупку двух компьютеров в подарок!', subtitle: 'Будь лучшим!', buttonText: 'КУПИ', buttonLink: '/catalog/gaming-pc' },
-  { id: 2, imageUrl: '/hero-2.jpg', title: 'Купи камеру!', subtitle: 'Она не даст твою хату обокрасть!', buttonText: 'Видеонаблюдение', buttonLink: '/catalog/videocards' },
-  { id: 3, imageUrl: '/hero-3.jpg', title: 'Сельская эстетика', subtitle: 'Ты можешь поставить свое железо даже в сарае - и оно не сгорит!', buttonText: 'Каталог', buttonLink: '/catalog/periferiya' },
-  { id: 4, imageUrl: '/hero-4.jpg', title: 'Заправь картридж!', subtitle: 'Мы сделаем это за 270 сом.', buttonText: 'Заправься тонером!', buttonLink: '/catalog/memory' },
-  { id: 5, imageUrl: '/hero-5.jpg', title: 'Хочешь такую же красоту?', subtitle: 'Напиши нам - окажем услугу!', buttonText: 'Задорого...', buttonLink: '/catalog/motherboards' },
+
+/* ─── Shared icons ─────────────────────────── */
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+    </svg>
+  );
+}
+
+/* ─── Animation presets ────────────────────── */
+const customEase = [0.32, 0.72, 0, 1] as const;
+const fadeUp = {
+  hidden: { opacity: 0, y: 24, filter: 'blur(4px)' },
+  visible: (i: number) => ({
+    opacity: 1, y: 0, filter: 'blur(0px)',
+    transition: { duration: 0.7, ease: customEase, delay: i * 0.08 },
+  }),
+};
+
+/* ─── Reusable CTA buttons ─────────────────── */
+function PrimaryCTA({ label, href }: { label: string; href: string }) {
+  return (
+    <div className="p-[3px] rounded-full bg-[#1061cd]/15">
+      <a
+        href={href}
+        className="group inline-flex items-center gap-3 rounded-full bg-[#1061cd] px-7 py-3.5 text-sm font-bold text-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#0f54b3] active:scale-[0.98]"
+      >
+        {label}
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/20 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-[1px] group-hover:scale-105">
+          <ArrowIcon className="h-4 w-4" />
+        </span>
+      </a>
+    </div>
+  );
+}
+
+function SecondaryCTA({ label, href }: { label: string; href: string }) {
+  return (
+    <div className="p-[3px] rounded-full bg-transparent">
+      <a
+        href={href}
+        className="inline-flex items-center rounded-full border border-[#bfbfbf] bg-white px-7 py-3.5 text-sm font-bold text-[#212121] min-h-[60px] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#1061cd] hover:text-[#1061cd] active:scale-[0.98]"
+      >
+        {label}
+      </a>
+    </div>
+  );
+}
+
+/* ─── Benefit & CTA types ──────────────────── */
+interface Benefit {
+  label: string;
+  value: string;
+}
+
+interface CTA {
+  label: string;
+  href: string;
+  variant: 'primary' | 'secondary';
+}
+
+/* ─── Slide data ───────────────────────────── */
+interface SlideData {
+  key: string;
+  eyebrow: string;
+  headline: React.ReactNode;
+  subhead: string;
+  image: string;
+  imageSide: 'left' | 'right';
+  gradientDirection: 'l' | 'r';
+  benefits: Benefit[];
+  ctas: [CTA, CTA];
+}
+
+const slides: SlideData[] = [
+  {
+    key: '1',
+    eyebrow: 'Видеонаблюдение',
+    headline: <>Безопасность <span className="text-[#1061cd]">под контролем</span></>,
+    subhead: 'Установка систем видеонаблюдения для дома и бизнеса. Профессиональный монтаж в день обращения.',
+    image: '/hero-1.jpg',
+    imageSide: 'right',
+    gradientDirection: 'l',
+    benefits: [
+      { label: 'Камеры', value: 'до 4K' },
+      { label: 'Монтаж', value: 'в день заказа' },
+      { label: 'Гарантия', value: '2 года' },
+    ],
+    ctas: [
+      { label: 'Каталог IP-камер', href: '/catalog/ip-cameras', variant: 'primary' },
+      { label: 'Услуги монтажа', href: '/catalog/montazh-videonablyudeniya', variant: 'secondary' },
+    ],
+  },
+  {
+    key: '2',
+    eyebrow: 'Добро пожаловать',
+    headline: <>Техника, которая работает <span className="text-[#1061cd]">на вас</span></>,
+    subhead: 'Поможем выбрать, соберём под ключ и будем на связи, если что-то пойдёт не так.',
+    image: '/hero-1.jpg',
+    imageSide: 'right',
+    gradientDirection: 'l',
+    benefits: [
+      { label: 'Гарантия', value: 'до 2 лет' },
+      { label: 'Доставка', value: 'по Караколу бесплатно' },
+      { label: 'Сборка ПК', value: 'в день заказа' },
+    ],
+    ctas: [
+      { label: 'Смотреть каталог', href: '/catalog', variant: 'primary' },
+      { label: 'Как заказать', href: '/how-to-order', variant: 'secondary' },
+    ],
+  },
+  {
+    key: '3',
+    eyebrow: 'Сборка ПК',
+    headline: <>Соберём компьютер <span className="text-[#1061cd]">вашей мечты</span></>,
+    subhead: 'Бесплатная сборка при заказе от 50 000 сом. Профессиональная настройка и тестирование.',
+    image: '/hero-1.jpg',
+    imageSide: 'left',
+    gradientDirection: 'r',
+    benefits: [
+      { label: 'Сборка', value: 'бесплатно' },
+      { label: 'Готовность', value: 'от 1 дня' },
+      { label: 'Тестирование', value: '24 часа' },
+    ],
+    ctas: [
+      { label: 'Конфигуратор ПК', href: '/catalog/kompyutery', variant: 'primary' },
+      { label: 'Аксессуары', href: '/catalog/aksessuary', variant: 'secondary' },
+    ],
+  },
+  {
+    key: '4',
+    eyebrow: 'Периферия',
+    headline: <>Всё для <span className="text-[#1061cd]">комфортной работы</span></>,
+    subhead: 'Мониторы, клавиатуры, мыши и аксессуары от ведущих брендов мира. То, что делает работу приятной.',
+    image: '/hero-1.jpg',
+    imageSide: 'left',
+    gradientDirection: 'r',
+    benefits: [
+      { label: 'Бренды', value: 'Logitech, Xiaomi' },
+      { label: 'Механика', value: 'Cherry MX' },
+      { label: 'Доставка', value: '1-2 дня' },
+    ],
+    ctas: [
+      { label: 'Мониторы', href: '/catalog/monitory', variant: 'primary' },
+      { label: 'Клавиатуры и мыши', href: '/catalog/klaviatury', variant: 'secondary' },
+    ],
+  },
+  {
+    key: '5',
+    eyebrow: 'Оргтехника',
+    headline: <>Печатай, сканируй, <span className="text-[#1061cd]">работай</span></>,
+    subhead: 'Принтеры, МФУ и расходные материалы. Настроим, подключим, заправим картридж — вам останется только печатать.',
+    image: '/hero-1.jpg',
+    imageSide: 'right',
+    gradientDirection: 'l',
+    benefits: [
+      { label: 'Принтеры', value: 'HP, Canon, Kyocera' },
+      { label: 'Заправка', value: 'картриджей' },
+      { label: 'Ремонт', value: 'на месте' },
+    ],
+    ctas: [
+      { label: 'Каталог принтеров', href: '/catalog/printery', variant: 'primary' },
+      { label: 'Расходники', href: '/catalog/rashodnye-materialy', variant: 'secondary' },
+    ],
+  },
 ];
 
-const HeroSlider = () => {
+/* ─── Single slide component ───────────────── */
+function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
+  const isLeft = slide.imageSide === 'right';
+
   return (
-    <section className="relative h-[75vh] w-full group">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        slidesPerView={1}
-        spaceBetween={0}
-        loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          el: '.swiper-pagination-custom',
-        }}
-        navigation={{
-          nextEl: '.swiper-button-next-custom',
-          prevEl: '.swiper-button-prev-custom',
-        }}
-        className="h-full w-full"
-      >
-        {slideData.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            {/* === НАПОЛНЕНИЕ ОДНОГО СЛАЙДА (ЗАПОЛНЕННАЯ ЧАСТЬ) === */}
-            <div className="relative h-full w-full">
-              {/* Фоновое изображение */}
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${slide.imageUrl})` }}
-              />
-              {/* Затемняющий слой для читаемости текста */}
-              <div className="absolute inset-0 bg-black/60" />
-
-              {/* Контент слайда */}
-              <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
-                <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-wider">
-                  {slide.title}
-                </h1>
-                <p className="mt-4 text-lg md:text-xl max-w-2xl">
-                  {slide.subtitle}
-                </p>
-                <a
-                  href={slide.buttonLink}
-                  className="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-[20px] hover:bg-primary/90 transition-colors duration-300 text-[14px] min-w-[300px] min-h-[40px] text-center"
-                >
-                  {slide.buttonText}
-                </a>
-              </div>
-            </div>
-            {/* ======================================================= */}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* Наши собственные стрелки и контейнер для пагинации */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center gap-8">
-        
-        {/* Стрелка НАЗАД: 
-            opacity-100 (видна всегда на мобилке) 
-            md:opacity-0 md:group-hover:opacity-100 (скрыта на ПК, пока не наведешь) */}
-        <div className="swiper-button-prev-custom cursor-pointer rounded-full p-2 transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
+    <section className="relative h-[80vh] w-full overflow-hidden flex items-center">
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-5">
+        <div className={`w-full lg:w-1/2 py-16 md:py-24 ${isLeft ? 'lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
+        {active && (
+          <>
+            <motion.span custom={0} variants={fadeUp} initial="hidden" animate="visible" className="inline-block rounded-full bg-[#1061cd]/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1061cd]">
+              {slide.eyebrow}
+            </motion.span>
+            <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible" className="mt-6 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] text-[#212121] max-w-xl">
+              {slide.headline}
+            </motion.h1>
+            <motion.p custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mt-5 max-w-md text-base md:text-lg leading-relaxed md:text-gray-500 text-[#212121]">
+              {slide.subhead}
+            </motion.p>
+            <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="mt-8 flex flex-wrap gap-4">
+              {slide.ctas.map((cta, i) =>
+                cta.variant === 'primary'
+                  ? <PrimaryCTA key={i} label={cta.label} href={cta.href} />
+                  : <SecondaryCTA key={i} label={cta.label} href={cta.href} />
+              )}
+            </motion.div>
+            <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible" className="mt-6 md:mt-10 flex gap-8 pt-4 md:pt-6">
+              {slide.benefits.map((b) => (
+                <div key={b.value} className="flex flex-col">
+                  <span className="text-xs font-semibold uppercase tracking-wide md:text-gray-400 text-[#212121]">{b.label}</span>
+                  <span className="mt-1 text-sm font-bold text-[#212121]">{b.value}</span>
+                </div>
+              ))}
+            </motion.div>
+          </>
+        )}
         </div>
+      </div>
 
-        {/* ПАГИНАЦИЯ: hidden (скрыта на мобилке), md:block (видна на ПК) */}
-        <div className="swiper-pagination-custom hidden md:block" />
+      <div className={`hidden lg:block lg:absolute lg:inset-y-0 lg:w-1/2 ${slide.imageSide === 'right' ? 'lg:right-0' : 'lg:left-0'}`}>
+        <div className="h-full w-full bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
+        <div className="absolute inset-0" style={{ background: slide.gradientDirection === 'l' ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)' : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)' }} />
+      </div>
 
-        {/* Стрелка ВПЕРЕД: аналогично, видна всегда на мобилке */}
-        <div className="swiper-button-next-custom cursor-pointer rounded-full p-2 transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <div className="h-full w-full bg-cover bg-center opacity-[0.1]" style={{ backgroundImage: `url('${slide.image}')` }} />
       </div>
     </section>
   );
-};
+}
 
-export default HeroSlider;
+/* ─── Main export ──────────────────────────── */
+export default function HeroSlider() {
+  return (
+    <Swiper
+      modules={[Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      loop
+      autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
+      className="relative w-full"
+    >
+      {slides.map((slide) => (
+        <SwiperSlide key={slide.key}>
+          {({ isActive }) => <HeroSlide slide={slide} active={isActive} />}
+        </SwiperSlide>
+      ))}
+
+    </Swiper>
+  );
+}

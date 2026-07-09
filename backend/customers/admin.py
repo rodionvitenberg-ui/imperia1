@@ -145,7 +145,8 @@ class OrderAdmin(admin.ModelAdmin):
                 </div>
                 """
             if items_html:
-                return format_html(items_html)
+                from django.utils.safestring import mark_safe
+                return mark_safe(items_html)
         return "Товары не добавлены"
     items_summary.short_description = 'Подробно о товарах'
 

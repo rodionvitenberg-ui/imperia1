@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: newegg.com
+name: imperiaelectroniki.kg
 description: Light-mode e-commerce design system for Newegg, characterized by a white surface, blue accent, dense catalog navigation, and utility-first product merchandising.
 colors:
   primary: "#1061cd"
