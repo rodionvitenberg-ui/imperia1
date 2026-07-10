@@ -7,8 +7,63 @@ export const metadata = {
 };
 
 export default function ContactsPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Империя Электроники",
+    "url": "https://imperia-electroniki.kg",
+    "description": "Магазин компьютерной техники в Караколе. Продажа ноутбуков, комплектующих, сборка ПК.",
+    "telephone": ["+996555953475", "+996555953466"],
+    "email": "imperiaelectroniki@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Гагарина, 28",
+      "addressLocality": "Каракол",
+      "addressCountry": "KG"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+996555953475",
+        "contactType": "sales",
+        "availableLanguage": ["Russian", "Kyrgyz"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+996555953466",
+        "contactType": "customer support",
+        "availableLanguage": ["Russian", "Kyrgyz"]
+      }
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "12:00"
+      }
+    ],
+    "sameAs": [
+      "https://wa.me/996555953475",
+      "https://t.me/imperia_electroniki"
+    ]
+  };
+
   return (
     <div className="container mx-auto px-6 py-8">
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Контакты</h1>
         

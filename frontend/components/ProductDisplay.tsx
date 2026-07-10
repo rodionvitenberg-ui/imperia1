@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Product, NestedCategory, buildProductCategoryPath } from '@/lib/api';
+import { API_CONFIG } from '@/lib/config';
 import UniversalBreadcrumbs from './UniversalBreadcrumbs';
 import ProductImageGallery from './ProductImageGallery';
 import RelatedProducts from './RelatedProducts';
@@ -55,6 +56,37 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
       addToFavorites(product);
     }
   };
+
+  // Structured data для товара (Product + Review + AggregateRating)
+  const mainImage = product.images?.find(i => i.is_main) || product.images?.[0];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "sku": String(product.id),
+    "brand": product.brands?.[0] ? {
+      "@type": "Brand",
+      "name": product.brands[0].name
+    } : undefined,
+    "image": mainImage ? `${API_CONFIG.BASE_URL}${mainImage.image}` : undefined,
+    "offers": {
+      "@type": "Offer",
+      "url": typeof window !== 'undefined' ? window.location.href : undefined,
+      "priceCurrency": "KGS",
+      "price": Number(product.price).toFixed(2),
+      "availability": product.stock?.in_stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    },
+    ...((product.average_rating ?? 0) > 0 && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": product.average_rating ?? 0,
+        "reviewCount": product.reviews_count ?? 0,
+        "bestRating": "5",
+      }
+    }),
+  };
+
   return (
     <PageLayout
       breadcrumbs={<UniversalBreadcrumbs product={product} categoryPath={categoryPath} />}
@@ -62,6 +94,14 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
       centered={true}
       maxWidth="7xl"
     >
+      {/* Структурированные данные для поисковых систем */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      
       {/* Основная секция товара */}
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -74,8 +114,27 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
               <h1 className="text-[32px] leading-[38px] font-bold text-[#212121]">{product.name}</h1>
             </div>
             
+            {/* Рейтинг и отзывы */}
+            {(product.average_rating ?? 0) > 0 && (
+              <div className="flex items-center gap-2 mt-1 mb-2">
+                <div className="flex items-center gap-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      className={`w-4 h-4 ${star <= Math.round(product.average_rating ?? 0) ? 'text-yellow-400' : 'text-gray-200'}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-sm text-gray-500">
+                  {product.average_rating ?? 0} ({(product.reviews_count ?? 0)} {(product.reviews_count ?? 0) === 1 ? 'отзыв' : (product.reviews_count ?? 0) < 5 && (product.reviews_count ?? 0) > 1 ? 'отзыва' : 'отзывов'})
+                </span>
+              </div>
+            )}
 
-            
             {/* Бренд из тегов */}
             {product.tags && product.tags.length > 0 && (
               <div className="mt-2">
@@ -95,26 +154,34 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
               <p>{product.description}</p>
             </div>
             
-            {/* Характеристики товара */}
+            {/* Характеристики товара — таблица для лучшей парсимости LLM */}
             {product.attributes && product.attributes.length > 0 && (
               <div className="mt-6">
                 <h3 className="text-[20px] leading-[24px] font-semibold mb-3 text-[#212121]">Характеристики</h3>
-                <div className="bg-white border border-[#e5e7eb] rounded-[8px] p-4">
-                  <dl className="grid grid-cols-1 gap-3">
-                    {product.attributes.map((attr, index) => (
-                      <div key={index} className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
-                        <dt className="text-sm font-medium text-[#212121]">
-                          {attr.attribute.name}
-                        </dt>
-                        <dd className="text-sm text-[#212121] font-semibold">
-                          {typeof attr.value === 'object' ? attr.value.display : String(attr.value)}
-                          {attr.attribute.unit && (
-                            <span className="text-gray-500 ml-1">{attr.attribute.unit}</span>
-                          )}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
+                <div className="bg-white border border-[#e5e7eb] rounded-[8px] overflow-hidden">
+                  <table className="w-full">
+                    <thead className="sr-only">
+                      <tr>
+                        <th>Характеристика</th>
+                        <th>Значение</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {product.attributes.map((attr, index) => (
+                        <tr key={index} className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} ${index < product.attributes.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                          <td className="px-4 py-3 text-sm font-medium text-[#212121] w-1/2">
+                            {attr.attribute.name}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-[#212121] font-semibold">
+                            {typeof attr.value === 'object' ? attr.value.display : String(attr.value)}
+                            {attr.attribute.unit && (
+                              <span className="text-gray-500 ml-1">{attr.attribute.unit}</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}

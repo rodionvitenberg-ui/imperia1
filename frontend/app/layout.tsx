@@ -5,10 +5,13 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { FavoritesProvider } from '@/contexts/FavoritesContext';
 import { RecentlyViewedProvider } from '@/contexts/RecentlyViewedContext';
 import { Toaster } from 'react-hot-toast';
-import { Open_Sans } from 'next/font/google';
+import { Open_Sans, Geist } from 'next/font/google';
 import './globals.css';
 import { fetchCategories, buildCategoryTree, NestedCategory } from '@/lib/api';
 import { CompareProvider } from '@/contexts/CompareContext';
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const openSans = Open_Sans({ 
   subsets: ['latin', 'cyrillic'],
@@ -20,6 +23,23 @@ const openSans = Open_Sans({
 export const metadata = {
   title: 'Империя Электроники — Каракол',
   description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
+  openGraph: {
+    title: 'Империя Электроники — компьютерная техника в Караколе',
+    description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
+    type: 'website',
+    locale: 'ru_KG',
+    siteName: 'Империя Электроники',
+    url: 'https://imperia-electroniki.kg',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Империя Электроники — компьютерная техника в Караколе',
+    description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,9 +53,68 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     categoryTree = [];
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg';
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Империя Электроники",
+    "url": siteUrl,
+    "description": "Продажа компьютеров, ноутбуков и комплектующих в Караколе. Сборка ПК, ремонт, гарантийное обслуживание.",
+    "logo": `${siteUrl}/logo.png`,
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+996555953475",
+        "contactType": "sales",
+        "availableLanguage": ["Russian", "Kyrgyz"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+996555953466",
+        "contactType": "customer support",
+        "availableLanguage": ["Russian", "Kyrgyz"]
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Гагарина, 28",
+      "addressLocality": "Каракол",
+      "addressCountry": "KG"
+    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Империя Электроники",
+    "url": siteUrl,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
-    <html lang="ru">
+    <html lang="ru" className={cn("font-sans", geist.variable)}>
       <body className={`${openSans.className} ${openSans.variable}`}>
+        {/* Structured data for Organization and WebSite (Schema.org JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
         <AuthProvider>
           <CartProvider>
             <CompareProvider>

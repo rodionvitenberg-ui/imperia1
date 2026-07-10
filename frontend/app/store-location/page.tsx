@@ -19,8 +19,11 @@ export default function StoreLocationPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Магазин компьютеров Каракол",
-    "description": "Продажа компьютеров, ноутбуков и комплектующих в Караколе",
+    "name": "Империя Электроники — магазин компьютерной техники в Караколе",
+    "description": "Продажа компьютеров, ноутбуков, комплектующих и периферии в Караколе. Сборка ПК, ремонт, гарантийное обслуживание.",
+    "url": "https://imperia-electroniki.kg",
+    "telephone": ["+996555953475", "+996555953466"],
+    "email": "imperiaelectroniki@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "ул. Гагарина, 28",
@@ -32,13 +35,26 @@ export default function StoreLocationPage() {
       "latitude": "42.4908",
       "longitude": "78.3933"
     },
-    "telephone": "+996555953475, +996555953466",
-    "openingHours": [
-      "Mo-Fr 09:00-18:00",
-      "Sa 10:00-16:00"
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "12:00"
+      }
     ],
     "priceRange": "$$",
-    "image": "/store-front.jpg"
+    "image": "/store-front.jpg",
+    "sameAs": [
+      "https://wa.me/996555953475",
+      "https://t.me/imperia_electroniki"
+    ]
   };
 
   useEffect(() => {
@@ -156,13 +172,6 @@ export default function StoreLocationPage() {
         }}
       />
       
-      {/* Скрытый контент для SEO */}
-      <div className="sr-only">
-        Магазин компьютерной техники в Караколе. Продажа ноутбуков, системных блоков, 
-        готовых компьютерных сборок в городе Каракол, Кыргызстан. Доставка по Караколу.
-        Адрес: г. Каракол, ул. Гагарина 28. Телефон: +996 555 95 34 75, +996 555 95 34 66.
-        Время работы: понедельник-пятница 9:00-17:00, суббота 9:00-12:00.
-      </div>
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="container mx-auto px-4 py-6">
@@ -259,6 +268,21 @@ export default function StoreLocationPage() {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Дополнительная информация</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">О магазине</h3>
+                  <p className="text-gray-600 mb-4">
+                    Магазин компьютерной техники в Караколе с широким ассортиментом ноутбуков, системных блоков, 
+                    готовых компьютерных сборок и периферии. Мы находимся по адресу: г. Каракол, ул. Гагарина 28. 
+                    Работаем для вас с понедельника по пятницу с 9:00 до 17:00, в субботу с 9:00 до 12:00. 
+                    Предлагаем доставку по Караколу, профессиональные консультации и гарантийное обслуживание.
+                  </p>
+                  <p className="text-gray-600 mb-4">
+                    В нашем ассортименте: ноутбуки, системные блоки, мониторы, принтеры, МФУ, 
+                    комплектующие, компьютерная периферия, расходные материалы и многое другое. 
+                    Осуществляем сборку компьютеров под любые задачи — от офисных до игровых.
+                  </p>
+                </div>
+
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Парковка</h3>
                   <p className="text-gray-600 mb-4">

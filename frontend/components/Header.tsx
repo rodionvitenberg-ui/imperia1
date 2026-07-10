@@ -137,7 +137,7 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
         
         {/* ЛОГОТИП */}
         <div className="flex-shrink-0 mr-4">
-          <Link href="/" className="block">
+          <Link href="/" className="block" onClick={() => setHoveredLink(null)}>
             <Image
               src="/logo.png"
               alt="Electronics Store"

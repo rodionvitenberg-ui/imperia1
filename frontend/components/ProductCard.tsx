@@ -40,7 +40,7 @@ export default function ProductCard({ product }: Props) {
   };
 
   return (
-    <div className="group relative bg-white border border-[#e5e7eb] rounded-[8px] p-4 hover:border-primary/30 transition-colors duration-200">
+    <article className="group relative bg-white border border-[#e5e7eb] rounded-[8px] p-4 hover:border-primary/30 transition-colors duration-200">
       {/* Изображение */}
       <div className="relative">
         <a href={`/products/${product.slug}`} className="block">
@@ -138,6 +138,6 @@ export default function ProductCard({ product }: Props) {
           {Number(product.price).toLocaleString()} сом
         </p>
       </div>
-    </div>
+    </article>
   );
 }

@@ -2,6 +2,7 @@
 
 import { fetchCategories, buildCategoryTree, fetchProductsByCategorySlugs, Product, Category, NestedCategory } from '@/lib/api';
 import CatalogClient from '@/components/CatalogClient';
+import { Metadata } from 'next';
 
 // Список корневых категорий, которые должны вести на кастомные страницы
 const ROOT_CATEGORIES = [
@@ -75,6 +76,83 @@ function getCategoryPath(categoryTree: NestedCategory[], targetSlug: string): Ne
   
   findPath(categoryTree, targetSlug);
   return path;
+}
+
+// Динамические мета-данные для категорий
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
+
+  try {
+    const categories = await fetchCategories();
+    const categoryTree = buildCategoryTree(categories);
+    const categoryPath = getCategoryPath(categoryTree, slug);
+    
+    if (categoryPath.length === 0) {
+      return {
+        title: 'Категория не найдена | Империя Электроники',
+        description: 'Запрошенная категория не найдена в нашем каталоге.',
+      };
+    }
+
+    const currentCategory = categoryPath[categoryPath.length - 1];
+    
+    // Используем SEO-поля из API, если они есть, иначе генерируем с городом
+    let title: string;
+    let description: string;
+
+    if (currentCategory.meta_title) {
+      title = currentCategory.meta_title;
+    } else if (currentCategory.h1) {
+      title = `${currentCategory.h1} | Империя Электроники`;
+    } else {
+      title = `${currentCategory.name} в Караколе — купить по лучшей цене | Империя Электроники`;
+    }
+
+    if (currentCategory.meta_description) {
+      description = currentCategory.meta_description;
+    } else {
+      description = `Купить ${currentCategory.name.toLowerCase()} в Караколе. Широкий ассортимент, доступные цены, доставка по Караколу. Гарантия качества и профессиональные консультации.`;
+    }
+
+    // Формируем хлебные крошки для structured data (всегда /catalog/)
+    const breadcrumbItems = categoryPath.map((cat, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": cat.name,
+      "item": `https://imperia-electroniki.kg/catalog/${cat.slug}`
+    }));
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        type: 'website',
+        locale: 'ru_KG',
+        siteName: 'Империя Электроники',
+      },
+      twitter: {
+        card: 'summary',
+        title,
+        description,
+      },
+      other: {
+        'application/ld+json': JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": breadcrumbItems,
+        }),
+      },
+    };
+  } catch (error) {
+    console.error('[generateMetadata] Error:', error);
+    return {
+      title: 'Каталог | Империя Электроники',
+      description: 'Каталог компьютерной техники в Караколе.',
+    };
+  }
 }
 
 // Эта функция говорит Next.js, какие страницы создавать
