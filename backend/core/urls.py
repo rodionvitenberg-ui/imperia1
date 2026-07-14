@@ -5,10 +5,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-path('api/auth/', include('auth_app.urls')),
-path('api/products/', include('products.urls')),
-path('api/customers/', include('customers.urls')),
-path('api/services/', include('services.urls')),
+    path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path('api/auth/', include('auth_app.urls')),
+    path('api/products/', include('products.urls')),
+    path('api/customers/', include('customers.urls')),
+    path('api/services/', include('services.urls')),
 ]
 
 # Раздача медиа-файлов в режиме отладки (для картинок товаров)

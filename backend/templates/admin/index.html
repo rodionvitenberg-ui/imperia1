@@ -1,0 +1,308 @@
+{% extends "admin/index.html" %}
+{% load i18n static jazzmin %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+  .imperia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .imperia-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none !important;
+    color: #212121 !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .imperia-card:hover {
+    border-color: #1061cd;
+    box-shadow: 0 4px 12px rgba(16,97,205,0.1);
+  }
+  .imperia-card i {
+    font-size: 28px;
+    color: #1061cd;
+  }
+  .imperia-card span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .imperia-card small {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #6b7280;
+    text-align: center;
+  }
+  .imperia-section-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  {# Determine which sections to show based on AdminSection records #}
+  {% load admin_sections %}
+  {% get_visible_sections user as sections %}
+  {% get_section_visibility sections 'catalog_base' as show_catalog_base %}
+  {% get_section_visibility sections 'attributes' as show_attributes %}
+  {% get_section_visibility sections 'tags' as show_tags %}
+  {% get_section_visibility sections 'variants' as show_variants %}
+  {% get_section_visibility sections 'stock' as show_stock %}
+  {% get_section_visibility sections 'suppliers' as show_suppliers %}
+  {% get_section_visibility sections 'promocampaigns' as show_promocampaigns %}
+  {% get_section_visibility sections 'discounts' as show_discounts %}
+  {% get_section_visibility sections 'pricehistory' as show_pricehistory %}
+  {% get_section_visibility sections 'videos' as show_videos %}
+  {% get_section_visibility sections 'warranties' as show_warranties %}
+  {% get_section_visibility sections 'certificates' as show_certificates %}
+  {% get_section_visibility sections 'promoblocks' as show_promoblocks %}
+  {% get_section_visibility sections 'orders' as show_orders %}
+  {% get_section_visibility sections 'coupons' as show_coupons %}
+  {% get_section_visibility sections 'loyalty' as show_loyalty %}
+  {% get_section_visibility sections 'services' as show_services %}
+  {% get_section_visibility sections 'blog' as show_blog %}
+  {% get_section_visibility sections 'banners' as show_banners %}
+  {% get_section_visibility sections 'changelog' as show_changelog %}
+  {% get_section_visibility sections 'groups' as show_groups %}
+  {% get_section_visibility sections 'users' as show_users %}
+
+  <!-- Каталог -->
+  {% if show_catalog_base or show_attributes or show_tags or show_variants or show_stock or show_suppliers or show_promocampaigns or show_discounts or show_pricehistory or show_videos or show_warranties or show_certificates or show_promoblocks %}
+  <div class="imperia-section-title">📦 Каталог</div>
+  <div class="imperia-grid">
+    {% if show_catalog_base %}
+    <a href="{% url 'admin:products_product_changelist' %}" class="imperia-card">
+      <i class="fas fa-box"></i>
+      <span>Товары</span>
+      <small>Управление товарами и ценами</small>
+    </a>
+    <a href="{% url 'admin:products_category_changelist' %}" class="imperia-card">
+      <i class="fas fa-folder-tree"></i>
+      <span>Категории</span>
+      <small>Структура каталога</small>
+    </a>
+    <a href="{% url 'admin:products_brand_changelist' %}" class="imperia-card">
+      <i class="fas fa-tag"></i>
+      <span>Бренды</span>
+      <small>Производители</small>
+    </a>
+    {% endif %}
+    {% if show_attributes %}
+    <a href="{% url 'admin:products_attribute_changelist' %}" class="imperia-card">
+      <i class="fas fa-list-ul"></i>
+      <span>Атрибуты</span>
+      <small>Характеристики товаров</small>
+    </a>
+    {% endif %}
+    {% if show_tags %}
+    <a href="{% url 'admin:products_tag_changelist' %}" class="imperia-card">
+      <i class="fas fa-hashtag"></i>
+      <span>Теги</span>
+      <small>Метки товаров</small>
+    </a>
+    {% endif %}
+    {% if show_variants %}
+    <a href="{% url 'admin:products_productvariant_changelist' %}" class="imperia-card">
+      <i class="fas fa-cubes"></i>
+      <span>Варианты</span>
+      <small>Модификации товаров</small>
+    </a>
+    {% endif %}
+    {% if show_stock %}
+    <a href="{% url 'admin:products_stock_changelist' %}" class="imperia-card">
+      <i class="fas fa-warehouse"></i>
+      <span>Остатки</span>
+      <small>Складской учёт</small>
+    </a>
+    {% endif %}
+    {% if show_suppliers %}
+    <a href="{% url 'admin:products_supplier_changelist' %}" class="imperia-card">
+      <i class="fas fa-truck"></i>
+      <span>Поставщики</span>
+      <small>Вендоры</small>
+    </a>
+    {% endif %}
+    {% if show_promocampaigns %}
+    <a href="{% url 'admin:products_promocampaign_changelist' %}" class="imperia-card">
+      <i class="fas fa-percent"></i>
+      <span>Акции</span>
+      <small>Маркетинговые акции</small>
+    </a>
+    {% endif %}
+    {% if show_discounts %}
+    <a href="{% url 'admin:products_discount_changelist' %}" class="imperia-card">
+      <i class="fas fa-tags"></i>
+      <span>Скидки</span>
+      <small>Управление скидками</small>
+    </a>
+    {% endif %}
+    {% if show_pricehistory %}
+    <a href="{% url 'admin:products_pricehistory_changelist' %}" class="imperia-card">
+      <i class="fas fa-chart-line"></i>
+      <span>История цен</span>
+      <small>Изменения цен</small>
+    </a>
+    {% endif %}
+    {% if show_videos %}
+    <a href="{% url 'admin:products_productvideo_changelist' %}" class="imperia-card">
+      <i class="fas fa-video"></i>
+      <span>Видео товаров</span>
+      <small>Обзоры</small>
+    </a>
+    {% endif %}
+    {% if show_warranties %}
+    <a href="{% url 'admin:products_warranty_changelist' %}" class="imperia-card">
+      <i class="fas fa-file-invoice"></i>
+      <span>Гарантии</span>
+      <small>Гарантийные талоны</small>
+    </a>
+    {% endif %}
+    {% if show_certificates %}
+    <a href="{% url 'admin:products_certificate_changelist' %}" class="imperia-card">
+      <i class="fas fa-certificate"></i>
+      <span>Сертификаты</span>
+      <small>Документы</small>
+    </a>
+    {% endif %}
+    {% if show_promoblocks %}
+    <a href="{% url 'admin:products_promotionblock_changelist' %}" class="imperia-card">
+      <i class="fas fa-th-large"></i>
+      <span>Промо-блоки</span>
+      <small>Блоки на главной</small>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Заказы и клиенты -->
+  {% if show_orders or show_coupons or show_loyalty or show_users %}
+  <div class="imperia-section-title">🛒 Заказы и клиенты</div>
+  <div class="imperia-grid">
+    {% if show_orders %}
+    <a href="{% url 'admin:customers_order_changelist' %}" class="imperia-card">
+      <i class="fas fa-shopping-cart"></i>
+      <span>Заказы</span>
+      <small>Все поступившие заказы</small>
+    </a>
+    <a href="{% url 'admin:customers_customer_changelist' %}" class="imperia-card">
+      <i class="fas fa-users"></i>
+      <span>Клиенты</span>
+      <small>Покупатели</small>
+    </a>
+    {% endif %}
+    {% if show_coupons %}
+    <a href="{% url 'admin:customers_coupon_changelist' %}" class="imperia-card">
+      <i class="fas fa-ticket-alt"></i>
+      <span>Промокоды</span>
+      <small>Купоны на скидку</small>
+    </a>
+    {% endif %}
+    {% if show_loyalty %}
+    <a href="{% url 'admin:customers_loyaltyprogram_changelist' %}" class="imperia-card">
+      <i class="fas fa-star"></i>
+      <span>Программа лояльности</span>
+      <small>Уровни и привилегии</small>
+    </a>
+    {% endif %}
+    {% if show_users %}
+    <a href="{% url 'admin:customers_customer_changelist' %}" class="imperia-card">
+      <i class="fas fa-user-cog"></i>
+      <span>Пользователи</span>
+      <small>Клиенты и администраторы</small>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Услуги -->
+  {% if show_services %}
+  <div class="imperia-section-title">🔧 Сервис</div>
+  <div class="imperia-grid">
+    <a href="{% url 'admin:services_serviceitem_changelist' %}" class="imperia-card">
+      <i class="fas fa-tools"></i>
+      <span>Услуги</span>
+      <small>Ремонт и обслуживание</small>
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- Маркетинг и контент -->
+  {% if show_blog or show_banners %}
+  <div class="imperia-section-title">📢 Маркетинг и контент</div>
+  <div class="imperia-grid">
+    {% if show_blog %}
+    <a href="{% url 'admin:products_blogpost_changelist' %}" class="imperia-card">
+      <i class="fas fa-newspaper"></i>
+      <span>Блог</span>
+      <small>Статьи и новости</small>
+    </a>
+    {% endif %}
+    {% if show_banners %}
+    <a href="{% url 'admin:products_banner_changelist' %}" class="imperia-card">
+      <i class="fas fa-images"></i>
+      <span>Баннеры</span>
+      <small>Слайды на главной</small>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Система -->
+  {% if show_changelog or show_groups or show_users %}
+  <div class="imperia-section-title">⚙️ Система</div>
+  <div class="imperia-grid">
+    {% if show_changelog %}
+    <a href="{% url 'admin:customers_changelog_changelist' %}" class="imperia-card">
+      <i class="fas fa-history"></i>
+      <span>Лог изменений</span>
+      <small>Журнал действий</small>
+    </a>
+    {% endif %}
+    {% if show_groups %}
+    <a href="{% url 'admin:auth_group_changelist' %}" class="imperia-card">
+      <i class="fas fa-user-shield"></i>
+      <span>Группы и права</span>
+      <small>Права доступа администраторов</small>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Настройки (всегда видны суперюзеру) -->
+  {% if user.is_superuser %}
+  <div class="imperia-section-title">⚙️ Настройки админки</div>
+  <div class="imperia-grid">
+    <a href="{% url 'admin:products_adminsection_changelist' %}" class="imperia-card">
+      <i class="fas fa-eye-slash"></i>
+      <span>Видимость разделов</span>
+      <small>Включить / выключить разделы на главной</small>
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+{% if app_list %}
+<div style="margin-top: 40px;">
+  <div class="imperia-section-title">🕐 Недавние действия</div>
+  {{ block.super }}
+</div>
+{% endif %}
+{% endblock %}

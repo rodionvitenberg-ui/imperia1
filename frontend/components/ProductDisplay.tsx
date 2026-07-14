@@ -72,7 +72,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
     "image": mainImage ? `${API_CONFIG.BASE_URL}${mainImage.image}` : undefined,
     "offers": {
       "@type": "Offer",
-      "url": typeof window !== 'undefined' ? window.location.href : undefined,
+      "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg'}/products/${product.slug}`,
       "priceCurrency": "KGS",
       "price": Number(product.price).toFixed(2),
       "availability": product.stock?.in_stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",

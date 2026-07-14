@@ -1,5 +1,6 @@
 import { fetchServices, ServiceItem } from '@/lib/api';
 import Link from 'next/link';
+import ServiceRequestForm from './ServiceRequestForm';
 
 export const metadata = {
   title: 'Услуги и ремонт — Империя Электроники',
@@ -70,6 +71,9 @@ export default async function ServicesPage() {
             </div>
           )}
         </section>
+
+        {/* Форма заявки */}
+        <ServiceRequestForm />
       </div>
     </div>
   );

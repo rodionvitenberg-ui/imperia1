@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProductViewSet, CategoryViewSet, AttributeViewSet
+from .views import ProductViewSet, CategoryViewSet, AttributeViewSet, BrandViewSet, BlogPostViewSet
 
 # Создаем маршрутизатор
 router = DefaultRouter()
@@ -9,6 +9,8 @@ router = DefaultRouter()
 router.register(r'products', ProductViewSet)
 router.register(r'categories', CategoryViewSet)
 router.register(r'attributes', AttributeViewSet)
+router.register(r'brands', BrandViewSet)
+router.register(r'blog', BlogPostViewSet, basename='blogpost')
 
 # Основной URL-паттерн нашего приложения
 urlpatterns = [

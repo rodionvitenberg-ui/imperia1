@@ -53,7 +53,13 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row gap-8 md:gap-16">
             {/* Первая колонка - Компания */}
             <div className="flex flex-col">
-              <div className="flex flex-col space-y-2">
+             <div className="flex flex-col space-y-2">
+                <Link
+                  href="/blog"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
+                >
+                  Блог
+                </Link>
                 <Link
                   href="/about"
                   className="text-[#212121] hover:text-primary transition-colors duration-200"
@@ -79,6 +85,12 @@ const Footer = () => {
                   Как сделать заказ
                 </Link>
                 <Link
+                  href="/delivery-payment"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
+                >
+                  Доставка и оплата
+                </Link>
+                <Link
                   href="/store-location"
                   className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >
@@ -95,6 +107,21 @@ const Footer = () => {
             <p className="text-[#212121] text-sm">
               © 2026 Империя Электроники. Все права защищены.
             </p>
+            <div className="flex items-center gap-2 text-[#212121] text-xs">
+              <Link
+                href="/terms"
+                className="hover:text-primary transition-colors duration-200"
+              >
+                Правила пользования
+              </Link>
+              <span className="text-[#bfbfbf]">•</span>
+              <Link
+                href="/privacy"
+                className="hover:text-primary transition-colors duration-200"
+              >
+                Политика конфиденциальности
+              </Link>
+            </div>
           </div>
         </div>
       </div>

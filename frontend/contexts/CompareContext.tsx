@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '@/lib/api';
+import { showCustomToast } from '@/components/CustomToast';
 
 interface CompareContextType {
   compareItems: Product[];
@@ -19,6 +20,7 @@ export function CompareProvider({ children }: { children: React.ReactNode }) {
 
   // Загрузка из localStorage только на клиенте
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const saved = localStorage.getItem('compareItems');
     if (saved) {
       try {
@@ -32,14 +34,14 @@ export function CompareProvider({ children }: { children: React.ReactNode }) {
 
   // Сохранение при изменении
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && typeof window !== 'undefined') {
       localStorage.setItem('compareItems', JSON.stringify(compareItems));
     }
   }, [compareItems, isLoaded]);
 
   const addToCompare = (product: Product) => {
     if (compareItems.length >= 4) {
-      alert('Можно сравнивать максимум 4 товара');
+      showCustomToast.info('Можно сравнивать максимум 4 товара');
       return;
     }
     if (!compareItems.find(i => i.id === product.id)) {

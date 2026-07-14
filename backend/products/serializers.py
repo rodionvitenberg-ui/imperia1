@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import (
     Product, ProductVariant, Category, Attribute, Brand, Tag,
     ProductAttribute, ProductImage, Stock, Review, ReviewImage,
-    PriceHistory, PromoCampaign, Discount, ProductVideo,
+    PriceHistory, PromoCampaign, Discount, ProductVideo, BlogPost,
 )
 
 
@@ -27,11 +27,13 @@ class TagSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
+    brands = BrandSerializer(many=True, read_only=True)
 
     class Meta:
         model = Category
         fields = [
             'id', 'name', 'slug', 'parent', 'header_order', 'children',
+            'brands', 'attributes',
             'meta_title', 'meta_description', 'h1',
         ]
 
@@ -301,3 +303,25 @@ class ProductVideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductVideo
         fields = ['id', 'title', 'url', 'platform', 'thumbnail', 'sort_order']
+
+
+class BlogPostListSerializer(serializers.ModelSerializer):
+    """Облегчённый сериализатор для списка статей."""
+    class Meta:
+        model = BlogPost
+        fields = ['id', 'title', 'slug', 'excerpt', 'image', 'published_at']
+
+
+class BlogPostDetailSerializer(serializers.ModelSerializer):
+    """Полный сериализатор для детальной страницы."""
+    author_name = serializers.CharField(source='author.get_full_name', read_only=True, default='')
+    tags = TagSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = BlogPost
+        fields = [
+            'id', 'title', 'slug', 'excerpt', 'content', 'image',
+            'author', 'author_name', 'status', 'tags',
+            'meta_title', 'meta_description',
+            'published_at', 'created_at', 'updated_at',
+        ]

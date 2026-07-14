@@ -27,12 +27,29 @@ const fadeUp = {
 };
 
 /* ─── Reusable CTA buttons ─────────────────── */
-function PrimaryCTA({ label, href }: { label: string; href: string }) {
+interface CTAButtonProps {
+  label: string;
+  href: string;
+  accentColor?: string;
+}
+
+function PrimaryCTA({ label, href, accentColor = '#1061cd' }: CTAButtonProps) {
+  const isGold = accentColor === '#eb9911';
+  const textColor = isGold ? '#000' : '#fff';
+  const defaultBg = isGold ? accentColor : accentColor;
+  const hoverBg = isGold ? '#c47c0e' : accentColor + 'cc';
   return (
-    <div className="p-[3px] rounded-full bg-[#1061cd]/15">
+    <div className="p-[3px] rounded-full" style={{ backgroundColor: `${accentColor}26` }}>
       <a
         href={href}
-        className="group inline-flex items-center gap-3 rounded-full bg-[#1061cd] px-7 py-3.5 text-sm font-bold text-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#0f54b3] active:scale-[0.98]"
+        className="group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+        style={{ backgroundColor: defaultBg, color: textColor }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.backgroundColor = hoverBg;
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.backgroundColor = defaultBg;
+        }}
       >
         {label}
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/20 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-[1px] group-hover:scale-105">
@@ -43,12 +60,23 @@ function PrimaryCTA({ label, href }: { label: string; href: string }) {
   );
 }
 
-function SecondaryCTA({ label, href }: { label: string; href: string }) {
+function SecondaryCTA({ label, href, accentColor = '#1061cd' }: CTAButtonProps) {
   return (
     <div className="p-[3px] rounded-full bg-transparent">
       <a
         href={href}
-        className="inline-flex items-center rounded-full border border-[#bfbfbf] bg-white px-7 py-3.5 text-sm font-bold text-[#212121] min-h-[60px] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#1061cd] hover:text-[#1061cd] active:scale-[0.98]"
+        className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-sm font-bold text-[#212121] min-h-[60px] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+        style={{ borderColor: '#bfbfbf' }}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLAnchorElement;
+          el.style.borderColor = accentColor;
+          el.style.color = accentColor;
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLAnchorElement;
+          el.style.borderColor = '#bfbfbf';
+          el.style.color = '#212121';
+        }}
       >
         {label}
       </a>
@@ -71,7 +99,6 @@ interface CTA {
 /* ─── Slide data ───────────────────────────── */
 interface SlideData {
   key: string;
-  eyebrow: string;
   headline: React.ReactNode;
   subhead: string;
   image: string;
@@ -79,12 +106,31 @@ interface SlideData {
   gradientDirection: 'l' | 'r';
   benefits: Benefit[];
   ctas: [CTA, CTA];
+  accentColor?: string;
 }
 
 const slides: SlideData[] = [
+  // ===== 1. Welcome =====
   {
-    key: '1',
-    eyebrow: 'Видеонаблюдение',
+    key: 'welcome',
+    headline: <>Мы — торгово-сервисный центр <span className="text-[#1061cd]">Империя Электроники</span></>,
+    subhead: 'Компьютерная техника, комплектующие, сборка ПК, ремонт и IT-услуги в Караколе.',
+    image: '/hero-2.jpg',
+    imageSide: 'right',
+    gradientDirection: 'l',
+    benefits: [
+      { label: 'Гарантия', value: 'до 2 лет' },
+      { label: 'Доставка', value: 'по Караколу' },
+      { label: 'Сборка ПК', value: 'под ключ' },
+    ],
+    ctas: [
+      { label: 'Смотреть каталог', href: '/catalog', variant: 'primary' },
+      { label: 'Заказать', href: '/how-to-order', variant: 'secondary' },
+    ],
+  },
+  // ===== 2. Безопасность / видеонаблюдение =====
+  {
+    key: 'security',
     headline: <>Безопасность <span className="text-[#1061cd]">под контролем</span></>,
     subhead: 'Установка систем видеонаблюдения для дома и бизнеса. Профессиональный монтаж в день обращения.',
     image: '/hero-1.jpg',
@@ -100,30 +146,12 @@ const slides: SlideData[] = [
       { label: 'Услуги монтажа', href: '/catalog/montazh-videonablyudeniya', variant: 'secondary' },
     ],
   },
+  // ===== 3. Сборка ПК =====
   {
-    key: '2',
-    eyebrow: 'Добро пожаловать',
-    headline: <>Техника, которая работает <span className="text-[#1061cd]">на вас</span></>,
-    subhead: 'Поможем выбрать, соберём под ключ и будем на связи, если что-то пойдёт не так.',
-    image: '/hero-1.jpg',
-    imageSide: 'right',
-    gradientDirection: 'l',
-    benefits: [
-      { label: 'Гарантия', value: 'до 2 лет' },
-      { label: 'Доставка', value: 'по Караколу бесплатно' },
-      { label: 'Сборка ПК', value: 'в день заказа' },
-    ],
-    ctas: [
-      { label: 'Смотреть каталог', href: '/catalog', variant: 'primary' },
-      { label: 'Как заказать', href: '/how-to-order', variant: 'secondary' },
-    ],
-  },
-  {
-    key: '3',
-    eyebrow: 'Сборка ПК',
+    key: 'pc-build',
     headline: <>Соберём компьютер <span className="text-[#1061cd]">вашей мечты</span></>,
     subhead: 'Бесплатная сборка при заказе от 50 000 сом. Профессиональная настройка и тестирование.',
-    image: '/hero-1.jpg',
+    image: '/hero-3.jpg',
     imageSide: 'left',
     gradientDirection: 'r',
     benefits: [
@@ -136,30 +164,30 @@ const slides: SlideData[] = [
       { label: 'Аксессуары', href: '/catalog/aksessuary', variant: 'secondary' },
     ],
   },
+  // ===== 4. Периферия =====
   {
-    key: '4',
-    eyebrow: 'Периферия',
+    key: 'peripherals',
     headline: <>Всё для <span className="text-[#1061cd]">комфортной работы</span></>,
     subhead: 'Мониторы, клавиатуры, мыши и аксессуары от ведущих брендов мира. То, что делает работу приятной.',
-    image: '/hero-1.jpg',
+    image: '/hero-4.jpg',
     imageSide: 'left',
     gradientDirection: 'r',
     benefits: [
       { label: 'Бренды', value: 'Logitech, Xiaomi' },
       { label: 'Механика', value: 'Cherry MX' },
-      { label: 'Доставка', value: '1-2 дня' },
+      { label: 'Доставка', value: '1–2 дня' },
     ],
     ctas: [
       { label: 'Мониторы', href: '/catalog/monitory', variant: 'primary' },
       { label: 'Клавиатуры и мыши', href: '/catalog/klaviatury', variant: 'secondary' },
     ],
   },
+  // ===== 5. Оргтехника / принтеры =====
   {
-    key: '5',
-    eyebrow: 'Оргтехника',
+    key: 'printers',
     headline: <>Печатай, сканируй, <span className="text-[#1061cd]">работай</span></>,
     subhead: 'Принтеры, МФУ и расходные материалы. Настроим, подключим, заправим картридж — вам останется только печатать.',
-    image: '/hero-1.jpg',
+    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1200&h=800&fit=crop',
     imageSide: 'right',
     gradientDirection: 'l',
     benefits: [
@@ -184,23 +212,44 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
         <div className={`w-full lg:w-1/2 py-16 md:py-24 ${isLeft ? 'lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
         {active && (
           <>
-            <motion.span custom={0} variants={fadeUp} initial="hidden" animate="visible" className="inline-block rounded-full bg-[#1061cd]/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1061cd]">
-              {slide.eyebrow}
-            </motion.span>
-            <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible" className="mt-6 font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] text-[#212121] max-w-xl">
+            <motion.h1
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] text-[#212121] max-w-xl"
+            >
               {slide.headline}
             </motion.h1>
-            <motion.p custom={2} variants={fadeUp} initial="hidden" animate="visible" className="mt-5 max-w-md text-base md:text-lg leading-relaxed md:text-gray-500 text-[#212121]">
+            <motion.p
+              custom={1}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mt-5 max-w-md text-base md:text-lg leading-relaxed md:text-gray-500 text-[#212121]"
+            >
               {slide.subhead}
             </motion.p>
-            <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="mt-8 flex flex-wrap gap-4">
+            <motion.div
+              custom={2}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mt-8 flex flex-wrap gap-4"
+            >
               {slide.ctas.map((cta, i) =>
                 cta.variant === 'primary'
-                  ? <PrimaryCTA key={i} label={cta.label} href={cta.href} />
-                  : <SecondaryCTA key={i} label={cta.label} href={cta.href} />
+                  ? <PrimaryCTA key={i} label={cta.label} href={cta.href} accentColor={slide.accentColor} />
+                  : <SecondaryCTA key={i} label={cta.label} href={cta.href} accentColor={slide.accentColor} />
               )}
             </motion.div>
-            <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible" className="mt-6 md:mt-10 flex gap-8 pt-4 md:pt-6">
+            <motion.div
+              custom={3}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mt-6 md:mt-10 flex gap-8 pt-4 md:pt-6"
+            >
               {slide.benefits.map((b) => (
                 <div key={b.value} className="flex flex-col">
                   <span className="text-xs font-semibold uppercase tracking-wide md:text-gray-400 text-[#212121]">{b.label}</span>

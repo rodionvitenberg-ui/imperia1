@@ -34,13 +34,13 @@ function ArrowRightIcon({ className }: { className?: string }) {
 /* ── Bento cell layout map (6-col grid, mathematically gapless) ── */
 const BENTO_CELLS = [
   { col: 'col-span-2', row: 'row-span-2', size: 'lg' },    // 0 — hero
-  { col: 'col-span-2', row: 'row-span-1', size: 'md' },     // 1
-  { col: 'col-span-1', row: 'row-span-2', size: 'tall' },   // 2
+  { col: 'col-span-2', row: 'row-span-2', size: 'md' },     // 1
+  { col: 'col-span-1', row: 'row-span-3', size: 'tall' },   // 2
   { col: 'col-span-1', row: 'row-span-2', size: 'tall' },   // 3
-  { col: 'col-span-2', row: 'row-span-1', size: 'md' },     // 4
+  { col: 'col-span-2', row: 'row-span-2', size: 'md' },     // 4
   { col: 'col-span-1', row: 'row-span-1', size: 'sm' },     // 5
   { col: 'col-span-1', row: 'row-span-1', size: 'sm' },     // 6
-  { col: 'col-span-2', row: 'row-span-1', size: 'md' },     // 7
+  { col: 'col-span-2', row: 'row-span-2', size: 'md' },     // 7
 ] as const;
 
 type BentoCell = (typeof BENTO_CELLS)[number];
@@ -150,10 +150,6 @@ export default function RecentlyViewedProducts() {
         {/* Header row */}
         <div className="flex items-end justify-between mb-8">
           <div>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#1061cd] mb-2" style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}>
-              <HistoryIcon className="w-3.5 h-3.5" />
-              История просмотров
-            </span>
             <h2 className="text-[24px] md:text-[32px] leading-[34px] md:leading-[38px] font-bold text-[#212121]" style={{ fontFamily: 'var(--font-display)' }}>
               Недавно просмотренные
             </h2>

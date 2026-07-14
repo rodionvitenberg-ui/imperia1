@@ -3,6 +3,8 @@ import { fetchCategories, fetchAllProducts } from '@/lib/api';
 
 const STATIC_PAGES = [
   { path: '', priority: 1.0, changefreq: 'daily' as const },
+  { path: '/catalog', priority: 0.9, changefreq: 'daily' as const },
+  { path: '/delivery-payment', priority: 0.8, changefreq: 'monthly' as const },
   { path: '/how-to-order', priority: 0.8, changefreq: 'monthly' as const },
   { path: '/contacts', priority: 0.7, changefreq: 'monthly' as const },
   { path: '/about', priority: 0.6, changefreq: 'monthly' as const },

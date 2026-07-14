@@ -66,7 +66,10 @@ export function CartProvider({ children }: CartProviderProps) {
 
   // Вычисляемые значения
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.product.price) * item.quantity), 0);
+  const totalPrice = items.reduce((sum, item) => {
+    const price = item.product?.price ? parseFloat(item.product.price) : 0;
+    return sum + (isNaN(price) ? 0 : price) * item.quantity;
+  }, 0);
 
   // Добавление товара в корзину
   const addToCart = (product: Product, quantity: number = 1) => {

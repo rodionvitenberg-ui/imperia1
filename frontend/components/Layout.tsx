@@ -2,11 +2,14 @@
 import Header from './Header';
 import Footer from './Footer';
 import TopBar from './TopBar';
+import CookieConsent from './CookieConsent';
 import React from 'react';
 import { NestedCategory } from '@/lib/api';
 
 // Данные для топ-бара теперь живут здесь
 const topBarLinks = [
+  { name: 'Доставка и оплата', href: '/delivery-payment' },
+  { name: 'Блог', href: '/blog' },
   { name: 'О компании', href: '/about' },
   { name: 'Как сделать заказ', href: '/how-to-order' },
   { name: 'Контакты', href: '/contacts' },
@@ -25,6 +28,7 @@ export default function Layout({ children, categoryTree }: LayoutProps) {
       <Header allCategories={categoryTree} topBarLinks={topBarLinks} />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }

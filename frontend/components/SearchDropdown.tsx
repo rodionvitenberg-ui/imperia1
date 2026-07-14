@@ -149,11 +149,28 @@ const SearchDropdown: React.FC = () => {
           </motion.div>
         ) : query.trim() && !isLoading ? (
           <motion.div variants={dropdownContentVariants} className="text-center py-8">
-            <p className="text-[#212121]">Ничего не найдено по запросу "{query}"</p>
+            <svg className="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-[#212121] font-medium mb-1">Ничего не найдено</p>
+            <p className="text-sm text-gray-500 mb-4">По запросу «{query}» товары не найдены</p>
+            <Link
+              href={`/search?q=${encodeURIComponent(query)}`}
+              className="inline-flex items-center text-primary hover:text-primary/80 text-sm font-medium"
+            >
+              Расширенный поиск
+              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </motion.div>
         ) : (
           <motion.div variants={dropdownContentVariants} className="text-center py-8">
-            <p className="text-[#212121]">Введите запрос для поиска товаров</p>
+            <svg className="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <p className="text-[#212121] mb-1">Введите запрос для поиска</p>
+            <p className="text-sm text-gray-500">Например: «видеокарта», «SSD», «монитор»</p>
           </motion.div>
         )}
       </motion.div>

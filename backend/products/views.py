@@ -5,10 +5,11 @@ from rest_framework import filters
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q, Case, When, IntegerField
 import re
-from .models import Product, Category, Attribute, Brand, ProductAttribute, Review
+from .models import Product, Category, Attribute, Brand, ProductAttribute, Review, BlogPost
 from .serializers import (
     ProductSerializer, ProductListSerializer, CategorySerializer,
     AttributeSerializer, BrandSerializer, ReviewSerializer,
+    BlogPostListSerializer, BlogPostDetailSerializer,
 )
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ProductFilter
@@ -230,3 +231,19 @@ class AttributeViewSet(viewsets.ModelViewSet):
     """
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
+
+
+class BrandViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+
+
+class BlogPostViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = BlogPost.objects.filter(status='published')
+    lookup_field = 'slug'
+    serializer_class = BlogPostDetailSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return BlogPostListSerializer
+        return BlogPostDetailSerializer

@@ -145,19 +145,16 @@ class Product(models.Model):
 
     @property
     def average_rating(self):
-        """Возвращает средний рейтинг товара"""
         from django.db.models import Avg
         avg = self.reviews.aggregate(Avg('rating'))['rating__avg']
         return round(avg, 1) if avg else 0
 
     @property
     def reviews_count(self):
-        """Возвращает количество отзывов"""
         return self.reviews.count()
 
     @property
     def min_variant_price(self):
-        """Минимальная цена среди активных вариантов товара."""
         min_price = self.variants.filter(is_active=True).aggregate(
             models.Min('price_override')
         )['price_override__min']
@@ -167,15 +164,10 @@ class Product(models.Model):
 
     @property
     def has_variants(self):
-        """Имеет ли товар активные варианты."""
         return self.variants.filter(is_active=True).exists()
 
 
 class ProductVariant(models.Model):
-    """
-    Вариант товара (конфигурация).
-    Например, ноутбук ASUS ROG может иметь варианты: 16GB/512GB и 32GB/1TB.
-    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -208,12 +200,10 @@ class ProductVariant(models.Model):
         return f"{self.product.name} — {self.name}"
 
     def get_price(self):
-        """Возвращает актуальную цену варианта (его собственную или цену товара)."""
         return self.price_override if self.price_override is not None else self.product.price
 
 
 class ProductImage(models.Model):
-    """Модель для хранения изображений товара или варианта."""
     IMAGE_TYPE_CHOICES = [
         ('main', 'Основное фото'),
         ('gallery', 'Галерея'),
@@ -266,11 +256,6 @@ class ProductImage(models.Model):
 
 
 class ProductAttribute(models.Model):
-    """
-    Модель для хранения конкретных значений атрибутов.
-    Может привязываться к товару ИЛИ к варианту товара.
-    Поддерживает типизированные значения в зависимости от attribute.type.
-    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -288,7 +273,6 @@ class ProductAttribute(models.Model):
         verbose_name="Вариант товара"
     )
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, verbose_name="Атрибут")
-    # Типизированные колонки значений
     value_str = models.CharField(max_length=1024, blank=True, verbose_name="Строковое значение")
     value_int = models.IntegerField(null=True, blank=True, verbose_name="Числовое значение")
     value_bool = models.BooleanField(null=True, blank=True, verbose_name="Булево значение")
@@ -320,7 +304,6 @@ class ProductAttribute(models.Model):
         return f"{target} - {self.attribute.name}: {self.get_display_value()}"
 
     def get_display_value(self):
-        """Возвращает значение в читаемом виде для отображения."""
         if self.attribute.type == 'int' and self.value_int is not None:
             unit = f" {self.attribute.unit}" if self.attribute.unit else ""
             return f"{self.value_int}{unit}"
@@ -331,7 +314,6 @@ class ProductAttribute(models.Model):
         return self.value_str
 
     def set_typed_value(self, value):
-        """Устанавливает значение в правильную типизированную колонку на основе attribute.type."""
         attr_type = self.attribute.type
         self.value_str = ''
         self.value_int = None
@@ -356,7 +338,6 @@ class ProductAttribute(models.Model):
             raise ValidationError(_('Атрибут должен быть привязан либо к товару, либо к варианту.'))
         if self.product and self.variant:
             raise ValidationError(_('Атрибут не может быть привязан одновременно к товару и варианту.'))
-        # Валидация enum-значений
         if self.attribute.type == 'enum' and self.value_enum:
             options = self.attribute.enum_options or []
             if self.value_enum not in options:
@@ -369,10 +350,6 @@ class ProductAttribute(models.Model):
 
 
 class Stock(models.Model):
-    """
-    Модель складских остатков.
-    Привязывается к товару или конкретному варианту товара.
-    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -423,12 +400,10 @@ class Stock(models.Model):
 
     @property
     def available(self):
-        """Доступное количество (на складе минус зарезервировано)."""
         return max(0, self.quantity - self.reserved)
 
     @property
     def in_stock(self):
-        """Есть ли товар в наличии."""
         return self.available > 0
 
     def clean(self):
@@ -440,7 +415,6 @@ class Stock(models.Model):
 
 
 class Review(models.Model):
-    """Модель для отзывов и рейтинга товаров"""
     RATING_CHOICES = [
         (1, '1 звезда'),
         (2, '2 звезды'),
@@ -470,14 +444,8 @@ class Review(models.Model):
         verbose_name="Подтверждённая покупка",
         help_text="Отзыв от клиента, который действительно купил этот товар."
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name="Дата создания"
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        verbose_name="Дата обновления"
-    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
     class Meta:
         verbose_name = "Отзыв"
@@ -490,7 +458,6 @@ class Review(models.Model):
 
 
 class ReviewImage(models.Model):
-    """Фотография, прикреплённая к отзыву."""
     review = models.ForeignKey(
         Review,
         on_delete=models.CASCADE,
@@ -510,7 +477,6 @@ class ReviewImage(models.Model):
 
 
 class PriceHistory(models.Model):
-    """История изменения цены товара или варианта."""
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -550,28 +516,15 @@ class PriceHistory(models.Model):
         target = self.product or self.variant
         return f"{target}: {self.old_price} → {self.new_price} ({self.changed_at:%d.%m.%Y})"
 
-    def clean(self):
-        super().clean()
-        if not self.product and not self.variant:
-            raise ValidationError(_('Запись истории цены должна быть привязана либо к товару, либо к варианту.'))
-        if self.product and self.variant:
-            raise ValidationError(_('Запись истории цены не может быть привязана одновременно к товару и варианту.'))
-
 
 class PromoCampaign(models.Model):
-    """Маркетинговая акция (например, «Чёрная пятница», «Новогодняя распродажа»)."""
     name = models.CharField(max_length=255, verbose_name="Название акции")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL-слаг")
     description = models.TextField(blank=True, verbose_name="Описание акции")
     is_active = models.BooleanField(default=True, verbose_name="Активна")
     start_date = models.DateTimeField(verbose_name="Дата начала")
     end_date = models.DateTimeField(verbose_name="Дата окончания")
-    banner_image = models.ImageField(
-        upload_to='promo_banners/',
-        blank=True,
-        null=True,
-        verbose_name="Баннер"
-    )
+    banner_image = models.ImageField(upload_to='promo_banners/', blank=True, null=True, verbose_name="Баннер")
     priority = models.IntegerField(default=0, verbose_name="Приоритет",
                                    help_text="Чем выше число, тем приоритетнее акция при наложении.")
 
@@ -585,10 +538,6 @@ class PromoCampaign(models.Model):
 
 
 class Discount(models.Model):
-    """
-    Скидка, привязанная к товару, варианту или категории в рамках акции.
-    Поддерживает фиксированную скидку (в валюте) и процентную.
-    """
     DISCOUNT_TYPE_CHOICES = [
         ('fixed', 'Фиксированная сумма'),
         ('percent', 'Процент'),
@@ -629,25 +578,15 @@ class Discount(models.Model):
         verbose_name="Категория",
         help_text="Скидка применяется ко всем товарам в категории."
     )
-    discount_type = models.CharField(
-        max_length=10,
-        choices=DISCOUNT_TYPE_CHOICES,
-        verbose_name="Тип скидки"
-    )
+    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE_CHOICES, verbose_name="Тип скидки")
     value = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        verbose_name="Значение",
+        max_digits=10, decimal_places=2, verbose_name="Значение",
         help_text="Для fixed — сумма в валюте, для percent — процент (0–100), для new_price — новая цена."
     )
     is_active = models.BooleanField(default=True, verbose_name="Активна")
     start_date = models.DateTimeField(verbose_name="Дата начала")
     end_date = models.DateTimeField(verbose_name="Дата окончания")
-    min_quantity = models.PositiveIntegerField(
-        default=1,
-        verbose_name="Минимальное количество",
-        help_text="Скидка применяется при покупке от указанного количества."
-    )
+    min_quantity = models.PositiveIntegerField(default=1, verbose_name="Минимальное количество")
 
     class Meta:
         verbose_name = "Скидка"
@@ -659,55 +598,15 @@ class Discount(models.Model):
             models.Index(fields=['category', 'is_active']),
         ]
 
-    def __str__(self):
-        scope = self.product or self.variant or self.category or "общая"
-        if self.discount_type == 'percent':
-            return f"Скидка {self.value}% на {scope}"
-        return f"Скидка {self.value}₽ на {scope}"
-
-    def get_effective_price(self, base_price):
-        """
-        Вычисляет эффективную цену после скидки.
-        base_price — цена товара или варианта.
-        """
-        if not self.is_active:
-            return base_price
-
-        if self.discount_type == 'fixed':
-            return max(0, base_price - self.value)
-        elif self.discount_type == 'percent':
-            return base_price * (1 - min(self.value, 100) / 100)
-        elif self.discount_type == 'new_price':
-            return min(self.value, base_price)
-
-        return base_price
-
-    def clean(self):
-        super().clean()
-        targets = [self.product, self.variant, self.category]
-        if sum(1 for t in targets if t is not None) > 1:
-            raise ValidationError(_('Скидка может быть привязана только к одной сущности.'))
-        if self.discount_type == 'percent' and (self.value < 0 or self.value > 100):
-            raise ValidationError({'value': _('Процент скидки должен быть от 0 до 100.')})
-        if self.discount_type in ('fixed', 'new_price') and self.value < 0:
-            raise ValidationError({'value': _('Значение скидки не может быть отрицательным.')})
-
 
 class ProductVideo(models.Model):
-    """Видеообзор или видео-контент для товара."""
     product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='videos',
-        verbose_name="Товар"
+        Product, on_delete=models.CASCADE, related_name='videos', verbose_name="Товар"
     )
     title = models.CharField(max_length=255, blank=True, verbose_name="Название видео")
-    url = models.URLField(verbose_name="Ссылка на видео",
-                          help_text="YouTube, Vimeo или прямая ссылка на MP4.")
-    platform = models.CharField(max_length=50, blank=True, verbose_name="Платформа",
-                                help_text="youtube, vimeo, mp4...")
-    thumbnail = models.ImageField(upload_to='video_thumbnails/', blank=True, null=True,
-                                  verbose_name="Превью-изображение")
+    url = models.URLField(verbose_name="Ссылка на видео", help_text="YouTube, Vimeo или прямая ссылка на MP4.")
+    platform = models.CharField(max_length=50, blank=True, verbose_name="Платформа")
+    thumbnail = models.ImageField(upload_to='video_thumbnails/', blank=True, null=True, verbose_name="Превью-изображение")
     sort_order = models.IntegerField(default=0, verbose_name="Порядок сортировки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата добавления")
 
@@ -716,12 +615,8 @@ class ProductVideo(models.Model):
         verbose_name_plural = "Видео товаров"
         ordering = ['sort_order', '-created_at']
 
-    def __str__(self):
-        return f"Видео «{self.title or self.url}» для {self.product.name}"
-
 
 class Supplier(models.Model):
-    """Поставщик / вендор."""
     name = models.CharField(max_length=200, verbose_name="Название поставщика")
     slug = models.SlugField(max_length=200, unique=True)
     contact_person = models.CharField(max_length=200, blank=True, verbose_name="Контактное лицо")
@@ -736,53 +631,33 @@ class Supplier(models.Model):
         verbose_name_plural = "Поставщики"
         ordering = ['name']
 
-    def __str__(self):
-        return self.name
-
 
 class Warranty(models.Model):
-    """Гарантийный документ или сертификат, привязанный к товару."""
     DURATION_UNIT_CHOICES = [
         ('days', 'Дней'),
         ('months', 'Месяцев'),
         ('years', 'Лет'),
     ]
-
     product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='warranties',
-        verbose_name="Товар"
+        Product, on_delete=models.CASCADE, related_name='warranties', verbose_name="Товар"
     )
-    title = models.CharField(max_length=255, verbose_name="Название",
-                             help_text="Например: «Гарантия производителя», «Расширенная гарантия».")
+    title = models.CharField(max_length=255, verbose_name="Название")
     duration_value = models.PositiveIntegerField(default=12, verbose_name="Срок")
-    duration_unit = models.CharField(max_length=10, choices=DURATION_UNIT_CHOICES, default='months',
-                                     verbose_name="Единица срока")
+    duration_unit = models.CharField(max_length=10, choices=DURATION_UNIT_CHOICES, default='months', verbose_name="Единица срока")
     description = models.TextField(blank=True, verbose_name="Условия гарантии")
-    document = models.FileField(upload_to='warranty_docs/', blank=True, null=True,
-                                verbose_name="PDF-документ")
+    document = models.FileField(upload_to='warranty_docs/', blank=True, null=True, verbose_name="PDF-документ")
     is_active = models.BooleanField(default=True, verbose_name="Доступна")
 
     class Meta:
         verbose_name = "Гарантия"
         verbose_name_plural = "Гарантии"
-        ordering = ['title']
-
-    def __str__(self):
-        return f"Гарантия «{self.title}» — {self.duration_value} {self.get_duration_unit_display()}"
 
 
 class Certificate(models.Model):
-    """Сертификат соответствия или инструкция (PDF) для товара."""
     product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='certificates',
-        verbose_name="Товар"
+        Product, on_delete=models.CASCADE, related_name='certificates', verbose_name="Товар"
     )
-    title = models.CharField(max_length=255, verbose_name="Название документа",
-                             help_text="Например: «Сертификат Ростест», «Инструкция по эксплуатации».")
+    title = models.CharField(max_length=255, verbose_name="Название документа")
     file = models.FileField(upload_to='certificates/', verbose_name="PDF-файл")
     sort_order = models.IntegerField(default=0, verbose_name="Порядок сортировки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата загрузки")
@@ -790,38 +665,22 @@ class Certificate(models.Model):
     class Meta:
         verbose_name = "Сертификат / документ"
         verbose_name_plural = "Сертификаты / документы"
-        ordering = ['sort_order', '-created_at']
-
-    def __str__(self):
-        return f"{self.title} для {self.product.name}"
 
 
 class Banner(models.Model):
-    """Баннер для главной страницы или категорий."""
     PLACEMENT_CHOICES = [
         ('home_top', 'Главная — верх'),
         ('home_middle', 'Главная — середина'),
         ('category_top', 'Категория — верх'),
         ('sidebar', 'Боковая панель'),
     ]
-
     title = models.CharField(max_length=255, verbose_name="Заголовок")
     subtitle = models.TextField(blank=True, verbose_name="Подзаголовок")
     image = models.ImageField(upload_to='banners/', verbose_name="Изображение")
-    image_mobile = models.ImageField(upload_to='banners/mobile/', blank=True, null=True,
-                                     verbose_name="Мобильное изображение")
-    link = models.URLField(blank=True, verbose_name="Ссылка",
-                           help_text="Куда ведёт баннер при клике.")
-    placement = models.CharField(max_length=20, choices=PLACEMENT_CHOICES, default='home_top',
-                                 verbose_name="Размещение")
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        verbose_name="Категория",
-        help_text="Для баннеров категорий."
-    )
+    image_mobile = models.ImageField(upload_to='banners/mobile/', blank=True, null=True, verbose_name="Мобильное изображение")
+    link = models.URLField(blank=True, verbose_name="Ссылка")
+    placement = models.CharField(max_length=20, choices=PLACEMENT_CHOICES, default='home_top', verbose_name="Размещение")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Категория")
     is_active = models.BooleanField(default=True, verbose_name="Активен")
     sort_order = models.IntegerField(default=0, verbose_name="Порядок сортировки")
     start_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата начала показа")
@@ -833,12 +692,8 @@ class Banner(models.Model):
         verbose_name_plural = "Баннеры"
         ordering = ['placement', 'sort_order', '-created_at']
 
-    def __str__(self):
-        return f"Баннер «{self.title}» ({self.get_placement_display()})"
-
 
 class PromotionBlock(models.Model):
-    """Промо-блок для главной страницы (сетка акционных предложений)."""
     title = models.CharField(max_length=255, verbose_name="Заголовок блока")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL-слаг")
     description = models.TextField(blank=True, verbose_name="Описание")
@@ -853,12 +708,8 @@ class PromotionBlock(models.Model):
         verbose_name_plural = "Промо-блоки"
         ordering = ['sort_order', '-created_at']
 
-    def __str__(self):
-        return self.title
-
 
 class BlogPost(models.Model):
-    """Статья блога / новость."""
     STATUS_CHOICES = [
         ('draft', 'Черновик'),
         ('published', 'Опубликовано'),
@@ -867,24 +718,15 @@ class BlogPost(models.Model):
 
     title = models.CharField(max_length=255, verbose_name="Заголовок")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL-слаг")
-    excerpt = models.TextField(blank=True, verbose_name="Краткое описание",
-                               help_text="Отображается в списке статей.")
+    excerpt = models.TextField(blank=True, verbose_name="Краткое описание")
     content = models.TextField(verbose_name="Содержание")
     image = models.ImageField(upload_to='blog/', blank=True, null=True, verbose_name="Обложка")
-    author = models.ForeignKey(
-        'customers.Customer',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Автор"
-    )
+    author = models.ForeignKey('customers.Customer', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Автор")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', verbose_name="Статус")
     tags = models.ManyToManyField(Tag, blank=True, verbose_name="Теги")
     related_products = models.ManyToManyField(Product, blank=True, verbose_name="Связанные товары")
-    # SEO
     meta_title = models.CharField(max_length=255, blank=True, verbose_name="Meta Title")
     meta_description = models.TextField(blank=True, verbose_name="Meta Description")
-    # Даты
     published_at = models.DateTimeField(null=True, blank=True, verbose_name="Дата публикации")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -897,5 +739,19 @@ class BlogPost(models.Model):
             models.Index(fields=['status', '-published_at']),
         ]
 
+
+class AdminSection(models.Model):
+    """Модель управления видимостью разделов на главной странице админки."""
+    key = models.CharField(max_length=50, unique=True, verbose_name="Ключ")
+    label = models.CharField(max_length=100, verbose_name="Название раздела")
+    is_visible = models.BooleanField(default=True, verbose_name="Виден на главной")
+    is_visible_by_default = models.BooleanField(default=False, verbose_name="Виден обычным админам")
+    sort_order = models.IntegerField(default=0, verbose_name="Порядок")
+
+    class Meta:
+        verbose_name = "Раздел админки"
+        verbose_name_plural = "Видимость разделов админки"
+        ordering = ['sort_order']
+
     def __str__(self):
-        return self.title
+        return self.label

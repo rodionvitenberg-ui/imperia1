@@ -45,15 +45,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
       exit="exit"
       className="absolute top-full left-0 w-full bg-white border-b border-[#e5e7eb] overflow-hidden shadow-lg z-40"
     >
-      <div className="max-w-[1400px] mx-auto px-5 pb-4 pt-0 overflow-y-auto max-h-[calc(100dvh-4rem)]">
-        <div className="space-y-3">
+      <div className="max-w-[1400px] mx-auto px-5 pb-4 overflow-y-auto max-h-[calc(100dvh-4rem)]">
+        <div className="divide-y divide-gray-100">
           {sortedLinks.map((category) => (
-            <div key={category.id} className="border-b border-gray-100 last:border-0 pb-2">
-              <div className="flex items-center justify-between">
+            <div key={category.id}>
+              <div className="flex items-center justify-between min-h-[40px]">
                 <Link
                   href={`/catalog/${category.slug}`}
                   onClick={closeMenu}
-                  className="text-base font-medium text-[#212121] hover:text-primary transition-colors py-1"
+                  className="text-base font-medium text-[#212121] hover:text-primary transition-colors"
                 >
                   {category.name}
                 </Link>
@@ -61,11 +61,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ navLinks, closeMenu }) => {
                 {category.children && category.children.length > 0 && (
                   <button
                     onClick={() => toggleCategory(category.slug)}
-                    className="p-1 text-gray-400"
+                    className="flex items-center justify-center p-2 text-gray-400"
+                    aria-label={expandedCategory === category.slug ? 'Свернуть' : 'Развернуть'}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-5 w-5 transition-transform duration-200 ${
+                      className={`h-6 w-6 transition-transform duration-200 ${
                         expandedCategory === category.slug ? 'rotate-180' : ''
                       }`}
                       fill="none"

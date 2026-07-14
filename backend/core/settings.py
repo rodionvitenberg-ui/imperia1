@@ -35,6 +35,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'django_ckeditor_5',
     'customers',
     'products',
     'services',
@@ -175,5 +177,113 @@ STATIC_ROOT = '/var/www/imperia/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/imperia/media'
 
+# CKEditor 5
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'underline', 'strikethrough',
+            '|', 'bulletedList', 'numberedList', 'blockQuote',
+            '|', 'link', 'imageUpload', '|', 'undo', 'redo',
+        ],
+        'language': 'ru',
+    },
+}
+CKEDITOR_UPLOAD_PATH = 'blog_content/'
+
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+
+# --- Jazzmin Admin Rebranding ---
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates']
+
+JAZZMIN_SETTINGS = {
+    # branding
+    'site_header': 'Империя Электроники',
+    'site_brand': '',
+    'site_logo': 'logo.png',
+    'site_logo_classes': 'elevation-3',
+    'welcome_sign': 'Добро пожаловать в админ-панель',
+    'copyright': 'Империя Электроники © 2026',
+
+    # colors (DESIGN.md)
+    'site_title': 'Админка | Империя',
+    'site_logo_color': '#1061cd',
+    'login_logo': 'logo.png',
+    'login_logo_dark': 'logo.png',
+
+    # theme
+    'theme': 'flatly',
+    'dark_mode_theme': None,
+
+    # UI toggles
+    'show_sidebar': True,
+    'navigation_expanded': True,
+    'show_ui_builder': False,
+    'related_modal_active': True,
+    'changeform_format': 'horizontal_tabs',
+    'changeform_format_overrides': {
+        'products.product': 'horizontal_tabs',
+        'products.category': 'horizontal_tabs',
+    },
+
+    # custom CSS
+    'custom_css': 'admin/css/imperia.css',
+    'custom_js': None,
+
+    # icons per model
+    'icons': {
+        'customers.customer': 'fas fa-users',
+        'products.product': 'fas fa-box',
+        'products.category': 'fas fa-folder-tree',
+        'products.brand': 'fas fa-tag',
+        'products.attribute': 'fas fa-list-ul',
+        'products.tag': 'fas fa-hashtag',
+        'services.serviceitem': 'fas fa-tools',
+        'notifications.notification': 'fas fa-bell',
+    },
+
+    # top menu links
+    'topmenu_links': [
+        {'name': 'Главная', 'url': '/', 'new_tab': True},
+        {'name': 'Сайт', 'url': 'http://localhost:3000', 'new_tab': True},
+    ],
+
+    # user menu
+    'usermenu_links': [
+        {'name': 'Сайт', 'url': 'http://localhost:3000', 'new_tab': True},
+    ],
+}
+
+JAZZMIN_UI_TWEAKS = {
+    'navbar_small_text': False,
+    'footer_small_text': False,
+    'body_small_text': False,
+    'brand_small_text': False,
+    'brand_colour': 'navbar-white',
+    'accent': 'accent-primary',
+    'navbar': 'navbar-white navbar-light',
+    'no_navbar_border': False,
+    'navbar_fixed': True,
+    'layout_boxed': False,
+    'footer_fixed': False,
+    'sidebar_fixed': True,
+    'sidebar': 'sidebar-dark-primary',
+    'sidebar_nav_small_text': False,
+    'sidebar_disable_expand': False,
+    'sidebar_nav_child_indent': True,
+    'sidebar_nav_compact_style': False,
+    'sidebar_nav_legacy_style': False,
+    'sidebar_nav_flat_style': False,
+    'theme': 'flatly',
+    'dark_mode_theme': None,
+    'button_classes': {
+        'primary': 'btn-primary',
+        'secondary': 'btn-outline-secondary',
+        'info': 'btn-info',
+        'warning': 'btn-warning',
+        'danger': 'btn-danger',
+        'success': 'btn-success',
+    },
+}

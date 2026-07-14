@@ -1,0 +1,481 @@
+/* ===== Imperia Электроники — Django Admin Rebrand ===== */
+/* DESIGN.md: primary #1061cd, secondary #212121, tertiary #bfbfbf */
+/* Fonts: Open Sans, sans-serif; flat design, minimal shadows */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #1061cd;
+  --secondary: #212121;
+  --accent: #1061cd;
+  --body-fg: #212121;
+  --body-bg: #f8f9fb;
+  --body-quiet-color: #666;
+  --body-loud-color: #212121;
+  --header-bg: #1061cd;
+  --header-color: #fff;
+  --header-link-color: #fff;
+  --breadcrumbs-bg: #f8f9fb;
+  --breadcrumbs-fg: #212121;
+  --breadcrumbs-link-fg: #1061cd;
+  --link-fg: #1061cd;
+  --link-hover-color: #0d4fa6;
+  --link-selected-fg: #1061cd;
+  --button-bg: #1061cd;
+  --button-hover-bg: #0d4fa6;
+  --default-button-bg: #1061cd;
+  --default-button-hover-bg: #0d4fa6;
+  --close-button-bg: #bfbfbf;
+  --close-button-hover-bg: #a0a0a0;
+  --object-tools-bg: #1061cd;
+  --object-tools-hover-bg: #0d4fa6;
+  --delete-button-bg: #d9534f;
+  --delete-button-hover-bg: #c9302c;
+  --font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+  --font-family-primary: 'Open Sans', sans-serif, Helvetica, Arial;
+  --font-family-monospace: 'Consolas', 'Monaco', monospace;
+  --border-color: #e5e7eb;
+  --hairline-color: #e5e7eb;
+  --module-bg: #ffffff;
+  --module-header-bg: #f8f9fb;
+  --selected-row: #eef4fd;
+  --focus-border-color: #1061cd;
+  --focus-shadow-color: rgba(16, 97, 205, 0.2);
+  --border-radius: 8px;
+  --button-border-radius: 20px;
+  --input-border-radius: 8px;
+  --sidebar-bg: #ffffff;
+  --sidebar-link-fg: #212121;
+  --sidebar-link-hover-fg: #1061cd;
+  --sidebar-link-active-bg: #eef4fd;
+}
+
+/* ─── Login page ─────────────────────────── */
+.login #header {
+  background: var(--header-bg);
+  height: auto;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.login #header img {
+  max-height: 50px;
+  width: auto;
+}
+
+.login #content {
+  padding: 30px;
+}
+
+.login .form-row {
+  padding: 8px 0;
+}
+
+.login .form-row input {
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login .form-row input:focus {
+  border-color: var(--focus-border-color);
+  box-shadow: 0 0 0 3px var(--focus-shadow-color);
+  outline: none;
+}
+
+.login .submit-row {
+  padding: 16px 0 0;
+}
+
+.login .submit-row input {
+  border-radius: var(--button-border-radius);
+  background: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.login .submit-row input:hover {
+  background: var(--button-hover-bg);
+}
+
+.login .password-reset-link {
+  text-align: center;
+  padding-top: 16px;
+}
+
+/* ─── Header ─────────────────────────────── */
+#header {
+  background: var(--header-bg);
+  color: var(--header-color);
+  height: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#header a:link, #header a:visited {
+  color: var(--header-link-color);
+}
+
+#branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#branding img {
+  max-height: 36px;
+  width: auto;
+}
+
+#branding h1 {
+  color: var(--header-color);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+#user-tools {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ─── Breadcrumbs ─────────────────────────── */
+div.breadcrumbs {
+  background: var(--breadcrumbs-bg);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--breadcrumbs-fg);
+  font-size: 13px;
+  padding: 10px 20px;
+}
+
+div.breadcrumbs a {
+  color: var(--breadcrumbs-link-fg);
+}
+
+div.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Module cards ────────────────────────── */
+.module {
+  background: var(--module-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 16px;
+  box-shadow: none;
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background: var(--module-header-bg);
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  margin: 0;
+}
+
+/* ─── Tables ──────────────────────────────── */
+#changelist table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#changelist table thead th {
+  background: var(--module-header-bg);
+  color: var(--secondary);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+#changelist table tbody tr {
+  border-bottom: 1px solid var(--hairline-color);
+  transition: background 0.15s;
+}
+
+#changelist table tbody tr:hover {
+  background: var(--selected-row);
+}
+
+#changelist table tbody td {
+  padding: 10px 12px;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+#changelist table tbody tr.selected {
+  background: var(--selected-row);
+}
+
+/* ─── Action bar (filter/search) ──────────── */
+#changelist-filter {
+  background: var(--module-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 14px;
+}
+
+#changelist-filter h2 {
+  background: none;
+  border: none;
+  padding: 0 0 10px;
+  font-size: 14px;
+}
+
+#changelist-filter h3 {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 0 4px;
+}
+
+#changelist-filter li a {
+  font-size: 13px;
+  color: var(--secondary);
+  padding: 3px 0;
+  display: block;
+}
+
+#changelist-filter li a:hover {
+  color: var(--link-fg);
+}
+
+#changelist-filter li.selected a {
+  color: var(--link-fg);
+  font-weight: 700;
+}
+
+#toolbar {
+  background: var(--module-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+#toolbar input[type="text"] {
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+#toolbar input[type="text"]:focus {
+  border-color: var(--focus-border-color);
+  box-shadow: 0 0 0 3px var(--focus-shadow-color);
+  outline: none;
+}
+
+/* ─── Buttons ─────────────────────────────── */
+input[type="submit"], input[type="button"], button, .button {
+  border-radius: var(--button-border-radius);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+input[type="submit"].default, .button.default {
+  background: var(--default-button-bg);
+  color: #fff;
+}
+
+input[type="submit"].default:hover, .button.default:hover {
+  background: var(--default-button-hover-bg);
+}
+
+/* ─── Form fields ─────────────────────────── */
+input, textarea, select {
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: var(--font-family);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--focus-border-color);
+  box-shadow: 0 0 0 3px var(--focus-shadow-color);
+  outline: none;
+}
+
+/* ─── Inline groups ───────────────────────── */
+.inline-group {
+  background: var(--module-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 16px;
+}
+
+.inline-group .tabular td.original p {
+  display: none;
+}
+
+/* ─── Paginator ───────────────────────────── */
+.paginator {
+  background: var(--module-header-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--secondary);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.paginator a {
+  color: var(--link-fg);
+  padding: 4px 10px;
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--border-color);
+  margin: 0 2px;
+  font-weight: 600;
+}
+
+.paginator a:hover {
+  background: var(--selected-row);
+}
+
+.paginator .this-page {
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--primary);
+  margin: 0 2px;
+  font-weight: 700;
+}
+
+/* ─── Dashboard ───────────────────────────── */
+.dashboard .module table {
+  border-collapse: collapse;
+}
+
+.dashboard .module table th {
+  width: 100%;
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+.dashboard .module table td {
+  white-space: nowrap;
+  padding: 10px 12px;
+}
+
+/* ─── Sidebar / Nav-Sidebar ───────────────── */
+.nav-sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+.nav-sidebar .module {
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+.nav-sidebar .module caption {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 14px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-sidebar a {
+  color: var(--sidebar-link-fg);
+  padding: 6px 14px;
+  display: block;
+  font-size: 13px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-sidebar a:hover {
+  color: var(--sidebar-link-hover-fg);
+  background: var(--selected-row);
+}
+
+.nav-sidebar .selected a {
+  background: var(--sidebar-link-active-bg);
+  color: var(--link-fg);
+  font-weight: 700;
+}
+
+/* ─── Footer ──────────────────────────────── */
+#footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--body-quiet-color);
+  font-size: 12px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 24px;
+}
+
+/* ─── Misc tweaks ─────────────────────────── */
+.errornote {
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  padding: 10px 14px;
+}
+
+.help, p.help, .timezonewarning {
+  font-size: 12px;
+  color: var(--body-quiet-color);
+}
+
+.field-box label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.object-tools a {
+  border-radius: var(--button-border-radius);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  background: var(--object-tools-bg);
+  color: #fff;
+}
+
+.object-tools a:hover {
+  background: var(--object-tools-hover-bg);
+}
+
+/* ─── Responsive ─────────────────────────── */
+@media (max-width: 1024px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #user-tools {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

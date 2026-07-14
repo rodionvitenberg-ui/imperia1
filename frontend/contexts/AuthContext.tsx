@@ -137,9 +137,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         showCustomToast.success(`Добро пожаловать, ${data.user.first_name}!`);
         return { success: true, message: data.message };
       } else {
-        const errorMessage = typeof data === 'object' && data ? 
-          Object.values(data)[0] as string || 'Ошибка авторизации' : 
-          'Ошибка авторизации';
+        const values = typeof data === 'object' && data ? Object.values(data).filter(Boolean) : [];
+        const errorMessage = values.length > 0
+          ? (Array.isArray(values[0]) ? (values[0] as string[])[0] : (values[0] as string))
+          : 'Ошибка авторизации';
         showCustomToast.error(errorMessage);
         return { success: false, message: errorMessage };
       }
@@ -238,9 +239,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         showCustomToast.success('Пароль успешно изменён!');
         return { success: true, message: data.message };
       } else {
-        const errorMessage = typeof data === 'object' && data ? 
-          Object.values(data)[0] as string || 'Ошибка смены пароля' : 
-          'Ошибка смены пароля';
+        const values = typeof data === 'object' && data ? Object.values(data).filter(Boolean) : [];
+        const errorMessage = values.length > 0
+          ? (Array.isArray(values[0]) ? (values[0] as string[])[0] : (values[0] as string))
+          : 'Ошибка смены пароля';
         showCustomToast.error(errorMessage);
         return { success: false, message: errorMessage };
       }

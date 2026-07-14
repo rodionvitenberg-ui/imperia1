@@ -615,3 +615,57 @@ export const submitReview = async (productSlug: string, rating: number): Promise
     throw error;
   }
 };
+
+/**
+ * Получить все бренды.
+ */
+export async function fetchBrands(): Promise<Brand[]> {
+  const res = await fetch(API_CONFIG.PRODUCTS.BRANDS, {
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) {
+    console.error(`Failed to fetch brands, status: ${res.status}`);
+    return [];
+  }
+  try {
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  image?: string;
+  published_at: string;
+}
+
+export interface BlogPostDetail extends BlogPost {
+  content: string;
+  author?: number;
+  author_name?: string;
+  status: string;
+  tags?: Tag[];
+  meta_title?: string;
+  meta_description?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchBlogPosts(): Promise<BlogPost[]> {
+  const res = await fetch(API_CONFIG.PRODUCTS.BLOG, {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) {
+    console.error(`Failed to fetch blog posts, status: ${res.status}`);
+    return [];
+  }
+  try {
+    return await res.json();
+  } catch {
+    return [];
+  }
+}

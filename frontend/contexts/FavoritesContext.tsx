@@ -61,7 +61,7 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
       const filtered = prev.filter(item => item.id !== productId);
       const removedProduct = prev.find(item => item.id === productId);
       if (removedProduct) {
-        console.log('💔 Удаляем из избранного:', removedProduct.name);
+        showCustomToast.success(`Товар «${removedProduct.name}» удалён из избранного`);
       }
       return filtered;
     });

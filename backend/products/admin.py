@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django import forms
 from django.utils.safestring import mark_safe
+from django_ckeditor_5.widgets import CKEditor5Widget
 from .models import (
     Category, Product, ProductVariant, Attribute, Brand, Tag,
     ProductAttribute, ProductImage, Stock, Review, ReviewImage,
     PriceHistory, PromoCampaign, Discount, ProductVideo,
     Supplier, Warranty, Certificate, Banner, PromotionBlock, BlogPost,
+    AdminSection,
 )
 
 
@@ -15,6 +17,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_editable = ('header_order',)
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name',)
+    filter_horizontal = ('brands', 'attributes')
+    autocomplete_fields = ['parent']
     fieldsets = (
         ('Основное', {
             'fields': ('name', 'slug', 'parent', 'header_order', 'brands', 'attributes')
@@ -44,7 +48,7 @@ class AttributeAdmin(admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'country', 'website')
+    list_display = ('name', 'slug', 'country', 'website_link', 'categories_list')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'country')
     fieldsets = (
@@ -55,6 +59,20 @@ class BrandAdmin(admin.ModelAdmin):
             'fields': ('country', 'website'),
         }),
     )
+
+    def website_link(self, obj):
+        if obj.website:
+            return mark_safe(f'<a href="{obj.website}" target="_blank">{obj.website}</a>')
+        return "—"
+    website_link.short_description = "Официальный сайт"
+    website_link.admin_order_field = 'website'
+
+    def categories_list(self, obj):
+        cats = obj.category_set.all()
+        if cats:
+            return ", ".join(c.name for c in cats)
+        return "—"
+    categories_list.short_description = "Категории"
 
 
 @admin.register(Tag)
@@ -105,10 +123,10 @@ class StockInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
-    autocomplete_fields = ['categories']
     list_display = ('name', 'get_categories', 'price', 'is_active', 'has_variants')
     list_filter = ('categories', 'is_active')
     search_fields = ('name', 'description')
+    filter_horizontal = ('categories', 'brands', 'feature_tags')
     inlines = [ProductVariantInline, ProductAttributeInline, ProductImageInline, StockInline]
     prepopulated_fields = {'slug': ('name',)}
     fieldsets = (
@@ -275,8 +293,30 @@ class PromotionBlockAdmin(admin.ModelAdmin):
     filter_horizontal = ('products', 'categories')
 
 
+class BlogPostAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditor5Widget(config_name='default'))
+
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
+
+
+@admin.register(AdminSection)
+class AdminSectionAdmin(admin.ModelAdmin):
+    list_display = ('label', 'key', 'is_visible', 'is_visible_by_default', 'sort_order')
+    list_editable = ('is_visible', 'is_visible_by_default', 'sort_order')
+    list_filter = ('is_visible', 'is_visible_by_default')
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
+    form = BlogPostAdminForm
     list_display = ('title', 'status', 'published_at', 'created_at')
     list_filter = ('status',)
     prepopulated_fields = {'slug': ('title',)}

@@ -94,7 +94,7 @@ A customer's rating (1–5) and optional text for a Product. One review per cust
 ## Cross-cutting
 
 **Slug (ЧПУ)**
-A URL-safe unique identifier used in API endpoints and front-end routing. Example: `apple-macbook-pro-16`. Slugs are auto-generated from names but must be unique.
+A URL-safe unique identifier used in API endpoints and front-end routing. Example: `apple-macbook-pro-16`. Slugs are auto-generated from names but must be unique. **Slugs MUST be ASCII-only** (Latin characters, digits, hyphens). Cyrillic characters in slugs are forbidden — use transliteration when generating slugs from Russian names (e.g., `процессоры` → `processory`, `игровой` → `igrovoj`). The `seed_data` command provides a `slugify()` helper that performs Cyrillic→Latin transliteration before Django's `slugify`.
 
 **Active (Активен)**
 A boolean flag on Product and Variant. Inactive items are hidden from the storefront but preserved in the database (soft delete).

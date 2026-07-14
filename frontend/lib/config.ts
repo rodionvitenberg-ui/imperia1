@@ -29,6 +29,7 @@ export const API_CONFIG = {
     CATEGORIES: `${API_BASE_URL}/api/products/categories/`,
     PRODUCTS: `${API_BASE_URL}/api/products/products/`,
     BRANDS: `${API_BASE_URL}/api/products/brands/`,
+    BLOG: `${API_BASE_URL}/api/products/blog/`,
     ATTRIBUTES: `${API_BASE_URL}/api/products/attributes/`,
     CATEGORY_BRANDS: (categoryId: number) => `${API_BASE_URL}/api/products/categories/${categoryId}/brands/`,
     CATEGORY_FILTERS: (categoryId: number) => `${API_BASE_URL}/api/products/categories/${categoryId}/filters/`,
