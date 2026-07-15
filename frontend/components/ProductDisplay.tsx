@@ -174,9 +174,6 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
                           </td>
                           <td className="px-4 py-3 text-sm text-[#212121] font-semibold">
                             {typeof attr.value === 'object' ? attr.value.display : String(attr.value)}
-                            {attr.attribute.unit && (
-                              <span className="text-gray-500 ml-1">{attr.attribute.unit}</span>
-                            )}
                           </td>
                         </tr>
                       ))}
