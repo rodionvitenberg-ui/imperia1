@@ -29,6 +29,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'True'
 
+# Next.js on-demand revalidation
+NEXTJS_URL = os.getenv('NEXTJS_URL', 'http://localhost:3000')
+REVALIDATION_SECRET = os.getenv('REVALIDATION_SECRET', '')
+
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 

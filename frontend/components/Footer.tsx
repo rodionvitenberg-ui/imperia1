@@ -85,6 +85,12 @@ const Footer = () => {
                   Как сделать заказ
                 </Link>
                 <Link
+                  href="/order-status"
+                  className="text-[#212121] hover:text-primary transition-colors duration-200"
+                >
+                  Статус заказа
+                </Link>
+                <Link
                   href="/delivery-payment"
                   className="text-[#212121] hover:text-primary transition-colors duration-200"
                 >

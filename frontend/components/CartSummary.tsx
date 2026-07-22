@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -152,6 +153,15 @@ export default function CartSummary({
             Продолжить покупки
           </button>
         )}
+
+        <Link
+          href="/order-status"
+          onClick={() => closeCart()}
+          className="block w-full text-center text-[13px] leading-[18px] font-bold text-[#1061cd] hover:underline py-1"
+          style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+        >
+          Проверить статус заказа
+        </Link>
       </div>
 
       {/* Additional Info */}

@@ -267,7 +267,12 @@ const Header: React.FC<HeaderProps> = ({ allCategories, topBarLinks }) => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {!isMobile && activeDropdown === 'cart' && <CartDropdown key="cart-dropdown" />}
+        {!isMobile && activeDropdown === 'cart' && (
+          <CartDropdown
+            key="cart-dropdown"
+            onClose={() => { setActiveDropdown(null); setHoveredLink(null); }}
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>

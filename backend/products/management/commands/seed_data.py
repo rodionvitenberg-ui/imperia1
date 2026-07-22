@@ -74,20 +74,13 @@ CATEGORY_TREE = [
         ],
     },
     {
-        "name": "Готовые ПК",
-        "slug": "ready-pcs",
+        "name": "Компьютеры",
+        "slug": "computers",
         "header_order": 2,
         "children": [
             {"name": "Игровые ПК", "slug": "gaming-pcs"},
             {"name": "Офисные ПК", "slug": "office-pcs"},
             {"name": "Рабочие станции", "slug": "workstations"},
-        ],
-    },
-    {
-        "name": "Ноутбуки",
-        "slug": "laptops",
-        "header_order": 3,
-        "children": [
             {"name": "Игровые ноутбуки", "slug": "gaming-laptops"},
             {"name": "Ультрабуки", "slug": "ultrabooks"},
             {"name": "Рабочие ноутбуки", "slug": "work-laptops"},
@@ -96,7 +89,7 @@ CATEGORY_TREE = [
     {
         "name": "Мониторы",
         "slug": "monitors",
-        "header_order": 4,
+        "header_order": 3,
         "children": [
             {"name": "Игровые мониторы", "slug": "gaming-monitors"},
             {"name": "Профессиональные мониторы", "slug": "professional-monitors"},
@@ -106,12 +99,21 @@ CATEGORY_TREE = [
     {
         "name": "Периферия",
         "slug": "peripherals",
-        "header_order": 5,
+        "header_order": 4,
         "children": [
             {"name": "Клавиатуры", "slug": "keyboards"},
             {"name": "Мыши", "slug": "mice"},
             {"name": "Гарнитуры", "slug": "headsets"},
             {"name": "Коврики", "slug": "mousepads"},
+        ],
+    },
+    {
+        "name": "МФУ и принтеры",
+        "slug": "mfu-printers",
+        "header_order": 5,
+        "children": [
+            {"name": "Цветные МФУ и принтеры", "slug": "color-mfu-printers"},
+            {"name": "Картриджи, чернила и пр.", "slug": "cartridges-inks"},
         ],
     },
     {
@@ -1308,7 +1310,7 @@ PRODUCTS = [
         "name": "ASUS ROG Zephyrus G16 (2025) 16\" Ultra 9 / RTX 4070",
         "slug": "asus-rog-zephyrus-g16-2025-ultra9-rtx4070",
         "price": 154000,
-        "category": "Ноутбуки > Игровые ноутбуки",
+        "category": "Компьютеры > Игровые ноутбуки",
         "brands": ["ASUS"],
         "tags": ["gaming", "rtx-4070", "ultra-9", "240hz", "oled"],
         "is_favorite": True,
@@ -1328,7 +1330,7 @@ PRODUCTS = [
         "name": "Lenovo Legion Pro 5 16IRX9 16\" i9 / RTX 4060",
         "slug": "lenovo-legion-pro-5-16irx9-i9-rtx4060",
         "price": 132000,
-        "category": "Ноутбуки > Игровые ноутбуки",
+        "category": "Компьютеры > Игровые ноутбуки",
         "brands": ["Lenovo"],
         "tags": ["gaming", "rtx-4060", "i9", "165hz"],
         "attributes": {
@@ -1343,7 +1345,7 @@ PRODUCTS = [
         "name": "Acer Predator Helios 16 16\" i7 / RTX 4070",
         "slug": "acer-predator-helios-16-i7-rtx4070",
         "price": 126000,
-        "category": "Ноутбуки > Игровые ноутбуки",
+        "category": "Компьютеры > Игровые ноутбуки",
         "brands": ["Acer"],
         "tags": ["gaming", "rtx-4070", "i7", "240hz", "mini-led"],
         "is_new": True,
@@ -1359,7 +1361,7 @@ PRODUCTS = [
         "name": "Apple MacBook Pro 16\" M4 Pro",
         "slug": "apple-macbook-pro-16-m4-pro",
         "price": 224000,
-        "category": "Ноутбуки > Рабочие ноутбуки",
+        "category": "Компьютеры > Рабочие ноутбуки",
         "brands": ["Apple"],
         "tags": ["workstation", "m4-pro", "liquid-retina-xdr", "macos"],
         "is_favorite": True,
@@ -1379,7 +1381,7 @@ PRODUCTS = [
         "name": "Apple MacBook Air 15\" M4",
         "slug": "apple-macbook-air-15-m4",
         "price": 118000,
-        "category": "Ноутбуки > Ультрабуки",
+        "category": "Компьютеры > Ультрабуки",
         "brands": ["Apple"],
         "tags": ["ultrabook", "m4", "fanless", "lightweight", "macos"],
         "is_new": True,
@@ -1395,7 +1397,7 @@ PRODUCTS = [
         "name": "Dell XPS 15 9530 15.6\" i7 / RTX 4060",
         "slug": "dell-xps-15-9530-i7-rtx4060",
         "price": 148000,
-        "category": "Ноутбуки > Рабочие ноутбуки",
+        "category": "Компьютеры > Рабочие ноутбуки",
         "brands": ["Dell"],
         "tags": ["ultrabook", "premium", "oled", "productivity"],
         "attributes": {
@@ -1410,7 +1412,7 @@ PRODUCTS = [
         "name": "HP Spectre x360 16\" Ultra 7 / Intel Arc",
         "slug": "hp-spectre-x360-16-ultra7-intel-arc",
         "price": 132000,
-        "category": "Ноутбуки > Ультрабуки",
+        "category": "Компьютеры > Ультрабуки",
         "brands": ["HP"],
         "tags": ["ultrabook", "2-in-1", "oled", "touch-screen", "premium"],
         "attributes": {
@@ -1425,7 +1427,7 @@ PRODUCTS = [
         "name": "Lenovo ThinkPad X1 Carbon Gen 12 14\" Ultra 7",
         "slug": "lenovo-thinkpad-x1-carbon-gen12-ultra7",
         "price": 168000,
-        "category": "Ноутбуки > Рабочие ноутбуки",
+        "category": "Компьютеры > Рабочие ноутбуки",
         "brands": ["Lenovo"],
         "tags": ["business", "lightweight", "thinkpad", "enterprise"],
         "attributes": {

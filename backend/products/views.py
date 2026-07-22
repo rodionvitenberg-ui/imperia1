@@ -79,9 +79,10 @@ class CustomSearchFilter(filters.SearchFilter):
         ).order_by('search_priority', '-id')
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API эндпоинт для просмотра и редактирования товаров.
+    Публичный API каталога: только чтение.
+    Создание/редактирование — через Django admin.
     """
     queryset = Product.objects.filter(is_active=True).prefetch_related(
         'attributes__attribute',
@@ -175,7 +176,8 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
         category_ids = get_all_child_ids(category)
 
         brands = Brand.objects.filter(
-            product__categories__id__in=category_ids
+            product__categories__id__in=category_ids,
+            is_active=True
         ).distinct()
 
         serializer = BrandSerializer(brands, many=True)
@@ -225,16 +227,17 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(response_data)
 
 
-class AttributeViewSet(viewsets.ModelViewSet):
+class AttributeViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API эндпоинт для просмотра и редактирования атрибутов.
+    Публичный API атрибутов: только чтение.
+    Создание/редактирование — через Django admin.
     """
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
 
 
 class BrandViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Brand.objects.all()
+    queryset = Brand.objects.filter(is_active=True)
     serializer_class = BrandSerializer
 
 

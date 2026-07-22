@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.db import models
+from django.db import IntegrityError, models, transaction
 from django.utils.translation import gettext_lazy as _
+
+from .order_numbers import generate_order_number
 
 
 class CustomUserManager(BaseUserManager):
@@ -100,11 +102,25 @@ class Order(models.Model):
         return f'Заказ №{self.order_number} от {self.created_at.strftime("%d.%m.%Y")}'
     
     def save(self, *args, **kwargs):
-        if not self.order_number:
-            # Генерируем номер заказа
-            import uuid
-            self.order_number = f'ORD-{uuid.uuid4().hex[:8].upper()}'
-        super().save(*args, **kwargs)
+        """
+        Номер заказа: «Айбек-1», «Айбек-2»… (первое слово first_name + счётчик).
+        При гонке unique — пересчёт и retry.
+        """
+        if self.order_number:
+            super().save(*args, **kwargs)
+            return
+
+        max_attempts = 5
+        for attempt in range(max_attempts):
+            self.order_number = generate_order_number(self.first_name)
+            try:
+                with transaction.atomic():
+                    super().save(*args, **kwargs)
+                return
+            except IntegrityError:
+                self.order_number = ''
+                if attempt == max_attempts - 1:
+                    raise
 
 
 class Address(models.Model):

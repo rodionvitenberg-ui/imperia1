@@ -142,8 +142,8 @@ const slides: SlideData[] = [
       { label: 'Гарантия', value: '2 года' },
     ],
     ctas: [
-      { label: 'Каталог IP-камер', href: '/catalog/ip-cameras', variant: 'primary' },
-      { label: 'Услуги монтажа', href: '/catalog/montazh-videonablyudeniya', variant: 'secondary' },
+      { label: 'Каталог IP-камер', href: '/catalog/videonablyudenie', variant: 'primary' },
+      { label: 'Услуги монтажа', href: '/catalog/uslugi', variant: 'secondary' },
     ],
   },
   // ===== 3. Сборка ПК =====
@@ -161,7 +161,7 @@ const slides: SlideData[] = [
     ],
     ctas: [
       { label: 'Конфигуратор ПК', href: '/catalog/kompyutery', variant: 'primary' },
-      { label: 'Аксессуары', href: '/catalog/aksessuary', variant: 'secondary' },
+      { label: 'Аксессуары', href: '/catalog/accessories', variant: 'secondary' },
     ],
   },
   // ===== 4. Периферия =====
@@ -178,8 +178,8 @@ const slides: SlideData[] = [
       { label: 'Доставка', value: '1–2 дня' },
     ],
     ctas: [
-      { label: 'Мониторы', href: '/catalog/monitory', variant: 'primary' },
-      { label: 'Клавиатуры и мыши', href: '/catalog/klaviatury', variant: 'secondary' },
+      { label: 'Мониторы', href: '/catalog/monitors', variant: 'primary' },
+      { label: 'Клавиатуры и мыши', href: '/catalog/peripherals', variant: 'secondary' },
     ],
   },
   // ===== 5. Оргтехника / принтеры =====
@@ -196,8 +196,8 @@ const slides: SlideData[] = [
       { label: 'Ремонт', value: 'на месте' },
     ],
     ctas: [
-      { label: 'Каталог принтеров', href: '/catalog/printery', variant: 'primary' },
-      { label: 'Расходники', href: '/catalog/rashodnye-materialy', variant: 'secondary' },
+      { label: 'Каталог принтеров', href: '/catalog/mfu-i-printery', variant: 'primary' },
+      { label: 'Расходники', href: '/catalog/accessories', variant: 'secondary' },
     ],
   },
 ];

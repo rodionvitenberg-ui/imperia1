@@ -5,9 +5,30 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 from .models import Order
-from .serializers import OrderCreateSerializer, OrderSerializer
+from .serializers import OrderCreateSerializer, OrderSerializer, OrderPublicSerializer
 
 logger = logging.getLogger(__name__)
+
+
+def normalize_phone(phone: str) -> str:
+    """Оставляет только цифры телефона."""
+    return ''.join(c for c in (phone or '') if c.isdigit())
+
+
+def phones_match(stored: str, provided: str) -> bool:
+    """
+    Сравнивает телефоны с допуском разных форматов
+    (+996… / 0… / пробелы). Совпадение по полным цифрам
+    или по последним 9 цифрам (локальный номер).
+    """
+    a = normalize_phone(stored)
+    b = normalize_phone(provided)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    # Сравниваем «хвост» — обычно 9 цифр без кода страны
+    return a[-9:] == b[-9:] and len(a) >= 9 and len(b) >= 9
 
 
 @csrf_exempt
@@ -87,4 +108,53 @@ def order_detail(request, order_id):
         }, status=status.HTTP_404_NOT_FOUND)
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def order_lookup(request):
+    """
+    Публичный поиск заказа по номеру + телефону (без регистрации).
+    Оба параметра обязательны; при несовпадении — 404 без утечки данных.
+    """
+    order_number = (request.query_params.get('order_number') or '').strip()
+    phone = (request.query_params.get('phone') or '').strip()
+
+    if not order_number or not phone:
+        return Response(
+            {
+                'success': False,
+                'message': 'Укажите номер заказа и телефон',
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    try:
+        order = Order.objects.prefetch_related('items__product').get(
+            order_number__iexact=order_number
+        )
+    except Order.DoesNotExist:
+        return Response(
+            {
+                'success': False,
+                'message': 'Заказ не найден. Проверьте номер и телефон.',
+            },
+            status=status.HTTP_404_NOT_FOUND,
+        )
+
+    if not phones_match(order.phone1, phone) and not phones_match(order.phone2, phone):
+        # Тот же ответ, что и при отсутствии заказа — без enumeration
+        return Response(
+            {
+                'success': False,
+                'message': 'Заказ не найден. Проверьте номер и телефон.',
+            },
+            status=status.HTTP_404_NOT_FOUND,
+        )
+
+    return Response(
+        {
+            'success': True,
+            'order': OrderPublicSerializer(order).data,
+        },
+        status=status.HTTP_200_OK,
+    )
 

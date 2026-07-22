@@ -9,3 +9,4 @@ class NotificationsConfig(AppConfig):
     def ready(self):
         """Регистрируем сигналы при запуске приложения"""
         import notifications.signals
+        import notifications.revalidation_signals

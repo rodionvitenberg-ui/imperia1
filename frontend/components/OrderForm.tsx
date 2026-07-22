@@ -106,7 +106,6 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
         <InputField
           label="Фамилия"
           field="lastName"
-          required
           placeholder="Введите вашу фамилию"
           formData={formData}
           onChange={handleInputChange}
@@ -114,11 +113,11 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
         />
       </div>
 
-      {/* Email */}
+      {/* Email — опционально */}
       <InputField
         label="Email"
         field="email"
-        placeholder="example@mail.com"
+        placeholder="example@mail.com (необязательно)"
         formData={formData}
         onChange={handleInputChange}
         isSubmitting={isSubmitting}
@@ -145,18 +144,18 @@ export default function OrderForm({ onSubmit, isSubmitting, user }: OrderFormPro
         />
       </div>
 
-      {/* Адрес */}
+      {/* Адрес — опционально, менеджер уточнит при звонке */}
       <div>
         <label 
           className="block text-[13px] leading-[18px] font-bold text-[#212121] mb-1.5"
           style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
         >
-          Адрес доставки <span className="text-red-500">*</span>
+          Адрес доставки
         </label>
         <textarea
           value={formData.address}
           onChange={(e) => handleInputChange('address', e.target.value)}
-          placeholder="Укажите полный адрес доставки (город, улица, дом, квартира)"
+          placeholder="Город, улица, дом, квартира (можно уточнить с менеджером)"
           rows={3}
           className="w-full px-3 py-2.5 border border-[#bfbfbf] rounded-[8px] text-[14px] leading-[20px] text-[#212121] focus:ring-0 focus:border-[#1061cd] transition-colors resize-none outline-none"
           style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}

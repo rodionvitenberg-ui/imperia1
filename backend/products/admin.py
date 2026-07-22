@@ -48,12 +48,13 @@ class AttributeAdmin(admin.ModelAdmin):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'country', 'website_link', 'categories_list')
+    list_display = ('name', 'slug', 'is_active', 'country', 'website_link', 'categories_list')
+    list_filter = ('is_active',)
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'country')
     fieldsets = (
         ('Основное', {
-            'fields': ('name', 'slug', 'logo', 'description')
+            'fields': ('name', 'slug', 'is_active', 'logo', 'description')
         }),
         ('Информация о производителе', {
             'fields': ('country', 'website'),

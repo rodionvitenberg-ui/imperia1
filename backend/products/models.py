@@ -11,6 +11,10 @@ class Brand(models.Model):
     description = models.TextField(blank=True, verbose_name="Описание бренда")
     country = models.CharField(max_length=100, blank=True, verbose_name="Страна происхождения")
     website = models.URLField(blank=True, verbose_name="Официальный сайт")
+    logo_provenance = models.CharField(max_length=30, blank=True, default='manual', verbose_name="Источник логотипа",
+                                       help_text="Откуда взят логотип: manual, newegg_scrape, etc.")
+    is_active = models.BooleanField(default=True, verbose_name="Активен",
+                                    help_text="Отключайте, чтобы скрыть бренд на сайте без удаления из БД.")
 
     class Meta:
         verbose_name = "Бренд"
@@ -37,6 +41,8 @@ class Category(models.Model):
     """Модель категорий товаров (Электроника, Комплектующие и т.д.)"""
     name = models.CharField(max_length=200, verbose_name="Название категории")
     slug = models.SlugField(max_length=200, unique=True)
+    image = models.ImageField(upload_to='category_images/', blank=True, null=True, verbose_name="Изображение",
+                              help_text="Изображение для карточки категории на странице каталога.")
     parent = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,

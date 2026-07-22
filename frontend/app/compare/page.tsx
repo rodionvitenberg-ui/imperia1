@@ -32,7 +32,7 @@ export default function ComparePage() {
           Вы пока не добавили ни одного товара к сравнению.
         </p>
         <Link
-          href="/"
+          href="/catalog"
           className="inline-flex items-center justify-center rounded-full bg-[#1061cd] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#0f54b3] transition-colors"
           style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
         >

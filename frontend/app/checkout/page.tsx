@@ -1,18 +1,21 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { showCustomToast } from '@/components/CustomToast';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import OrderForm, { OrderFormData } from '@/components/OrderForm';
 import { API_CONFIG } from '@/lib/config';
+import { saveLastOrder, readLastOrder } from '@/lib/orderStorage';
 
 export default function CheckoutPage() {
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice } = useCart();
   const { user } = useAuth();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  /** Не редиректить на /cart после успешного оформления */
+  const orderPlacedRef = useRef(false);
 
   // Функция для получения CSRF токена из куки
   const getCSRFToken = (): string | null => {
@@ -32,9 +35,13 @@ export default function CheckoutPage() {
     return `${baseUrl}${imagePath.startsWith('/') ? imagePath : '/' + imagePath}`;
   };
 
-  // Redirect to cart if no items
+  // Redirect to cart if no items — но не после успешного заказа
+  // и не если только что оформили (sessionStorage handoff)
   useEffect(() => {
     if (items.length === 0) {
+      if (orderPlacedRef.current || readLastOrder()) {
+        return;
+      }
       showCustomToast.error('Ваша корзина пуста');
       router.push('/cart');
     }
@@ -84,15 +91,42 @@ export default function CheckoutPage() {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         console.error('Order creation error:', errorData);
-        throw new Error(errorData.detail || errorData.message || 'Ошибка при создании заказа');
+        // DRF: { field: ["msg"] } или { success, message, errors }
+        const fieldErrors = errorData.errors || errorData;
+        let detail = errorData.detail || errorData.message;
+        if (!detail && fieldErrors && typeof fieldErrors === 'object') {
+          const parts: string[] = [];
+          for (const [key, val] of Object.entries(fieldErrors)) {
+            if (key === 'success' || key === 'message') continue;
+            const text = Array.isArray(val) ? val.join(', ') : String(val);
+            parts.push(text);
+          }
+          if (parts.length) detail = parts.join('; ');
+        }
+        throw new Error(detail || 'Ошибка при создании заказа');
       }
 
       const result = await response.json();
       console.log('Order created:', result);
 
-      clearCart();
-      const orderId = result?.id || '';
-      router.push(`/order-success${orderId ? '?orderId=' + orderId : ''}`);
+      // API: { success, message, order: { id, order_number, ... } }
+      const orderNumber =
+        result?.order?.order_number ||
+        result?.order?.id ||
+        result?.order_number ||
+        result?.id ||
+        '';
+
+      // Handoff для success-страницы; корзину чистим УЖЕ на success
+      // (иначе race: empty cart → redirect /cart вместо /order-success)
+      orderPlacedRef.current = true;
+      if (orderNumber) {
+        saveLastOrder(String(orderNumber), formData.phone1);
+      }
+
+      router.push(
+        `/order-success${orderNumber ? '?orderId=' + encodeURIComponent(String(orderNumber)) : ''}`
+      );
       
     } catch (error) {
       console.error('Checkout error:', error);

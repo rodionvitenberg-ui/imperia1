@@ -48,16 +48,31 @@ export default function CartPage() {
               >
                 Добавьте товары в корзину, чтобы оформить заказ
               </p>
-              <Link 
-                href="/"
-                className="inline-flex items-center justify-center rounded-full bg-[#1061cd] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#0f54b3] transition-colors"
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Link 
+                  href="/"
+                  className="inline-flex items-center justify-center rounded-full bg-[#1061cd] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#0f54b3] transition-colors min-w-[220px]"
+                  style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                  </svg>
+                  Перейти к покупкам
+                </Link>
+                <Link
+                  href="/order-status"
+                  className="inline-flex items-center justify-center rounded-full border border-[#1061cd] px-7 py-3.5 text-sm font-bold text-[#1061cd] hover:bg-[#1061cd]/5 transition-colors min-w-[220px]"
+                  style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
+                >
+                  Проверить статус заказа
+                </Link>
+              </div>
+              <p
+                className="text-[12px] leading-[16px] text-gray-400 mt-4"
                 style={{ fontFamily: 'Open Sans, sans-serif, Helvetica, Arial' }}
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                </svg>
-                Перейти к покупкам
-              </Link>
+                Есть номер вроде Айбек-1? Узнайте, на каком этапе ваш заказ
+              </p>
             </div>
           </div>
         ) : (

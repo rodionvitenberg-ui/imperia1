@@ -161,7 +161,7 @@ export const fetchCategories = async (): Promise<Category[]> => {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 60 }
+      next: { revalidate: 60, tags: ['categories'] }
     });
     
     if (!response.ok) {

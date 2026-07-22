@@ -1,3 +1,4 @@
+import re
 import django_filters
 from django.db.models import Q
 from .models import Product, Attribute
@@ -99,26 +100,31 @@ class ProductFilter(django_filters.FilterSet):
             return queryset
 
         if attr.type == 'int':
+            # Извлекаем числовые значения из строк (отбрасываем единицы измерения)
+            # Например "8 ГБ" → 8, "1000 ГБ" → 1000
+            numeric_values = []
+            for v in values:
+                match = re.search(r'-?\d+', str(v))
+                if match:
+                    numeric_values.append(int(match.group()))
+            
+            if not numeric_values:
+                return queryset
+            
             # Поддержка диапазона: attributes[frequency]=100,500
-            if len(values) == 2:
-                try:
-                    min_val, max_val = int(values[0]), int(values[1])
-                    return queryset.filter(
-                        Q(attributes__attribute__slug=attr_slug) &
-                        Q(attributes__value_int__gte=min_val) &
-                        Q(attributes__value_int__lte=max_val)
-                    )
-                except (ValueError, TypeError):
-                    pass
-            # Одиночное значение — точное совпадение
-            try:
-                val = int(values[0])
+            if len(numeric_values) == 2:
+                min_val, max_val = numeric_values[0], numeric_values[1]
                 return queryset.filter(
-                    attributes__attribute__slug=attr_slug,
-                    attributes__value_int=val
+                    Q(attributes__attribute__slug=attr_slug) &
+                    Q(attributes__value_int__gte=min_val) &
+                    Q(attributes__value_int__lte=max_val)
                 )
-            except (ValueError, TypeError):
-                pass
+            # Одиночное значение — точное совпадение
+            val = numeric_values[0]
+            return queryset.filter(
+                attributes__attribute__slug=attr_slug,
+                attributes__value_int=val
+            )
 
         elif attr.type == 'bool':
             bool_val = values[0].lower() in ('true', '1', 'yes', 'да')

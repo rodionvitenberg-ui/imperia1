@@ -48,8 +48,15 @@ export const API_CONFIG = {
   ORDERS: {
     BASE: `${API_BASE_URL}/api/customers`,
     CREATE: `${API_BASE_URL}/api/customers/orders/create/`,
+    LOOKUP: `${API_BASE_URL}/api/customers/orders/lookup/`,
     LIST: `${API_BASE_URL}/api/customers/orders/`,
     DETAIL: (orderId: number) => `${API_BASE_URL}/api/customers/orders/${orderId}/`,
+  },
+
+  /** Контакты магазина для CTA на success / status */
+  SHOP: {
+    PHONE_DISPLAY: '+996 555 95 34 75',
+    WHATSAPP_NUMBER: '996555953475',
   },
 
   SERVICES: {

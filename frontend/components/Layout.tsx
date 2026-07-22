@@ -8,6 +8,7 @@ import { NestedCategory } from '@/lib/api';
 
 // Данные для топ-бара теперь живут здесь
 const topBarLinks = [
+  { name: 'Статус заказа', href: '/order-status' },
   { name: 'Доставка и оплата', href: '/delivery-payment' },
   { name: 'Блог', href: '/blog' },
   { name: 'О компании', href: '/about' },

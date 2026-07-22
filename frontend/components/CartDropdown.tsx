@@ -8,7 +8,11 @@ import Link from 'next/link';
 import { dropdownPanelVariants, dropdownContentVariants } from '@/lib/animations';
 import { API_CONFIG } from '@/lib/config';
 
-const CartDropdown: React.FC = () => {
+interface CartDropdownProps {
+  onClose?: () => void;
+}
+
+const CartDropdown: React.FC<CartDropdownProps> = ({ onClose }) => {
   const { items, totalPrice, totalItems, updateQuantity, removeFromCart } = useCart();
 
   // Функция для создания полного URL изображения
@@ -33,8 +37,15 @@ const CartDropdown: React.FC = () => {
             <svg className="w-16 h-16 mx-auto mb-4 text-[#bfbfbf]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            <p className="text-[#212121] mb-4">Корзина пуста</p>
-            <p className="text-[#212121] text-sm">Добавьте товары для покупки</p>
+            <p className="text-[#212121] mb-2">Корзина пуста</p>
+            <p className="text-[#212121] text-sm mb-5">Добавьте товары для покупки</p>
+            <Link
+              href="/order-status"
+              onClick={onClose}
+              className="inline-flex items-center justify-center rounded-full border border-[#1061cd] px-5 py-2.5 text-sm font-bold text-[#1061cd] hover:bg-[#1061cd]/5 transition-colors"
+            >
+              Проверить статус заказа
+            </Link>
           </motion.div>
         ) : (
           <motion.div variants={dropdownContentVariants}>
@@ -128,12 +139,20 @@ const CartDropdown: React.FC = () => {
                 <span className="text-xl font-bold text-[#212121]">{totalPrice} сом</span>
               </div>
               
-              <div className="flex space-x-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/cart"
+                  onClick={onClose}
                   className="flex-1 bg-primary text-white py-3 px-6 rounded-[20px] hover:bg-primary/90 transition-colors font-bold text-[14px] min-h-[40px] text-center"
                 >
                   Перейти в корзину
+                </Link>
+                <Link
+                  href="/order-status"
+                  onClick={onClose}
+                  className="flex-1 border border-[#1061cd] text-[#1061cd] py-3 px-6 rounded-[20px] hover:bg-[#1061cd]/5 transition-colors font-bold text-[14px] min-h-[40px] text-center"
+                >
+                  Статус заказа
                 </Link>
               </div>
             </div>

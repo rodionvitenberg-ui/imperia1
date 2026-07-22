@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import CartItem from './CartItem';
 import CartSummary from './CartSummary';
@@ -20,7 +21,7 @@ export default function CartDrawer() {
       />
       
       {/* Панель корзины */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out">
+      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col">
         {/* Заголовок */}
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-lg font-semibold">
@@ -48,7 +49,7 @@ export default function CartDrawer() {
         </div>
 
         {/* Содержимое корзины */}
-        <div className="flex-1 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-hidden flex flex-col min-h-0">
           {items.length === 0 ? (
             /* Пустая корзина */
             <div className="flex-1 flex items-center justify-center p-8">
@@ -67,7 +68,17 @@ export default function CartDrawer() {
                   />
                 </svg>
                 <p className="text-gray-500 text-sm">Ваша корзина пуста</p>
-                <p className="text-gray-400 text-xs mt-1">Добавьте товары для оформления заказа</p>
+                <p className="text-gray-400 text-xs mt-1 mb-5">Добавьте товары для оформления заказа</p>
+                <Link
+                  href="/order-status"
+                  onClick={closeCart}
+                  className="inline-flex items-center justify-center rounded-full border border-[#1061cd] px-5 py-2.5 text-sm font-bold text-[#1061cd] hover:bg-[#1061cd]/5 transition-colors"
+                >
+                  Проверить статус заказа
+                </Link>
+                <p className="text-gray-400 text-xs mt-3">
+                  Есть номер вроде Айбек-1? Узнайте статус
+                </p>
               </div>
             </div>
           ) : (
@@ -79,8 +90,10 @@ export default function CartDrawer() {
                 ))}
               </div>
 
-              {/* Итоги и кнопка оформления */}
-              <CartSummary onContinueShopping={closeCart} />
+              {/* Итоги и кнопка оформления (+ ссылка на статус внутри CartSummary) */}
+              <div className="p-4 border-t border-[#e5e7eb]">
+                <CartSummary onContinueShopping={closeCart} />
+              </div>
             </>
           )}
         </div>

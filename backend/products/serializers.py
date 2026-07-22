@@ -9,14 +9,14 @@ from .models import (
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ['id', 'name', 'slug', 'logo', 'description', 'country', 'website']
+        fields = ['id', 'name', 'slug', 'logo', 'description', 'country', 'website', 'is_active']
 
 
 class BrandListSerializer(serializers.ModelSerializer):
     """Облегчённый сериализатор бренда для списков."""
     class Meta:
         model = Brand
-        fields = ['id', 'name', 'slug', 'logo']
+        fields = ['id', 'name', 'slug', 'logo', 'is_active']
 
 
 class TagSerializer(serializers.ModelSerializer):
