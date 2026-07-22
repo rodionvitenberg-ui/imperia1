@@ -337,8 +337,8 @@ class Command(BaseCommand):
         parser.add_argument('--quality', type=str, default='high',
                             choices=['high', 'any'],
                             help='high — только ≥800px; any — без фильтрации (default: high)')
-        parser.add_argument('--headless', action='store_true',
-                            help='Запуск без GUI (по умолчанию: с GUI для отладки)')
+        parser.add_argument('--no-headless', action='store_true',
+                            help='Запуск с GUI (по умолчанию: headless)')
         parser.add_argument('--debug', action='store_true',
                             help='Режим отладки: скриншоты и дамп HTML')
         parser.add_argument('--wait-for-captcha', action='store_true',
@@ -352,7 +352,7 @@ class Command(BaseCommand):
         product_filter = options['product']
         force = options['force']
         quality = options['quality']
-        headless = options['headless']
+        headless = not options['no_headless']
         debug = options.get('debug', False)
         wait_for_captcha = options.get('wait_for_captcha', False)
 
@@ -388,7 +388,7 @@ class Command(BaseCommand):
 
         self.stdout.write(
             f'🖼️  Поиск изображений для {total} товаров '
-            f'(Google Images | качество: {quality}) '
+            f'(DuckDuckGo Images | качество: {quality}) '
             f'| Playwright {"headless" if headless else "GUI"} | Stealth ON\n'
         )
 
