@@ -155,12 +155,22 @@ REST_FRAMEWORK = {
 
 # Разрешаем запросы с хостов, указанных в ALLOWED_HOSTS + стандартные порты Next.js
 # Это делает настройку гибкой: поменял домен в .env — поменялся и тут.
-CORS_ALLOWED_ORIGINS = [
-    f"http://{host}" for host in ALLOWED_HOSTS if host not in ['*', '']
-] + [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+def _build_origins() -> list[str]:
+    origins = []
+    for host in ALLOWED_HOSTS:
+        if host in ('*', ''):
+            continue
+        origins.append(f"http://{host}")
+        # Для доменных имён (не IP, не localhost) добавляем HTTPS
+        if not host[0].isdigit() and host not in ('localhost',):
+            origins.append(f"https://{host}")
+    origins += [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+    return origins
+
+CORS_ALLOWED_ORIGINS = _build_origins()
 
 # Для Next.js важно доверять этим источникам при передаче cookies (CSRF)
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
@@ -172,7 +182,7 @@ SESSION_COOKIE_AGE = 86400
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE = False  # Поставь True, когда подключишь HTTPS (SSL)
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'False') == 'True'
 
 # Статика и Медиа
 STATIC_URL = '/static/'
