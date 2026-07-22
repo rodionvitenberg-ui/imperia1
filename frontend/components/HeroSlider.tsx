@@ -209,7 +209,9 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
   return (
     <section className="relative h-[80vh] w-full overflow-hidden flex items-center">
       <div className="relative z-20 w-full max-w-[1400px] mx-auto px-5">
-        <div className={`w-full lg:w-1/2 py-16 md:py-24 ${isLeft ? 'lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
+        <div className={`w-full py-16 md:py-24 ${
+          slide.key === 'welcome' ? 'lg:w-2/5' : 'lg:w-1/2'
+        } ${isLeft ? 'lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
         {active && (
           <>
             <motion.h1
@@ -262,9 +264,32 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
         </div>
       </div>
 
-      <div className={`hidden lg:block lg:absolute lg:inset-y-0 lg:w-1/2 ${slide.imageSide === 'right' ? 'lg:right-0' : 'lg:left-0'}`}>
-        <div className="h-full w-full bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
-        <div className="absolute inset-0" style={{ background: slide.gradientDirection === 'l' ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)' : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)' }} />
+      <div className={`hidden lg:block lg:absolute lg:inset-y-0 ${
+        slide.key === 'welcome' ? 'lg:w-3/5' : 'lg:w-1/2'
+      } ${slide.imageSide === 'right' ? 'lg:right-0' : 'lg:left-0'}`}>
+        <img
+          src={slide.image}
+          alt=""
+          aria-hidden
+          fetchPriority={slide.key === 'welcome' ? 'high' : 'auto'}
+          loading="eager"
+          className="absolute inset-0 h-full w-full object-cover"
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            img.style.opacity = '0';
+          }}
+          style={{ opacity: 0, pointerEvents: 'none' }}
+        />
+        <div className="absolute inset-0 h-full w-full bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
+        <div className="absolute inset-0" style={{
+          background: slide.key === 'welcome'
+            ? slide.gradientDirection === 'l'
+              ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)'
+              : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)'
+            : slide.gradientDirection === 'l'
+              ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)'
+              : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)'
+        }} />
       </div>
 
       <div className="absolute inset-0 z-0 lg:hidden">
