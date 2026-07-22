@@ -1,25 +1,12 @@
 // src/lib/config.ts
 
-const getApiBaseUrl = (): string => {
-  // 1. Если код выполняется в браузере (у клиента)
-  // В Turbopack (Next.js 16) rewrites не работают для клиентских fetch,
-  // поэтому браузер стучится напрямую в Django (CORS разрешён)
-  if (typeof window !== 'undefined') {
-    if (process.env.NEXT_PUBLIC_API_BASE_URL) {
-      return process.env.NEXT_PUBLIC_API_BASE_URL;
-    }
-    return 'http://127.0.0.1:8000';
-  }
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 
-  // 2. На сервере (SSR/SSG) — из .env или фоллбэк
-  if (process.env.NEXT_PUBLIC_API_BASE_URL) {
-    return process.env.NEXT_PUBLIC_API_BASE_URL;
-  }
-
-  return 'http://127.0.0.1:8000';
-};
-
-const API_BASE_URL = getApiBaseUrl();
+if (!API_BASE_URL) {
+  throw new Error(
+    'NEXT_PUBLIC_API_BASE_URL is not set. Set it in .env.local or via build-time env.',
+  );
+}
 
 export const API_CONFIG = {
   BASE_URL: API_BASE_URL,
