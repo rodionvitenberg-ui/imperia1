@@ -348,13 +348,6 @@ class Command(BaseCommand):
         # Разрешаем ORM-доступ, т.к. Playwright Sync API использует asyncio под капотом
         os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
 
-        # Устанавливаем значение по умолчанию для поля provenance (существует в БД, но не в модели)
-        from django.db import connection
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "ALTER TABLE products_productimage ALTER COLUMN provenance SET DEFAULT 'web'"
-            )
-
         limit = options['limit']
         product_filter = options['product']
         force = options['force']

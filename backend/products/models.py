@@ -241,6 +241,13 @@ class ProductImage(models.Model):
         default='gallery',
         verbose_name="Тип изображения"
     )
+    provenance = models.CharField(
+        max_length=30,
+        blank=True,
+        default='web',
+        verbose_name="Источник изображения",
+        help_text="Откуда получено изображение: web, newegg_scrape, manual, etc."
+    )
     is_main = models.BooleanField(default=False, verbose_name="Основное изображение")
     sort_order = models.IntegerField(default=0, verbose_name="Порядок сортировки")
 
