@@ -1,0 +1,4733 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict dyocrVhyha0XOPzGDnLct3Q5j6NP0t6P5OynSCRgUA7ifep29hp5IgmQXxYIseq
+
+-- Dumped from database version 17.10 (Ubuntu 17.10-0ubuntu0.25.10.1)
+-- Dumped by pg_dump version 17.10 (Ubuntu 17.10-0ubuntu0.25.10.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (1, 'admin', 'logentry') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (2, 'auth', 'group') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (3, 'auth', 'permission') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (4, 'contenttypes', 'contenttype') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (5, 'sessions', 'session') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (6, 'customers', 'customer') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (7, 'customers', 'order') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (8, 'customers', 'orderitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (9, 'products', 'attribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (10, 'products', 'category') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (11, 'products', 'product') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (12, 'products', 'productattribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (13, 'products', 'productimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (14, 'products', 'review') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (16, 'notifications', 'notificationlog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (17, 'notifications', 'notificationsettings') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (15, 'products', 'brand') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (18, 'products', 'productvariant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (19, 'products', 'stock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (20, 'products', 'tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (21, 'customers', 'address') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (22, 'customers', 'delivery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (23, 'customers', 'orderstatushistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (24, 'customers', 'payment') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (25, 'products', 'discount') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (26, 'products', 'pricehistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (27, 'products', 'promocampaign') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (28, 'products', 'reviewimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (29, 'customers', 'cart') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (30, 'customers', 'viewedproduct') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (31, 'customers', 'wishlist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (32, 'products', 'productvideo') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (33, 'customers', 'changelog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (34, 'customers', 'coupon') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (35, 'customers', 'couponusage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (36, 'customers', 'customerloyalty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (37, 'customers', 'loyaltyprogram') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (38, 'products', 'banner') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (39, 'products', 'blogpost') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (40, 'products', 'certificate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (41, 'products', 'promotionblock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (42, 'products', 'supplier') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (43, 'products', 'warranty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (44, 'services', 'serviceitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+INSERT INTO public.django_content_type (id, app_label, model) VALUES (45, 'products', 'adminsection') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app_label = EXCLUDED.app_label, model = EXCLUDED.model;
+
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (1, 'Can add log entry', 1, 'add_logentry') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (2, 'Can change log entry', 1, 'change_logentry') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (3, 'Can delete log entry', 1, 'delete_logentry') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (4, 'Can view log entry', 1, 'view_logentry') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (5, 'Can add permission', 3, 'add_permission') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (6, 'Can change permission', 3, 'change_permission') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (7, 'Can delete permission', 3, 'delete_permission') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (8, 'Can view permission', 3, 'view_permission') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (9, 'Can add group', 2, 'add_group') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (10, 'Can change group', 2, 'change_group') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (11, 'Can delete group', 2, 'delete_group') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (12, 'Can view group', 2, 'view_group') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (13, 'Can add content type', 4, 'add_contenttype') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (14, 'Can change content type', 4, 'change_contenttype') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (15, 'Can delete content type', 4, 'delete_contenttype') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (16, 'Can view content type', 4, 'view_contenttype') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (17, 'Can add session', 5, 'add_session') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (18, 'Can change session', 5, 'change_session') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (19, 'Can delete session', 5, 'delete_session') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (20, 'Can view session', 5, 'view_session') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (21, 'Can add user', 6, 'add_customer') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (22, 'Can change user', 6, 'change_customer') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (23, 'Can delete user', 6, 'delete_customer') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (24, 'Can view user', 6, 'view_customer') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (25, 'Can add Заказ', 7, 'add_order') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (26, 'Can change Заказ', 7, 'change_order') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (27, 'Can delete Заказ', 7, 'delete_order') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (28, 'Can view Заказ', 7, 'view_order') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (29, 'Can add Товар в заказе', 8, 'add_orderitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (30, 'Can change Товар в заказе', 8, 'change_orderitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (31, 'Can delete Товар в заказе', 8, 'delete_orderitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (32, 'Can view Товар в заказе', 8, 'view_orderitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (33, 'Can add Атрибут', 9, 'add_attribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (34, 'Can change Атрибут', 9, 'change_attribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (35, 'Can delete Атрибут', 9, 'delete_attribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (36, 'Can view Атрибут', 9, 'view_attribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (37, 'Can add Бренд', 15, 'add_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (38, 'Can change Бренд', 15, 'change_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (39, 'Can delete Бренд', 15, 'delete_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (40, 'Can view Бренд', 15, 'view_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (41, 'Can add Категория', 10, 'add_category') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (42, 'Can change Категория', 10, 'change_category') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (43, 'Can delete Категория', 10, 'delete_category') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (44, 'Can view Категория', 10, 'view_category') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (45, 'Can add Товар', 11, 'add_product') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (46, 'Can change Товар', 11, 'change_product') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (47, 'Can delete Товар', 11, 'delete_product') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (48, 'Can view Товар', 11, 'view_product') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (49, 'Can add Изображение товара', 13, 'add_productimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (50, 'Can change Изображение товара', 13, 'change_productimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (51, 'Can delete Изображение товара', 13, 'delete_productimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (52, 'Can view Изображение товара', 13, 'view_productimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (53, 'Can add Атрибут товара', 12, 'add_productattribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (54, 'Can change Атрибут товара', 12, 'change_productattribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (55, 'Can delete Атрибут товара', 12, 'delete_productattribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (56, 'Can view Атрибут товара', 12, 'view_productattribute') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (57, 'Can add Отзыв', 14, 'add_review') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (58, 'Can change Отзыв', 14, 'change_review') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (59, 'Can delete Отзыв', 14, 'delete_review') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (60, 'Can view Отзыв', 14, 'view_review') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (61, 'Can add Настройки уведомлений', 17, 'add_notificationsettings') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (62, 'Can change Настройки уведомлений', 17, 'change_notificationsettings') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (63, 'Can delete Настройки уведомлений', 17, 'delete_notificationsettings') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (64, 'Can view Настройки уведомлений', 17, 'view_notificationsettings') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (65, 'Can add Лог уведомлений', 16, 'add_notificationlog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (66, 'Can change Лог уведомлений', 16, 'change_notificationlog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (67, 'Can delete Лог уведомлений', 16, 'delete_notificationlog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (68, 'Can view Лог уведомлений', 16, 'view_notificationlog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (69, 'Can add Бренд', 15, 'add_brand') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (70, 'Can change Бренд', 15, 'change_brand') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (71, 'Can delete Бренд', 15, 'delete_brand') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (72, 'Can view Бренд', 15, 'view_brand') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (73, 'Can add Тег', 20, 'add_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (74, 'Can change Тег', 20, 'change_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (75, 'Can delete Тег', 20, 'delete_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (76, 'Can view Тег', 20, 'view_tag') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (77, 'Can add Вариант товара', 18, 'add_productvariant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (78, 'Can change Вариант товара', 18, 'change_productvariant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (79, 'Can delete Вариант товара', 18, 'delete_productvariant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (80, 'Can view Вариант товара', 18, 'view_productvariant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (81, 'Can add Складской остаток', 19, 'add_stock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (82, 'Can change Складской остаток', 19, 'change_stock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (83, 'Can delete Складской остаток', 19, 'delete_stock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (84, 'Can view Складской остаток', 19, 'view_stock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (85, 'Can add Адрес доставки', 21, 'add_address') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (86, 'Can change Адрес доставки', 21, 'change_address') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (87, 'Can delete Адрес доставки', 21, 'delete_address') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (88, 'Can view Адрес доставки', 21, 'view_address') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (89, 'Can add Доставка', 22, 'add_delivery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (90, 'Can change Доставка', 22, 'change_delivery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (91, 'Can delete Доставка', 22, 'delete_delivery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (92, 'Can view Доставка', 22, 'view_delivery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (93, 'Can add История статуса заказа', 23, 'add_orderstatushistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (94, 'Can change История статуса заказа', 23, 'change_orderstatushistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (95, 'Can delete История статуса заказа', 23, 'delete_orderstatushistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (96, 'Can view История статуса заказа', 23, 'view_orderstatushistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (97, 'Can add Платёж', 24, 'add_payment') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (98, 'Can change Платёж', 24, 'change_payment') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (99, 'Can delete Платёж', 24, 'delete_payment') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (100, 'Can view Платёж', 24, 'view_payment') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (101, 'Can add Акция', 27, 'add_promocampaign') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (102, 'Can change Акция', 27, 'change_promocampaign') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (103, 'Can delete Акция', 27, 'delete_promocampaign') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (104, 'Can view Акция', 27, 'view_promocampaign') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (105, 'Can add Фото отзыва', 28, 'add_reviewimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (106, 'Can change Фото отзыва', 28, 'change_reviewimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (107, 'Can delete Фото отзыва', 28, 'delete_reviewimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (108, 'Can view Фото отзыва', 28, 'view_reviewimage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (109, 'Can add История цены', 26, 'add_pricehistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (110, 'Can change История цены', 26, 'change_pricehistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (111, 'Can delete История цены', 26, 'delete_pricehistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (112, 'Can view История цены', 26, 'view_pricehistory') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (113, 'Can add Скидка', 25, 'add_discount') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (114, 'Can change Скидка', 25, 'change_discount') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (115, 'Can delete Скидка', 25, 'delete_discount') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (116, 'Can view Скидка', 25, 'view_discount') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (117, 'Can add Корзина', 29, 'add_cart') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (118, 'Can change Корзина', 29, 'change_cart') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (119, 'Can delete Корзина', 29, 'delete_cart') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (120, 'Can view Корзина', 29, 'view_cart') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (121, 'Can add Просмотренный товар', 30, 'add_viewedproduct') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (122, 'Can change Просмотренный товар', 30, 'change_viewedproduct') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (123, 'Can delete Просмотренный товар', 30, 'delete_viewedproduct') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (124, 'Can view Просмотренный товар', 30, 'view_viewedproduct') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (125, 'Can add Избранное', 31, 'add_wishlist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (126, 'Can change Избранное', 31, 'change_wishlist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (127, 'Can delete Избранное', 31, 'delete_wishlist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (128, 'Can view Избранное', 31, 'view_wishlist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (129, 'Can add Видео товара', 32, 'add_productvideo') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (130, 'Can change Видео товара', 32, 'change_productvideo') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (131, 'Can delete Видео товара', 32, 'delete_productvideo') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (132, 'Can view Видео товара', 32, 'view_productvideo') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (133, 'Can add Уровень лояльности', 37, 'add_loyaltyprogram') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (134, 'Can change Уровень лояльности', 37, 'change_loyaltyprogram') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (135, 'Can delete Уровень лояльности', 37, 'delete_loyaltyprogram') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (136, 'Can view Уровень лояльности', 37, 'view_loyaltyprogram') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (137, 'Can add Лояльность клиента', 36, 'add_customerloyalty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (138, 'Can change Лояльность клиента', 36, 'change_customerloyalty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (139, 'Can delete Лояльность клиента', 36, 'delete_customerloyalty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (140, 'Can view Лояльность клиента', 36, 'view_customerloyalty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (141, 'Can add Промокод', 34, 'add_coupon') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (142, 'Can change Промокод', 34, 'change_coupon') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (143, 'Can delete Промокод', 34, 'delete_coupon') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (144, 'Can view Промокод', 34, 'view_coupon') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (145, 'Can add Использование купона', 35, 'add_couponusage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (146, 'Can change Использование купона', 35, 'change_couponusage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (147, 'Can delete Использование купона', 35, 'delete_couponusage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (148, 'Can view Использование купона', 35, 'view_couponusage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (149, 'Can add Лог изменений', 33, 'add_changelog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (150, 'Can change Лог изменений', 33, 'change_changelog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (151, 'Can delete Лог изменений', 33, 'delete_changelog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (152, 'Can view Лог изменений', 33, 'view_changelog') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (153, 'Can add Поставщик', 42, 'add_supplier') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (154, 'Can change Поставщик', 42, 'change_supplier') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (155, 'Can delete Поставщик', 42, 'delete_supplier') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (156, 'Can view Поставщик', 42, 'view_supplier') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (157, 'Can add Сертификат / документ', 40, 'add_certificate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (158, 'Can change Сертификат / документ', 40, 'change_certificate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (159, 'Can delete Сертификат / документ', 40, 'delete_certificate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (160, 'Can view Сертификат / документ', 40, 'view_certificate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (161, 'Can add Гарантия', 43, 'add_warranty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (162, 'Can change Гарантия', 43, 'change_warranty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (163, 'Can delete Гарантия', 43, 'delete_warranty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (164, 'Can view Гарантия', 43, 'view_warranty') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (165, 'Can add Баннер', 38, 'add_banner') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (166, 'Can change Баннер', 38, 'change_banner') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (167, 'Can delete Баннер', 38, 'delete_banner') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (168, 'Can view Баннер', 38, 'view_banner') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (169, 'Can add Статья блога', 39, 'add_blogpost') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (170, 'Can change Статья блога', 39, 'change_blogpost') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (171, 'Can delete Статья блога', 39, 'delete_blogpost') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (172, 'Can view Статья блога', 39, 'view_blogpost') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (173, 'Can add Промо-блок', 41, 'add_promotionblock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (174, 'Can change Промо-блок', 41, 'change_promotionblock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (175, 'Can delete Промо-блок', 41, 'delete_promotionblock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (176, 'Can view Промо-блок', 41, 'view_promotionblock') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (177, 'Can add Услуга', 44, 'add_serviceitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (178, 'Can change Услуга', 44, 'change_serviceitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (179, 'Can delete Услуга', 44, 'delete_serviceitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (180, 'Can view Услуга', 44, 'view_serviceitem') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (181, 'Can add Раздел админки', 45, 'add_adminsection') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (182, 'Can change Раздел админки', 45, 'change_adminsection') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (183, 'Can delete Раздел админки', 45, 'delete_adminsection') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+INSERT INTO public.auth_permission (id, name, content_type_id, codename) VALUES (184, 'Can view Раздел админки', 45, 'view_adminsection') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, content_type_id = EXCLUDED.content_type_id, codename = EXCLUDED.codename;
+
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_customer; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.customers_customer (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, nickname) VALUES (2, 'pbkdf2_sha256$1200000$iCZN3d5y4JBgouDYR0GzXE$LhfezN1byB3W5+OFRNdnjCm8NFzdDAf7hLQoUqbO5E0=', NULL, true, '', '', true, true, '2026-07-09 13:28:11.186157+00', 'god1@gmail.com', 'god') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, password = EXCLUDED.password, last_login = EXCLUDED.last_login, is_superuser = EXCLUDED.is_superuser, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, is_staff = EXCLUDED.is_staff, is_active = EXCLUDED.is_active, date_joined = EXCLUDED.date_joined, email = EXCLUDED.email, nickname = EXCLUDED.nickname;
+
+INSERT INTO public.customers_customer (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, nickname) VALUES (1, 'pbkdf2_sha256$1200000$IVgcaO3i5WsayMEmFl45Jn$gQfNUwgicBmzyFz9OzUPazw9MRsJKk0x/hxQZMXWeK4=', '2026-07-08 19:13:44+00', false, '', '', true, true, '2026-07-08 06:04:14+00', 'god@gmail.com', 'god') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, password = EXCLUDED.password, last_login = EXCLUDED.last_login, is_superuser = EXCLUDED.is_superuser, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, is_staff = EXCLUDED.is_staff, is_active = EXCLUDED.is_active, date_joined = EXCLUDED.date_joined, email = EXCLUDED.email, nickname = EXCLUDED.nickname;
+
+INSERT INTO public.customers_customer (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, nickname) VALUES (3, 'pbkdf2_sha256$1200000$TfVq0zWZKusQOEKVIJf9z0$PbPryN5BQfXhEJtYNCG+FuQ/+txdM5CNnO/fSr7zqDY=', '2026-07-16 16:34:48.278745+00', true, '', '', true, true, '2026-07-09 13:34:16.284408+00', 'god2@gmail.com', 'god') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, password = EXCLUDED.password, last_login = EXCLUDED.last_login, is_superuser = EXCLUDED.is_superuser, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, is_staff = EXCLUDED.is_staff, is_active = EXCLUDED.is_active, date_joined = EXCLUDED.date_joined, email = EXCLUDED.email, nickname = EXCLUDED.nickname;
+
+INSERT INTO public.customers_customer (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, nickname) VALUES (4, 'pbkdf2_sha256$1200000$7Tsx055aNPnbvZSwrYXdhO$2j85F2wqApHnlKF7gU6mXRc994+QLTEbl91EHhSddk0=', '2026-07-20 14:17:08.731329+00', true, '', '', true, true, '2026-07-11 16:21:05.956767+00', 'god3@gmail.com', 'god3') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, password = EXCLUDED.password, last_login = EXCLUDED.last_login, is_superuser = EXCLUDED.is_superuser, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, is_staff = EXCLUDED.is_staff, is_active = EXCLUDED.is_active, date_joined = EXCLUDED.date_joined, email = EXCLUDED.email, nickname = EXCLUDED.nickname;
+
+
+
+--
+-- Data for Name: customers_address; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_product; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (395, 'Intel Core i9-14900K', 'Intel Core i9-14900K — отличный выбор для сборки или апгрейда вашего ПК.', 48500.00, true, false, true, 'intel-core-i9-14900k', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (396, 'Intel Core i7-14700K', 'Intel Core i7-14700K — отличный выбор для сборки или апгрейда вашего ПК.', 34200.00, true, false, false, 'intel-core-i7-14700k', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (397, 'Intel Core i5-14600K', 'Intel Core i5-14600K — отличный выбор для сборки или апгрейда вашего ПК.', 27500.00, true, false, false, 'intel-core-i5-14600k', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (398, 'Intel Core i3-14100F', 'Intel Core i3-14100F — отличный выбор для сборки или апгрейда вашего ПК.', 12400.00, true, true, false, 'intel-core-i3-14100f', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (399, 'AMD Ryzen 9 7950X3D', 'AMD Ryzen 9 7950X3D — отличный выбор для сборки или апгрейда вашего ПК.', 57800.00, true, false, true, 'amd-ryzen-9-7950x3d', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (400, 'AMD Ryzen 7 7800X3D', 'AMD Ryzen 7 7800X3D — отличный выбор для сборки или апгрейда вашего ПК.', 33800.00, true, false, true, 'amd-ryzen-7-7800x3d', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (401, 'AMD Ryzen 5 7600X', 'AMD Ryzen 5 7600X — отличный выбор для сборки или апгрейда вашего ПК.', 21800.00, true, false, false, 'amd-ryzen-5-7600x', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (402, 'AMD Ryzen 9 9950X', 'AMD Ryzen 9 9950X — отличный выбор для сборки или апгрейда вашего ПК.', 62400.00, true, true, false, 'amd-ryzen-9-9950x', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (403, 'NVIDIA GeForce RTX 4090', 'NVIDIA GeForce RTX 4090 — отличный выбор для сборки или апгрейда вашего ПК.', 158000.00, true, false, true, 'nvidia-geforce-rtx-4090', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (404, 'NVIDIA GeForce RTX 4080 Super', 'NVIDIA GeForce RTX 4080 Super — отличный выбор для сборки или апгрейда вашего ПК.', 82600.00, true, false, false, 'nvidia-geforce-rtx-4080-super', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (405, 'NVIDIA GeForce RTX 4070 Super', 'NVIDIA GeForce RTX 4070 Super — отличный выбор для сборки или апгрейда вашего ПК.', 54200.00, true, false, false, 'nvidia-geforce-rtx-4070-super', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (406, 'NVIDIA GeForce RTX 4060 Ti', 'NVIDIA GeForce RTX 4060 Ti — отличный выбор для сборки или апгрейда вашего ПК.', 36400.00, true, false, false, 'nvidia-geforce-rtx-4060-ti', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (407, 'AMD Radeon RX 7900 XTX', 'AMD Radeon RX 7900 XTX — отличный выбор для сборки или апгрейда вашего ПК.', 74800.00, true, false, false, 'amd-radeon-rx-7900-xtx', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (408, 'AMD Radeon RX 7800 XT', 'AMD Radeon RX 7800 XT — отличный выбор для сборки или апгрейда вашего ПК.', 41600.00, true, false, false, 'amd-radeon-rx-7800-xt', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (409, 'AMD Radeon RX 7600', 'AMD Radeon RX 7600 — отличный выбор для сборки или апгрейда вашего ПК.', 24800.00, true, true, false, 'amd-radeon-rx-7600', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (410, 'Intel Arc A770 16GB', 'Intel Arc A770 16GB — отличный выбор для сборки или апгрейда вашего ПК.', 27600.00, true, true, false, 'intel-arc-a770-16gb', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (411, 'ASUS ROG STRIX Z790-F Gaming WiFi', 'ASUS ROG STRIX Z790-F Gaming WiFi — отличный выбор для сборки или апгрейда вашего ПК.', 34200.00, true, false, false, 'asus-rog-strix-z790-f-gaming-wifi', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (412, 'Gigabyte Z790 AORUS Elite AX', 'Gigabyte Z790 AORUS Elite AX — отличный выбор для сборки или апгрейда вашего ПК.', 25800.00, true, false, false, 'gigabyte-z790-aorus-elite-ax', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (413, 'ASUS TUF Gaming B760-PLUS WiFi', 'ASUS TUF Gaming B760-PLUS WiFi — отличный выбор для сборки или апгрейда вашего ПК.', 18300.00, true, false, false, 'asus-tuf-gaming-b760-plus-wifi', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (414, 'MSI MAG B650 TOMAHAWK WiFi', 'MSI MAG B650 TOMAHAWK WiFi — отличный выбор для сборки или апгрейда вашего ПК.', 19800.00, true, false, false, 'msi-mag-b650-tomahawk-wifi', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (415, 'ASRock B650M Pro RS WiFi', 'ASRock B650M Pro RS WiFi — отличный выбор для сборки или апгрейда вашего ПК.', 14200.00, true, true, false, 'asrock-b650m-pro-rs-wifi', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (416, 'MSI MPG X670E Carbon WiFi', 'MSI MPG X670E Carbon WiFi — отличный выбор для сборки или апгрейда вашего ПК.', 43200.00, true, false, false, 'msi-mpg-x670e-carbon-wifi', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (417, 'Gigabyte B550 AORUS Elite V2', 'Gigabyte B550 AORUS Elite V2 — отличный выбор для сборки или апгрейда вашего ПК.', 12800.00, true, false, false, 'gigabyte-b550-aorus-elite-v2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (418, 'ASUS ROG Crosshair X670E Hero', 'ASUS ROG Crosshair X670E Hero — отличный выбор для сборки или апгрейда вашего ПК.', 58600.00, true, false, false, 'asus-rog-crosshair-x670e-hero', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (419, 'Kingston Fury Beast DDR5 32GB (2×16GB) 5600MHz', 'Kingston Fury Beast DDR5 32GB (2×16GB) 5600MHz — отличный выбор для сборки или апгрейда вашего ПК.', 9600.00, true, false, false, 'kingston-fury-beast-ddr5-32gb-2x16-5600mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (420, 'Corsair Vengeance DDR5 32GB (2×16GB) 6000MHz RGB', 'Corsair Vengeance DDR5 32GB (2×16GB) 6000MHz RGB — отличный выбор для сборки или апгрейда вашего ПК.', 10200.00, true, false, false, 'corsair-vengeance-ddr5-32gb-2x16-6000mhz-rgb', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (421, 'G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6400MHz', 'G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6400MHz — отличный выбор для сборки или апгрейда вашего ПК.', 11800.00, true, true, false, 'gskill-trident-z5-rgb-ddr5-32gb-2x16-6400mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (422, 'Crucial Pro DDR5 32GB (2×16GB) 5600MHz', 'Crucial Pro DDR5 32GB (2×16GB) 5600MHz — отличный выбор для сборки или апгрейда вашего ПК.', 8400.00, true, false, false, 'crucial-pro-ddr5-32gb-2x16-5600mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (423, 'Crucial Pro DDR4 32GB (2×16GB) 3200MHz', 'Crucial Pro DDR4 32GB (2×16GB) 3200MHz — отличный выбор для сборки или апгрейда вашего ПК.', 6200.00, true, false, false, 'crucial-pro-ddr4-32gb-2x16-3200mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (424, 'TeamGroup T-Force Delta RGB DDR5 64GB (2×32GB) 6000MHz', 'TeamGroup T-Force Delta RGB DDR5 64GB (2×32GB) 6000MHz — отличный выбор для сборки или апгрейда вашего ПК.', 21600.00, true, true, false, 'teamgroup-t-force-delta-rgb-ddr5-64gb-2x32-6000mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (425, 'Patriot Viper Steel DDR4 16GB (2×8GB) 3600MHz', 'Patriot Viper Steel DDR4 16GB (2×8GB) 3600MHz — отличный выбор для сборки или апгрейда вашего ПК.', 4200.00, true, false, false, 'patriot-viper-steel-ddr4-16gb-2x8-3600mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (426, 'Kingston Fury Renegade DDR5 32GB (2×16GB) 7200MHz', 'Kingston Fury Renegade DDR5 32GB (2×16GB) 7200MHz — отличный выбор для сборки или апгрейда вашего ПК.', 13400.00, true, false, false, 'kingston-fury-renegade-ddr5-32gb-2x16-7200mhz', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (427, 'Samsung 990 PRO 2TB NVMe M.2', 'Samsung 990 PRO 2TB NVMe M.2 — отличный выбор для сборки или апгрейда вашего ПК.', 15600.00, true, false, false, 'samsung-990-pro-2tb-nvme-m2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (428, 'WD Black SN850X 1TB NVMe M.2', 'WD Black SN850X 1TB NVMe M.2 — отличный выбор для сборки или апгрейда вашего ПК.', 8300.00, true, false, false, 'wd-black-sn850x-1tb-nvme-m2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (429, 'Kingston KC3000 2TB NVMe M.2', 'Kingston KC3000 2TB NVMe M.2 — отличный выбор для сборки или апгрейда вашего ПК.', 13200.00, true, false, false, 'kingston-kc3000-2tb-nvme-m2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (430, 'Crucial T700 1TB NVMe M.2 PCIe 5.0', 'Crucial T700 1TB NVMe M.2 PCIe 5.0 — отличный выбор для сборки или апгрейда вашего ПК.', 14200.00, true, true, false, 'crucial-t700-1tb-nvme-m2-pcie-5', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (431, 'Samsung 870 EVO 1TB SATA 2.5"', 'Samsung 870 EVO 1TB SATA 2.5" — отличный выбор для сборки или апгрейда вашего ПК.', 7200.00, true, false, false, 'samsung-870-evo-1tb-sata-25', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (432, 'WD Blue SN580 1TB NVMe M.2', 'WD Blue SN580 1TB NVMe M.2 — отличный выбор для сборки или апгрейда вашего ПК.', 5800.00, true, false, false, 'wd-blue-sn580-1tb-nvme-m2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (433, 'Seagate BarraCuda 4TB HDD 3.5"', 'Seagate BarraCuda 4TB HDD 3.5" — отличный выбор для сборки или апгрейда вашего ПК.', 6900.00, true, false, false, 'seagate-barracuda-4tb-hdd-35', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (434, 'WD Red Plus 8TB NAS HDD 3.5"', 'WD Red Plus 8TB NAS HDD 3.5" — отличный выбор для сборки или апгрейда вашего ПК.', 16800.00, true, true, false, 'wd-red-plus-8tb-nas-hdd-35', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (435, 'Toshiba N300 12TB NAS HDD 3.5"', 'Toshiba N300 12TB NAS HDD 3.5" — отличный выбор для сборки или апгрейда вашего ПК.', 23400.00, true, false, false, 'toshiba-n300-12tb-nas-hdd-35', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (436, 'Seagate IronWolf 4TB NAS HDD 3.5"', 'Seagate IronWolf 4TB NAS HDD 3.5" — отличный выбор для сборки или апгрейда вашего ПК.', 8600.00, true, false, false, 'seagate-ironwolf-4tb-nas-hdd-35', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (437, 'Corsair RM850x (2024) 850W 80+ Gold', 'Corsair RM850x (2024) 850W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 11200.00, true, false, false, 'corsair-rm850x-2024-850w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (438, 'be quiet! Dark Power 13 1000W 80+ Titanium', 'be quiet! Dark Power 13 1000W 80+ Titanium — отличный выбор для сборки или апгрейда вашего ПК.', 22600.00, true, false, true, 'be-quiet-dark-power-13-1000w-80plus-titanium', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (439, 'Seasonic Focus GX-750 750W 80+ Gold', 'Seasonic Focus GX-750 750W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 8900.00, true, false, false, 'seasonic-focus-gx-750-750w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (440, 'Cooler Master MWE Gold 650 V2 650W 80+ Gold', 'Cooler Master MWE Gold 650 V2 650W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 6500.00, true, false, false, 'cooler-master-mwe-gold-650-v2-650w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (441, 'EVGA SuperNOVA 850 GT 850W 80+ Gold', 'EVGA SuperNOVA 850 GT 850W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 10300.00, true, false, false, 'evga-supernova-850-gt-850w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (442, 'Corsair RM750e 750W 80+ Gold', 'Corsair RM750e 750W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 8200.00, true, false, false, 'corsair-rm750e-750w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (443, 'DeepCool PQ1000M 1000W 80+ Gold', 'DeepCool PQ1000M 1000W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 12700.00, true, true, false, 'deepcool-pq1000m-1000w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (444, 'be quiet! Pure Power 12 M 750W 80+ Gold', 'be quiet! Pure Power 12 M 750W 80+ Gold — отличный выбор для сборки или апгрейда вашего ПК.', 9600.00, true, false, false, 'be-quiet-pure-power-12-m-750w-80plus-gold', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (445, 'Cooler Master MasterBox TD500 Mesh V2', 'Cooler Master MasterBox TD500 Mesh V2 — отличный выбор для сборки или апгрейда вашего ПК.', 8200.00, true, false, false, 'cooler-master-masterbox-td500-mesh-v2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (446, 'Fractal Design North Charcoal Black', 'Fractal Design North Charcoal Black — отличный выбор для сборки или апгрейда вашего ПК.', 12400.00, true, true, false, 'fractal-design-north-charcoal-black', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (447, 'NZXT H7 Flow', 'NZXT H7 Flow — отличный выбор для сборки или апгрейда вашего ПК.', 10800.00, true, false, false, 'nzxt-h7-flow', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (448, 'Corsair 4000D Airflow', 'Corsair 4000D Airflow — отличный выбор для сборки или апгрейда вашего ПК.', 8200.00, true, false, false, 'corsair-4000d-airflow', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (449, 'Lian Li O11 Dynamic EVO', 'Lian Li O11 Dynamic EVO — отличный выбор для сборки или апгрейда вашего ПК.', 14800.00, true, false, true, 'lian-li-o11-dynamic-evo', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (450, 'be quiet! Silent Base 802', 'be quiet! Silent Base 802 — отличный выбор для сборки или апгрейда вашего ПК.', 13500.00, true, false, false, 'be-quiet-silent-base-802', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (451, 'Noctua NH-D15 chromax.black', 'Noctua NH-D15 chromax.black — отличный выбор для сборки или апгрейда вашего ПК.', 9200.00, true, false, true, 'noctua-nh-d15-chromax-black', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (452, 'DeepCool AK620', 'DeepCool AK620 — отличный выбор для сборки или апгрейда вашего ПК.', 5400.00, true, false, false, 'deepcool-ak620', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (453, 'be quiet! Dark Rock Pro 4', 'be quiet! Dark Rock Pro 4 — отличный выбор для сборки или апгрейда вашего ПК.', 7800.00, true, false, false, 'be-quiet-dark-rock-pro-4', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (454, 'Arctic Liquid Freezer II 360', 'Arctic Liquid Freezer II 360 — отличный выбор для сборки или апгрейда вашего ПК.', 9600.00, true, false, false, 'arctic-liquid-freezer-ii-360', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (455, 'Corsair iCUE H150i Elite LCD XT', 'Corsair iCUE H150i Elite LCD XT — отличный выбор для сборки или апгрейда вашего ПК.', 18200.00, true, false, false, 'corsair-icue-h150i-elite-lcd-xt', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (456, 'Cooler Master Hyper 212 Halo Black', 'Cooler Master Hyper 212 Halo Black — отличный выбор для сборки или апгрейда вашего ПК.', 3200.00, true, false, false, 'cooler-master-hyper-212-halo-black', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (457, 'NZXT Kraken X63 RGB 280mm', 'NZXT Kraken X63 RGB 280mm — отличный выбор для сборки или апгрейда вашего ПК.', 14200.00, true, false, false, 'nzxt-kraken-x63-rgb-280mm', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (458, 'Thermalright Peerless Assassin 120 SE', 'Thermalright Peerless Assassin 120 SE — отличный выбор для сборки или апгрейда вашего ПК.', 3800.00, true, false, false, 'thermalright-peerless-assassin-120-se', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (459, 'Samsung Odyssey G7 27" QHD 240Hz Curved', 'Samsung Odyssey G7 27" QHD 240Hz Curved — отличный выбор для сборки или апгрейда вашего ПК.', 43200.00, true, false, false, 'samsung-odyssey-g7-27-qhd-240hz-curved', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (460, 'LG UltraGear 27GP850-B 27" QHD 165Hz Nano IPS', 'LG UltraGear 27GP850-B 27" QHD 165Hz Nano IPS — отличный выбор для сборки или апгрейда вашего ПК.', 34600.00, true, false, false, 'lg-ultragear-27gp850-b-27-qhd-165hz-nano-ips', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (461, 'ASUS ROG Swift PG32UCDM 32" 4K 240Hz OLED', 'ASUS ROG Swift PG32UCDM 32" 4K 240Hz OLED — отличный выбор для сборки или апгрейда вашего ПК.', 112000.00, true, false, true, 'asus-rog-swift-pg32ucdm-32-4k-240hz-oled', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (462, 'Dell S2722QC 27" 4K 60Hz IPS', 'Dell S2722QC 27" 4K 60Hz IPS — отличный выбор для сборки или апгрейда вашего ПК.', 28600.00, true, false, false, 'dell-s2722qc-27-4k-60hz-ips', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (463, 'Gigabyte M27Q 27" QHD 170Hz IPS', 'Gigabyte M27Q 27" QHD 170Hz IPS — отличный выбор для сборки или апгрейда вашего ПК.', 26800.00, true, false, false, 'gigabyte-m27q-27-qhd-170hz-ips', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (464, 'BenQ PD2705U 27" 4K 60Hz IPS Designer Monitor', 'BenQ PD2705U 27" 4K 60Hz IPS Designer Monitor — отличный выбор для сборки или апгрейда вашего ПК.', 38400.00, true, false, false, 'benq-pd2705u-27-4k-60hz-ips-designer', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (465, 'ASUS ProArt PA278QV 27" QHD 75Hz IPS', 'ASUS ProArt PA278QV 27" QHD 75Hz IPS — отличный выбор для сборки или апгрейда вашего ПК.', 26400.00, true, false, false, 'asus-proart-pa278qv-27-qhd-75hz-ips', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (466, 'LG 27GN950-B 27" 4K 144Hz Nano IPS', 'LG 27GN950-B 27" 4K 144Hz Nano IPS — отличный выбор для сборки или апгрейда вашего ПК.', 62400.00, true, true, false, 'lg-27gn950-b-27-4k-144hz-nano-ips', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (467, 'ASUS ROG Zephyrus G16 (2025) 16" Ultra 9 / RTX 4070', 'ASUS ROG Zephyrus G16 (2025) 16" Ultra 9 / RTX 4070 — отличный выбор для сборки или апгрейда вашего ПК.', 154000.00, true, false, true, 'asus-rog-zephyrus-g16-2025-ultra9-rtx4070', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (468, 'Lenovo Legion Pro 5 16IRX9 16" i9 / RTX 4060', 'Lenovo Legion Pro 5 16IRX9 16" i9 / RTX 4060 — отличный выбор для сборки или апгрейда вашего ПК.', 132000.00, true, false, false, 'lenovo-legion-pro-5-16irx9-i9-rtx4060', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (469, 'Acer Predator Helios 16 16" i7 / RTX 4070', 'Acer Predator Helios 16 16" i7 / RTX 4070 — отличный выбор для сборки или апгрейда вашего ПК.', 126000.00, true, true, false, 'acer-predator-helios-16-i7-rtx4070', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (470, 'Apple MacBook Pro 16" M4 Pro', 'Apple MacBook Pro 16" M4 Pro — отличный выбор для сборки или апгрейда вашего ПК.', 224000.00, true, false, true, 'apple-macbook-pro-16-m4-pro', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (471, 'Apple MacBook Air 15" M4', 'Apple MacBook Air 15" M4 — отличный выбор для сборки или апгрейда вашего ПК.', 118000.00, true, true, false, 'apple-macbook-air-15-m4', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (472, 'Dell XPS 15 9530 15.6" i7 / RTX 4060', 'Dell XPS 15 9530 15.6" i7 / RTX 4060 — отличный выбор для сборки или апгрейда вашего ПК.', 148000.00, true, false, false, 'dell-xps-15-9530-i7-rtx4060', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (473, 'HP Spectre x360 16" Ultra 7 / Intel Arc', 'HP Spectre x360 16" Ultra 7 / Intel Arc — отличный выбор для сборки или апгрейда вашего ПК.', 132000.00, true, false, false, 'hp-spectre-x360-16-ultra7-intel-arc', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (474, 'Lenovo ThinkPad X1 Carbon Gen 12 14" Ultra 7', 'Lenovo ThinkPad X1 Carbon Gen 12 14" Ultra 7 — отличный выбор для сборки или апгрейда вашего ПК.', 168000.00, true, false, false, 'lenovo-thinkpad-x1-carbon-gen12-ultra7', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (475, 'Logitech G Pro X Superlight 2', 'Logitech G Pro X Superlight 2 — отличный выбор для сборки или апгрейда вашего ПК.', 12400.00, true, false, true, 'logitech-g-pro-x-superlight-2', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (476, 'Razer DeathAdder V3 Pro', 'Razer DeathAdder V3 Pro — отличный выбор для сборки или апгрейда вашего ПК.', 13100.00, true, false, false, 'razer-deathadder-v3-pro', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (477, 'Logitech G502 X Plus', 'Logitech G502 X Plus — отличный выбор для сборки или апгрейда вашего ПК.', 11600.00, true, false, false, 'logitech-g502-x-plus', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (478, 'Razer Basilisk V3 Pro', 'Razer Basilisk V3 Pro — отличный выбор для сборки или апгрейда вашего ПК.', 14800.00, true, false, false, 'razer-basilisk-v3-pro', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (479, 'SteelSeries Rival 5', 'SteelSeries Rival 5 — отличный выбор для сборки или апгрейда вашего ПК.', 5400.00, true, false, false, 'steelseries-rival-5', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (480, 'Zowie EC2-C', 'Zowie EC2-C — отличный выбор для сборки или апгрейда вашего ПК.', 6800.00, true, false, false, 'zowie-ec2-c', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (481, 'SteelSeries Apex Pro TKL (2025) Wireless', 'SteelSeries Apex Pro TKL (2025) Wireless — отличный выбор для сборки или апгрейда вашего ПК.', 18900.00, true, false, false, 'steelseries-apex-pro-tkl-2025-wireless', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (482, 'Razer BlackWidow V4 Pro', 'Razer BlackWidow V4 Pro — отличный выбор для сборки или апгрейда вашего ПК.', 17400.00, true, false, false, 'razer-blackwidow-v4-pro', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (483, 'Logitech G915 TKL Wireless', 'Logitech G915 TKL Wireless — отличный выбор для сборки или апгрейда вашего ПК.', 16800.00, true, false, false, 'logitech-g915-tkl-wireless', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (484, 'Keychron Q1 Pro QMK/VIA Wireless', 'Keychron Q1 Pro QMK/VIA Wireless — отличный выбор для сборки или апгрейда вашего ПК.', 14200.00, true, true, false, 'keychron-q1-pro-qmk-via-wireless', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (485, 'Ducky One 3 Classic TKL', 'Ducky One 3 Classic TKL — отличный выбор для сборки или апгрейда вашего ПК.', 9600.00, true, false, false, 'ducky-one-3-classic-tkl', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (486, 'Corsair K70 RGB Pro', 'Corsair K70 RGB Pro — отличный выбор для сборки или апгрейда вашего ПК.', 12800.00, true, false, false, 'corsair-k70-rgb-pro', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (487, 'HyperX Cloud III Wireless', 'HyperX Cloud III Wireless — отличный выбор для сборки или апгрейда вашего ПК.', 13200.00, true, false, false, 'hyperx-cloud-iii-wireless', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (488, 'SteelSeries Arctis Nova Pro Wireless', 'SteelSeries Arctis Nova Pro Wireless — отличный выбор для сборки или апгрейда вашего ПК.', 28600.00, true, false, true, 'steelseries-arctis-nova-pro-wireless', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (489, 'Razer BlackShark V2 Pro (2024)', 'Razer BlackShark V2 Pro (2024) — отличный выбор для сборки или апгрейда вашего ПК.', 16800.00, true, true, false, 'razer-blackshark-v2-pro-2024', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+INSERT INTO public.products_product (id, name, description, price, is_active, is_new, is_favorite, slug, h1, meta_description, meta_title) VALUES (490, 'Logitech G Pro X 2 Lightspeed', 'Logitech G Pro X 2 Lightspeed — отличный выбор для сборки или апгрейда вашего ПК.', 19600.00, true, false, false, 'logitech-g-pro-x-2-lightspeed', '', '', '') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, description = EXCLUDED.description, price = EXCLUDED.price, is_active = EXCLUDED.is_active, is_new = EXCLUDED.is_new, is_favorite = EXCLUDED.is_favorite, slug = EXCLUDED.slug, h1 = EXCLUDED.h1, meta_description = EXCLUDED.meta_description, meta_title = EXCLUDED.meta_title;
+
+
+
+--
+-- Data for Name: products_productvariant; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (85, 'CMK32GX5M2B6000', '32GB (2×16) 6000MHz', NULL, true, 0, 420) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (86, 'CMK64GX5M2B6000', '64GB (2×32) 6000MHz', 18500.00, true, 1, 420) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (87, 'MZ-V9P1T0BW', '1TB', 8700.00, true, 2, 427) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (88, 'MZ-V9P2T0BW', '2TB', NULL, true, 3, 427) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (89, 'MZ-V9P4T0BW', '4TB', 27400.00, true, 4, 427) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (90, 'GU605MI-QR107W', 'Ultra 9 / RTX 4070 / 32GB / 1TB', NULL, true, 5, 467) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (91, 'GU605MI-QR064W', 'Ultra 7 / RTX 4060 / 16GB / 512GB', 124000.00, true, 6, 467) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (92, 'MBP16-M4P-24-512', 'M4 Pro 24GB / 512GB', NULL, true, 7, 470) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (93, 'MBP16-M4P-48-1T', 'M4 Pro 48GB / 1TB', 278000.00, true, 8, 470) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (94, '910-006636', 'Black', NULL, true, 9, 475) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (95, '910-006637', 'White', NULL, true, 0, 475) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+INSERT INTO public.products_productvariant (id, sku, name, price_override, is_active, sort_order, product_id) VALUES (96, '910-006638', 'Pink', NULL, true, 1, 475) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, sku = EXCLUDED.sku, name = EXCLUDED.name, price_override = EXCLUDED.price_override, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order, product_id = EXCLUDED.product_id;
+
+
+
+--
+-- Data for Name: customers_cart; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_changelog; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_coupon; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_order; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (1, 'ORD-483ECAE6', 'pending', 'Родион', 'Витенберг', 'rodionvitenberg@gmail.com', '+996 550 418 317', '', 'Moskow 162', 'Сосите!', 67800.00, '2026-07-09 13:24:47.807865+00', '2026-07-09 13:24:47.839729+00', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, order_number = EXCLUDED.order_number, status = EXCLUDED.status, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email, phone1 = EXCLUDED.phone1, phone2 = EXCLUDED.phone2, address = EXCLUDED.address, comments = EXCLUDED.comments, total_amount = EXCLUDED.total_amount, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at, customer_id = EXCLUDED.customer_id;
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (2, 'ORD-EA1A8231', 'pending', 'Winter', 'Wind', 'god@gmail.com', '123', '', '132', '', 27500.00, '2026-07-09 13:29:45.923536+00', '2026-07-09 13:29:45.935027+00', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, order_number = EXCLUDED.order_number, status = EXCLUDED.status, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email, phone1 = EXCLUDED.phone1, phone2 = EXCLUDED.phone2, address = EXCLUDED.address, comments = EXCLUDED.comments, total_amount = EXCLUDED.total_amount, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at, customer_id = EXCLUDED.customer_id;
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (3, 'ORD-C93F09F2', 'pending', '', '', '', '', '', '', '', 22600.00, '2026-07-09 13:41:48.967085+00', '2026-07-09 13:41:49.00417+00', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, order_number = EXCLUDED.order_number, status = EXCLUDED.status, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email, phone1 = EXCLUDED.phone1, phone2 = EXCLUDED.phone2, address = EXCLUDED.address, comments = EXCLUDED.comments, total_amount = EXCLUDED.total_amount, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at, customer_id = EXCLUDED.customer_id;
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (4, 'ORD-F82B4706', 'pending', 'Winter', 'Wind', '2313@gmail.com', '+996 550 418 317', '', 'Moskow 162', '', 22600.00, '2026-07-09 13:52:09.950012+00', '2026-07-09 13:52:09.976072+00', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, order_number = EXCLUDED.order_number, status = EXCLUDED.status, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email, phone1 = EXCLUDED.phone1, phone2 = EXCLUDED.phone2, address = EXCLUDED.address, comments = EXCLUDED.comments, total_amount = EXCLUDED.total_amount, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at, customer_id = EXCLUDED.customer_id;
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (5, 'ORD-CF553390', 'pending', '12', '12', '12', '12', '', '12', '', 64800.00, '2026-07-09 13:56:49.929179+00', '2026-07-09 13:56:49.945656+00', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, order_number = EXCLUDED.order_number, status = EXCLUDED.status, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email, phone1 = EXCLUDED.phone1, phone2 = EXCLUDED.phone2, address = EXCLUDED.address, comments = EXCLUDED.comments, total_amount = EXCLUDED.total_amount, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at, customer_id = EXCLUDED.customer_id;
+
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (6, 'ORD-9FA4D2D9', 'pending', 'Rodion', 'Vitenberg', '', '+996550418317', '', 'Moscow Street 92
+Rakhmanova 95', '', 27500.00, '2026-07-10 14:00:29.364806+00', '2026-07-10 14:00:29.39974+00', NULL);
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (9, 'ORD-E19AB90A', 'pending', 'Rodion', 'Vitenberg', '', '+996550418317', '', 'Moscow Street 92
+Rakhmanova 95', '', 57800.00, '2026-07-20 14:17:37.220711+00', '2026-07-20 14:17:37.220725+00', NULL);
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (11, 'ORD-2C8A2655', 'pending', 'Rodion', 'Vitenberg', '', '+996550418317', '', 'Moscow Street 92
+Rakhmanova 95', '', 62400.00, '2026-07-20 14:39:33.151429+00', '2026-07-20 14:39:33.151471+00', NULL);
+INSERT INTO public.customers_order (id, order_number, status, first_name, last_name, email, phone1, phone2, address, comments, total_amount, created_at, updated_at, customer_id) VALUES (15, 'Rodion-1', 'pending', 'Rodion', 'Vitenberg', '', '+996550418317', '', 'Moscow Street 92
+Rakhmanova 95', '', 57800.00, '2026-07-20 15:41:51.084929+00', '2026-07-20 15:41:51.084999+00', NULL);
+
+
+--
+-- Data for Name: customers_couponusage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_customer_groups; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_customer_user_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_loyaltyprogram; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_customerloyalty; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_delivery; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_orderitem; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_orderstatushistory; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (1, '', 'pending', '', '2026-07-09 13:24:47.84367+00', NULL, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (2, '', 'pending', '', '2026-07-09 13:29:45.938434+00', NULL, 2) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (3, '', 'pending', '', '2026-07-09 13:41:49.009223+00', NULL, 3) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (4, '', 'pending', '', '2026-07-09 13:52:09.981872+00', NULL, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (5, '', 'pending', '', '2026-07-09 13:56:49.949389+00', NULL, 5) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (6, '', 'pending', '', '2026-07-10 14:00:29.409146+00', NULL, 6) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (9, '', 'pending', '', '2026-07-20 14:17:37.242761+00', NULL, 9) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (11, '', 'pending', '', '2026-07-20 14:39:33.169854+00', NULL, 11) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+INSERT INTO public.customers_orderstatushistory (id, old_status, new_status, comment, created_at, changed_by_id, order_id) VALUES (15, '', 'pending', '', '2026-07-20 15:41:51.131896+00', NULL, 15) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, old_status = EXCLUDED.old_status, new_status = EXCLUDED.new_status, comment = EXCLUDED.comment, created_at = EXCLUDED.created_at, changed_by_id = EXCLUDED.changed_by_id, order_id = EXCLUDED.order_id;
+
+
+
+--
+-- Data for Name: customers_payment; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_viewedproduct; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: customers_wishlist; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (1, '2026-07-08 06:21:22.220055+00', '1', 'Компьютеры', 1, '[{"added": {}}]', 10, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (2, '2026-07-08 13:11:07.115335+00', '106', 'Intel Core i5-14600K', 2, '[{"changed": {"fields": ["\u041d\u043e\u0432\u0438\u043d\u043a\u0430"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (3, '2026-07-09 05:50:47.042854+00', '106', 'Intel Core i5-14600K', 2, '[{"changed": {"fields": ["\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (4, '2026-07-09 05:50:54.856058+00', '105', 'Cooler Master MasterBox TD500 Mesh V2', 2, '[{"changed": {"fields": ["\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (5, '2026-07-09 05:51:02.695525+00', '104', 'HyperX Cloud III Wireless', 2, '[{"changed": {"fields": ["\u041d\u043e\u0432\u0438\u043d\u043a\u0430", "\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (6, '2026-07-09 05:51:13.907801+00', '102', 'Razer DeathAdder V3 Pro', 2, '[{"changed": {"fields": ["\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (7, '2026-07-09 05:51:23.650627+00', '101', 'Logitech G Pro X Superlight 2', 2, '[{"changed": {"fields": ["\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (8, '2026-07-09 05:51:33.346638+00', '97', 'ASUS ROG Swift PG32UCDM', 2, '[{"changed": {"fields": ["\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439"]}}]', 11, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (9, '2026-07-09 05:59:48.66568+00', '76', 'SATA3', 1, '[{"added": {}}]', 10, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (10, '2026-07-09 09:20:20.087374+00', '77', 'M2', 1, '[{"added": {}}]', 10, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (11, '2026-07-09 09:20:53.554779+00', '77', 'M2', 3, '', 10, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (12, '2026-07-09 09:20:53.554821+00', '76', 'SATA3', 3, '', 10, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (13, '2026-07-09 17:57:56.480371+00', '1', 'Анал', 1, '[{"added": {}}]', 44, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (14, '2026-07-10 15:34:49.815345+00', '103', 'Объём SSD', 2, '[{"changed": {"fields": ["Slug", "\u0415\u0434\u0438\u043d\u0438\u0446\u0430 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f"]}}]', 9, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (15, '2026-07-11 15:17:37.345145+00', '252', 'Acer', 2, '[]', 15, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (16, '2026-07-11 15:27:22.946225+00', '1', 'god@gmail.com', 2, '[{"changed": {"fields": ["Superuser status"]}}]', 6, 1) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (17, '2026-07-18 04:51:14.589927+00', '162', 'Видеонаблюдение', 1, '[{"added": {}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (18, '2026-07-18 04:51:31.621408+00', '158', 'Аксессуары', 2, '[{"changed": {"fields": ["\u041f\u043e\u0440\u044f\u0434\u043e\u043a \u0432 \u0445\u0435\u0434\u0435\u0440\u0435"]}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (19, '2026-07-18 04:51:31.622739+00', '162', 'Видеонаблюдение', 2, '[{"changed": {"fields": ["\u041f\u043e\u0440\u044f\u0434\u043e\u043a \u0432 \u0445\u0435\u0434\u0435\u0440\u0435"]}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (20, '2026-07-18 04:51:43.947582+00', '162', 'Видеонаблюдение', 2, '[{"changed": {"fields": ["\u041f\u043e\u0440\u044f\u0434\u043e\u043a \u0432 \u0445\u0435\u0434\u0435\u0440\u0435"]}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (21, '2026-07-18 04:51:43.949576+00', '158', 'Аксессуары', 2, '[{"changed": {"fields": ["\u041f\u043e\u0440\u044f\u0434\u043e\u043a \u0432 \u0445\u0435\u0434\u0435\u0440\u0435"]}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (22, '2026-07-18 07:07:49.9075+00', '163', 'TurboHD камеры', 1, '[{"added": {}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (23, '2026-07-18 07:09:50.204943+00', '164', 'IP камеры', 1, '[{"added": {}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (24, '2026-07-18 07:10:34.676914+00', '164', 'IP камеры', 2, '[{"changed": {"fields": ["\u0420\u043e\u0434\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f"]}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (25, '2026-07-18 07:11:47.628507+00', '165', 'Расходные материалы', 1, '[{"added": {}}]', 10, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (26, '2026-07-18 07:13:26.013212+00', '1', 'Анал', 3, '', 44, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (27, '2026-07-18 07:13:46.702294+00', '2', 'Заправка картриджа (1010/1005)', 1, '[{"added": {}}]', 44, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (28, '2026-07-18 07:14:03.95245+00', '3', 'Заправка картриджа (132)', 1, '[{"added": {}}]', 44, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+INSERT INTO public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (29, '2026-07-18 07:14:41.658591+00', '4', 'Переустановка Windows', 1, '[{"added": {}}]', 44, 4) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, action_time = EXCLUDED.action_time, object_id = EXCLUDED.object_id, object_repr = EXCLUDED.object_repr, action_flag = EXCLUDED.action_flag, change_message = EXCLUDED.change_message, content_type_id = EXCLUDED.content_type_id, user_id = EXCLUDED.user_id;
+
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (1, 'contenttypes', '0001_initial', '2026-07-07 13:24:23.105911+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (2, 'contenttypes', '0002_remove_content_type_name', '2026-07-07 13:24:23.117241+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (3, 'auth', '0001_initial', '2026-07-07 13:24:23.159563+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (4, 'auth', '0002_alter_permission_name_max_length', '2026-07-07 13:24:23.168922+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (5, 'auth', '0003_alter_user_email_max_length', '2026-07-07 13:24:23.177177+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (6, 'auth', '0004_alter_user_username_opts', '2026-07-07 13:24:23.186843+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (7, 'auth', '0005_alter_user_last_login_null', '2026-07-07 13:24:23.195127+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (8, 'auth', '0006_require_contenttypes_0002', '2026-07-07 13:24:23.198747+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (9, 'auth', '0007_alter_validators_add_error_messages', '2026-07-07 13:24:23.207915+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (10, 'auth', '0008_alter_user_username_max_length', '2026-07-07 13:24:23.215488+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (11, 'auth', '0009_alter_user_last_name_max_length', '2026-07-07 13:24:23.2261+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (12, 'auth', '0010_alter_group_name_max_length', '2026-07-07 13:24:23.236136+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (13, 'auth', '0011_update_proxy_permissions', '2026-07-07 13:24:23.246131+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (14, 'auth', '0012_alter_user_first_name_max_length', '2026-07-07 13:24:23.255087+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (15, 'customers', '0001_initial', '2026-07-07 13:24:23.318664+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (16, 'admin', '0001_initial', '2026-07-07 13:24:23.347058+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (17, 'admin', '0002_logentry_remove_auto_add', '2026-07-07 13:24:23.359824+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (18, 'admin', '0003_logentry_add_action_flag_choices', '2026-07-07 13:24:23.374071+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (19, 'products', '0001_initial', '2026-07-07 13:24:23.489078+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (20, 'customers', '0002_orderitem', '2026-07-07 13:24:23.519709+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (21, 'sessions', '0001_initial', '2026-07-07 13:24:23.529905+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (22, 'products', '0002_rename_tag_brand_remove_category_tags_and_more', '2026-07-07 16:45:55.81858+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (23, 'products', '0003_tag_product_feature_tags', '2026-07-07 16:46:15.36803+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (24, 'products', '0004_productvariant_stock_alter_productimage_options_and_more', '2026-07-07 16:46:21.250014+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (25, 'products', '0005_promocampaign_category_h1_category_meta_description_and_more', '2026-07-07 17:10:11.141874+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (26, 'customers', '0003_orderitem_variant_address_delivery_and_more', '2026-07-07 17:10:11.343318+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (27, 'products', '0006_brand_country_brand_description_brand_logo_and_more', '2026-07-07 17:14:38.723126+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (28, 'customers', '0004_cart_viewedproduct_wishlist', '2026-07-07 17:14:38.925343+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (29, 'customers', '0005_coupon_loyaltyprogram_couponusage_customerloyalty_and_more', '2026-07-07 17:17:33.47441+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (30, 'products', '0007_supplier_banner_certificate_promotionblock_warranty_and_more', '2026-07-07 17:21:39.656653+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (31, 'notifications', '0001_initial', '2026-07-08 06:07:49.483191+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (32, 'customers', '0006_alter_order_email', '2026-07-09 13:31:43.394096+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (33, 'customers', '0007_alter_order_address_alter_order_first_name_and_more', '2026-07-09 13:46:36.740433+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (34, 'services', '0001_initial', '2026-07-09 17:54:08.794188+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (35, 'products', '0008_adminsection_alter_certificate_options_and_more', '2026-07-11 15:41:22.973893+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (36, 'products', '0009_brand_logo_provenance_productimage_provenance', '2026-07-13 06:25:34.154118+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (37, 'products', '0009_productimage_provenance', '2026-07-14 06:53:31.033617+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (38, 'products', '0009_brand_is_active', '2026-07-18 04:41:40.11661+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (39, 'products', '0010_category_image', '2026-07-18 05:01:29.91106+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+INSERT INTO public.django_migrations (id, app, name, applied) VALUES (40, 'products', '0011_brand_logo_provenance', '2026-07-21 07:36:16.69586+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, app = EXCLUDED.app, name = EXCLUDED.name, applied = EXCLUDED.applied;
+
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('95k9y2a7mkrt2yezda999w2abh6ptnto', '.eJxVjM0OwiAQhN-FsyGWnwIevfsMZJddbNVAUtqT8d2lSQ-auX3zzbxFhG2d4tZ4iTOJixjE6ZchpCeXvaAHlHuVqZZ1mVHuijzaJm-V-HU93L-DCdrU16gHBmdGNkQhcUDTg9bBmINVZsxoMinvgBx1AvacNCYHjCoY7b34fAENUDjV:1whmQk:bdEXlySxeG32BppEVYgnVcROGtnfPeBJsUpOruz_Eos', '2026-07-10 10:56:34.402997+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('pjeubsdt9e0g1z030xt0hkmye5goyc5k', '.eJxVjEEOgjAQRe_StWko0JZx6d4zNL8zg6AGEgor492VhIVu_3vvv0zCtg5pK7qkUczZtOb0u2XwQ6cdyB3TbbY8T-syZrsr9qDFXmfR5-Vw_w4GlOFba9Or-pDV1eIgVew6rkAxOACtduRrjaTQTAwOQN-wkBPUlNVHMu8PFb05XQ:1wl0TW:rhY3F1oHfDzUz3RTEqLRwh_xd9uIc8lJ-wSNNRygu4A', '2026-07-19 08:32:46.464889+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('un58th45z1jrxm42kzgfji5sqn3u84gy', '.eJxVjEEOgjAQRe_StWko0JZx6d4zNL8zg6AGEgor492VhIVu_3vvv0zCtg5pK7qkUczZtOb0u2XwQ6cdyB3TbbY8T-syZrsr9qDFXmfR5-Vw_w4GlOFba9Or-pDV1eIgVew6rkAxOACtduRrjaTQTAwOQN-wkBPUlNVHMu8PFb05XQ:1wlons:-NDGlXTJmiC6NyHGRM2JlAuTMopWoW01Ctdg-NspJjA', '2026-07-21 14:17:08.89963+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('g4h9rt7z7fpdcqp481amgixl04ea5g1n', '.eJxVjEEOwiAUBe_C2hAIhVKX7j0Def8DUjWQlHZlvLs26UK3b2beSwRsawlbT0uYozgLI06_G4Efqe4g3lFvTXKr6zKT3BV50C6vLabn5XD_Dgp6-dZ5Stlmx4hs2BlMoyLLZJTxYAefR0-stEEEGFr7rAa2lpIf4BRF8f4AHDM5PA:1whsad:cAWnwljKVOya0W3WpXFT78lqeZYU14UXp0R9XzPsads', '2026-07-10 17:31:11.356566+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('tlgreuiimnyaclh72la5fk25mqgcdq67', '.eJxVjEEOgjAQRe_StWko0JZx6d4zNL8zg6AGEgor492VhIVu_3vvv0zCtg5pK7qkUczZtOb0u2XwQ6cdyB3TbbY8T-syZrsr9qDFXmfR5-Vw_w4GlOFba9Or-pDV1eIgVew6rkAxOACtduRrjaTQTAwOQN-wkBPUlNVHMu8PFb05XQ:1wiaTw:9UEfpgkd5h9S-BpNfBJ_VYL4aBcB-ShsloKJOO9DFW0', '2026-07-12 16:23:12.69687+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('p93g6atq33tgxa942oiezkm7x1bqhfit', '.eJxVjEEOwiAUBe_C2hAIhVKX7j0Def8DUjWQlHZlvLs26UK3b2beSwRsawlbT0uYozgLI06_G4Efqe4g3lFvTXKr6zKT3BV50C6vLabn5XD_Dgp6-dZ5Stlmx4hs2BlMoyLLZJTxYAefR0-stEEEGFr7rAa2lpIf4BRF8f4AHDM5PA:1wjAc4:5elCf-pcJAIOsXYRD2sfriTdPLVCxi5lFWPOB3PftL8', '2026-07-14 06:58:00.428499+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('3sz8erotws12rsjwv5aj4xwi8jwhbuyg', '.eJxVjEEOwiAUBe_C2hAIhVKX7j0Def8DUjWQlHZlvLs26UK3b2beSwRsawlbT0uYozgLI06_G4Efqe4g3lFvTXKr6zKT3BV50C6vLabn5XD_Dgp6-dZ5Stlmx4hs2BlMoyLLZJTxYAefR0-stEEEGFr7rAa2lpIf4BRF8f4AHDM5PA:1wjdOn:0zU3LC3jQe5ttLTdfdIP1mHljMtsJTLe7830LE727eo', '2026-07-15 13:42:13.828317+00');
+INSERT INTO public.django_session (session_key, session_data, expire_date) VALUES ('9k5hubwkbkxwz19c3eriycpc6c8cfc8y', '.eJxVjEEOwiAUBe_C2hAIhVKX7j0Def8DUjWQlHZlvLs26UK3b2beSwRsawlbT0uYozgLI06_G4Efqe4g3lFvTXKr6zKT3BV50C6vLabn5XD_Dgp6-dZ5Stlmx4hs2BlMoyLLZJTxYAefR0-stEEEGFr7rAa2lpIf4BRF8f4AHDM5PA:1wkP3g:HYUQ482QS3q5dMUwu9lxUAgpvgqSt7l50TZ-nYkUTXA', '2026-07-17 16:35:36.407536+00');
+
+
+--
+-- Data for Name: notifications_notificationlog; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: notifications_notificationsettings; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.notifications_notificationsettings (id, name, telegram_enabled, telegram_chat_id, email_enabled, email_address, notify_new_orders, notify_status_changes, created_at, updated_at) VALUES (1, 'Основные уведомления', true, '', false, '', true, false, '2026-07-09 13:24:47.825445+00', '2026-07-09 13:24:47.825456+00') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, telegram_enabled = EXCLUDED.telegram_enabled, telegram_chat_id = EXCLUDED.telegram_chat_id, email_enabled = EXCLUDED.email_enabled, email_address = EXCLUDED.email_address, notify_new_orders = EXCLUDED.notify_new_orders, notify_status_changes = EXCLUDED.notify_status_changes, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at;
+
+
+
+--
+-- Data for Name: products_adminsection; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (1, 'catalog_base', 'Каталог (товары, категории, бренды)', true, true, 10) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (2, 'orders', 'Заказы и клиенты', true, true, 20) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (3, 'services', 'Сервис (услуги)', true, true, 30) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (4, 'blog', 'Блог', true, true, 40) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (5, 'users', 'Пользователи', true, true, 50) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (6, 'attributes', 'Атрибуты', true, false, 60) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (7, 'tags', 'Теги', true, false, 70) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (8, 'variants', 'Варианты товаров', true, false, 80) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (9, 'stock', 'Остатки (склад)', true, false, 90) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (10, 'suppliers', 'Поставщики', true, false, 100) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (11, 'promocampaigns', 'Акции', true, false, 110) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (12, 'discounts', 'Скидки', true, false, 120) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (13, 'pricehistory', 'История цен', true, false, 130) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (14, 'videos', 'Видео товаров', true, false, 140) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (15, 'warranties', 'Гарантии', true, false, 150) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (16, 'certificates', 'Сертификаты', true, false, 160) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (17, 'promoblocks', 'Промо-блоки', true, false, 170) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (18, 'coupons', 'Промокоды', true, false, 180) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (19, 'loyalty', 'Программа лояльности', true, false, 190) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (20, 'banners', 'Баннеры', true, false, 200) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (21, 'changelog', 'Лог изменений', true, false, 210) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.products_adminsection (id, key, label, is_visible, is_visible_by_default, sort_order) VALUES (22, 'groups', 'Группы и права', true, false, 220) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, key = EXCLUDED.key, label = EXCLUDED.label, is_visible = EXCLUDED.is_visible, is_visible_by_default = EXCLUDED.is_visible_by_default, sort_order = EXCLUDED.sort_order;
+
+
+
+--
+-- Data for Name: products_attribute; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (265, 'Частота процессора', 'cpu-frequency', 'GHz', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (266, 'Макс. частота (Boost)', 'max-boost-frequency', 'GHz', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (267, 'Количество ядер', 'cores', '', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (268, 'Количество потоков', 'threads', '', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (269, 'Сокет', 'socket', '', '["LGA1700", "LGA1200", "AM5", "AM4", "TR4", "sTRX4"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (270, 'Техпроцесс', 'manufacturing-tech', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (271, 'TDP', 'tdp', 'W', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (272, 'Объём видеопамяти', 'vram', 'GB', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (273, 'Тип видеопамяти', 'vram-type', '', '["GDDR6", "GDDR6X", "GDDR5", "GDDR5X", "HBM2"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (274, 'Шина памяти', 'memory-bus', 'bit', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (275, 'Объём ОЗУ', 'ram-capacity', 'GB', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (276, 'Тип ОЗУ', 'ram-type', '', '["DDR5", "DDR4", "DDR3"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (277, 'Частота ОЗУ', 'ram-frequency', 'MHz', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (278, 'Количество планок', 'ram-modules', '', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (279, 'Объём накопителя', 'storage-capacity', 'GB', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (280, 'Тип накопителя', 'storage-type', '', '["SSD", "HDD", "NVMe", "M.2 SATA"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (281, 'Форм-фактор', 'form-factor', '', '["2.5\"", "3.5\"", "M.2 2280", "M.2 2230", "mSATA", "ATX", "microATX", "Mini-ITX"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (282, 'Скорость чтения', 'read-speed', 'MB/s', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (283, 'Скорость записи', 'write-speed', 'MB/s', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (284, 'Мощность БП', 'psu-wattage', 'W', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (285, 'Сертификат', 'certification', '', '["80+ Bronze", "80+ Silver", "80+ Gold", "80+ Platinum", "80+ Titanium", "80+"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (286, 'Модульность', 'modularity', '', '["Non-modular", "Semi-modular", "Fully modular"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (287, 'Диагональ экрана', 'screen-size', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (288, 'Разрешение', 'resolution', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (289, 'Тип матрицы', 'panel-type', '', '["IPS", "VA", "TN", "OLED", "Nano IPS", "Fast IPS"]', 'enum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (290, 'Частота обновления', 'refresh-rate', 'Hz', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (291, 'Время отклика', 'response-time', 'ms', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (292, 'Изогнутый', 'curved', '', NULL, 'bool') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (293, 'Яркость', 'brightness', 'cd/m²', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (294, 'Диагональ ноутбука', 'laptop-screen-size', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (295, 'Процессор (модель)', 'cpu-model', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (296, 'Видеокарта (модель)', 'gpu-model', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (297, 'Объём RAM', 'laptop-ram', 'GB', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (298, 'Объём SSD', 'laptop-ssd', 'GB', NULL, 'int') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (299, 'Вес', 'weight', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (300, 'Цвет', 'color', '', NULL, 'str') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (301, 'Подсветка', 'backlight', '', NULL, 'bool') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (302, 'Беспроводной', 'wireless', '', NULL, 'bool') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+INSERT INTO public.products_attribute (id, name, slug, unit, enum_options, type) VALUES (303, 'Механические переключатели', 'mechanical-switches', '', NULL, 'bool') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, unit = EXCLUDED.unit, enum_options = EXCLUDED.enum_options, type = EXCLUDED.type;
+
+
+
+--
+-- Data for Name: products_category; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (208, 'Охлаждение', 'cooling', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (209, 'Компьютеры', 'computers', 2, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (199, 'Комплектующие', 'components', 1, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (200, 'Процессоры', 'processors', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (201, 'Видеокарты', 'videocards', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (202, 'Материнские платы', 'motherboards', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (203, 'Оперативная память', 'ram', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (204, 'Накопители SSD', 'ssd', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (205, 'Жёсткие диски', 'hdd', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (206, 'Блоки питания', 'psu', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (207, 'Корпуса', 'cases', 0, 199, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (210, 'Игровые ПК', 'gaming-pcs', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (211, 'Офисные ПК', 'office-pcs', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (212, 'Рабочие станции', 'workstations', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (213, 'Игровые ноутбуки', 'gaming-laptops', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (214, 'Ультрабуки', 'ultrabooks', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (215, 'Рабочие ноутбуки', 'work-laptops', 0, 209, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (216, 'Мониторы', 'monitors', 3, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (217, 'Игровые мониторы', 'gaming-monitors', 0, 216, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (218, 'Профессиональные мониторы', 'professional-monitors', 0, 216, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (219, 'Офисные мониторы', 'office-monitors', 0, 216, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (220, 'Периферия', 'peripherals', 4, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (221, 'Клавиатуры', 'keyboards', 0, 220, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (222, 'Мыши', 'mice', 0, 220, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (223, 'Гарнитуры', 'headsets', 0, 220, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (224, 'Коврики', 'mousepads', 0, 220, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (225, 'МФУ и принтеры', 'mfu-printers', 5, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (226, 'Цветные МФУ и принтеры', 'color-mfu-printers', 0, 225, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (227, 'Картриджи, чернила и пр.', 'cartridges-inks', 0, 225, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (228, 'Аксессуары', 'accessories', 6, NULL, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (229, 'Кабели и переходники', 'cables-adapters', 0, 228, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (230, 'Чехлы и сумки', 'cases-bags', 0, 228, '', '', '', '');
+INSERT INTO public.products_category (id, name, slug, header_order, parent_id, h1, meta_description, meta_title, image) VALUES (231, 'Веб-камеры', 'webcams', 0, 228, '', '', '', '');
+
+
+--
+-- Data for Name: products_banner; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_blogpost; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_blogpost_related_products; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_tag; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (658, 'flagship', 'flagship') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (659, 'gaming', 'gaming') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (660, 'raptor-lake', 'raptor-lake') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (661, 'unlocked', 'unlocked') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (662, 'mid-range', 'mid-range') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (663, 'budget', 'budget') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (664, 'entry-level', 'entry-level') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (665, '3d-v-cache', '3d-v-cache') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (666, 'zen-4', 'zen-4') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (667, 'productivity', 'productivity') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (668, 'zen-5', 'zen-5') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (669, 'rtx', 'rtx') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (670, 'dlss-3', 'dlss-3') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (671, '4k', '4k') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (672, '1440p', '1440p') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (673, '1080p', '1080p') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (674, 'rdna-3', 'rdna-3') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (675, 'intel-arc', 'intel-arc') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (676, 'xess', 'xess') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (677, 'ddr5', 'ddr5') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (678, 'wi-fi', 'wi-fi') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (679, 'atx', 'atx') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (680, 'am5', 'am5') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (681, 'microatx', 'microatx') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (682, 'ddr4', 'ddr4') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (683, 'am4', 'am4') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (684, 'overclocking', 'overclocking') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (685, '5600mhz', '5600mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (686, 'dual-channel', 'dual-channel') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (687, '6000mhz', '6000mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (688, 'rgb', 'rgb') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (689, '6400mhz', '6400mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (690, '3200mhz', '3200mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (691, '64gb', '64gb') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (692, '3600mhz', '3600mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (693, '7200mhz', '7200mhz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (694, 'nvme', 'nvme') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (695, 'pcie-4', 'pcie-4') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (696, 'high-end', 'high-end') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (697, 'pcie-5', 'pcie-5') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (698, 'next-gen', 'next-gen') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (699, 'sata', 'sata') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (700, 'ssd', 'ssd') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (701, 'reliable', 'reliable') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (702, 'hdd', 'hdd') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (703, '5400rpm', '5400rpm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (704, 'storage', 'storage') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (705, 'nas', 'nas') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (706, '7200rpm', '7200rpm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (707, 'cmr', 'cmr') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (708, 'high-capacity', 'high-capacity') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (709, '5900rpm', '5900rpm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (710, 'modular', 'modular') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (711, '850w', '850w') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (712, 'gold', 'gold') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (713, 'quiet', 'quiet') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (714, '1000w', '1000w') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (715, 'titanium', 'titanium') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (716, '750w', '750w') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (717, 'compact', 'compact') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (718, '650w', '650w') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (719, 'non-modular', 'non-modular') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (720, 'low-noise', 'low-noise') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (721, 'atx-3', 'atx-3') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (722, 'semi-modular', 'semi-modular') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (723, 'mid-tower', 'mid-tower') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (724, 'mesh', 'mesh') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (725, 'tempered-glass', 'tempered-glass') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (726, 'wood', 'wood') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (727, 'elegant', 'elegant') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (728, 'airflow', 'airflow') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (729, 'minimalist', 'minimalist') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (730, 'dual-chamber', 'dual-chamber') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (731, 'watercooling', 'watercooling') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (732, 'silent', 'silent') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (733, 'insulated', 'insulated') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (734, 'air-cooling', 'air-cooling') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (735, 'dual-tower', 'dual-tower') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (736, '140mm', '140mm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (737, '120mm', '120mm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (738, 'aio', 'aio') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (739, '360mm', '360mm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (740, 'lcd-display', 'lcd-display') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (741, 'single-tower', 'single-tower') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (742, '280mm', '280mm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (743, 'mirror-display', 'mirror-display') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (744, 'best-value', 'best-value') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (745, '240hz', '240hz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (746, 'qhd', 'qhd') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (747, 'curved', 'curved') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (748, 'va', 'va') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (749, '165hz', '165hz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (750, 'nano-ips', 'nano-ips') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (751, 'hdr', 'hdr') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (752, 'oled', 'oled') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (753, 'office', 'office') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (754, 'ips', 'ips') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (755, 'usb-c', 'usb-c') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (756, '170hz', '170hz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (757, 'kvm', 'kvm') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (758, 'professional', 'professional') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (759, 'color-accurate', 'color-accurate') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (760, '144hz', '144hz') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (761, 'hdr600', 'hdr600') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (762, 'rtx-4070', 'rtx-4070') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (763, 'ultra-9', 'ultra-9') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (764, 'rtx-4060', 'rtx-4060') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (765, 'i9', 'i9') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (766, 'i7', 'i7') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (767, 'mini-led', 'mini-led') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (768, 'workstation', 'workstation') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (769, 'm4-pro', 'm4-pro') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (770, 'liquid-retina-xdr', 'liquid-retina-xdr') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (771, 'macos', 'macos') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (772, 'ultrabook', 'ultrabook') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (773, 'm4', 'm4') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (774, 'fanless', 'fanless') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (775, 'lightweight', 'lightweight') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (776, 'premium', 'premium') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (777, '2-in-1', '2-in-1') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (778, 'touch-screen', 'touch-screen') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (779, 'business', 'business') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (780, 'thinkpad', 'thinkpad') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (781, 'enterprise', 'enterprise') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (782, 'wireless', 'wireless') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (783, '60g', '60g') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (784, 'hero-2', 'hero-2') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (785, 'competitive', 'competitive') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (786, 'esports', 'esports') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (787, '63g', '63g') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (788, 'focus-pro-30k', 'focus-pro-30k') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (789, 'ergonomic', 'ergonomic') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (790, 'hero-25k', 'hero-25k') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (791, 'multi-button', 'multi-button') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (792, 'multi-scroll', 'multi-scroll') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (793, 'wired', 'wired') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (794, '85g', '85g') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (795, 'no-software', 'no-software') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (796, 'omnipoint-3', 'omnipoint-3') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (797, 'tkl', 'tkl') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (798, 'adjustable-actuation', 'adjustable-actuation') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (799, 'full-size', 'full-size') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (800, 'macro-keys', 'macro-keys') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (801, 'green-switch', 'green-switch') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (802, 'low-profile', 'low-profile') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (803, 'mechanical', 'mechanical') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (804, '75%', '75') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (805, 'aluminum', 'aluminum') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (806, 'hot-swap', 'hot-swap') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (807, 'qmk', 'qmk') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (808, 'pbt-keycaps', 'pbt-keycaps') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (809, 'cherry-mx', 'cherry-mx') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (810, 'media-controls', 'media-controls') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (811, '120h-battery', '120h-battery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (812, 'closed-back', 'closed-back') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (813, 'anc', 'anc') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (814, 'hi-fi', 'hi-fi') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (815, 'hot-swap-battery', 'hot-swap-battery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (816, '70h-battery', '70h-battery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (817, '50h-battery', '50h-battery') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+INSERT INTO public.products_tag (id, name, slug) VALUES (818, 'graphene-driver', 'graphene-driver') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug;
+
+
+
+--
+-- Data for Name: products_blogpost_tags; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_brand; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (320, 'Intel', 'intel', 'USA', '', '', 'https://www.intel.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (321, 'AMD', 'amd', 'USA', '', '', 'https://www.amd.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (322, 'NVIDIA', 'nvidia', 'USA', '', '', 'https://www.nvidia.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (323, 'ASUS', 'asus', 'Taiwan', '', '', 'https://www.asus.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (324, 'MSI', 'msi', 'Taiwan', '', '', 'https://www.msi.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (325, 'Gigabyte', 'gigabyte', 'Taiwan', '', '', 'https://www.gigabyte.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (326, 'Samsung', 'samsung', 'South Korea', '', '', 'https://www.samsung.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (327, 'LG', 'lg', 'South Korea', '', '', 'https://www.lg.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (328, 'Dell', 'dell', 'USA', '', '', 'https://www.dell.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (329, 'HP', 'hp', 'USA', '', '', 'https://www.hp.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (330, 'Lenovo', 'lenovo', 'China', '', '', 'https://www.lenovo.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (331, 'Corsair', 'corsair', 'USA', '', '', 'https://www.corsair.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (332, 'Kingston', 'kingston', 'USA', '', '', 'https://www.kingston.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (333, 'Seagate', 'seagate', 'Ireland', '', '', 'https://www.seagate.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (334, 'Western Digital', 'western-digital', 'USA', '', '', 'https://www.westerndigital.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (335, 'Logitech', 'logitech', 'Switzerland', '', '', 'https://www.logitech.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (336, 'Razer', 'razer', 'USA', '', '', 'https://www.razer.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (337, 'Acer', 'acer', 'Taiwan', '', '', 'https://www.acer.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (338, 'Cooler Master', 'cooler-master', 'Taiwan', '', '', 'https://www.coolermaster.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (339, 'be quiet!', 'be-quiet', 'Germany', '', '', 'https://www.bequiet.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (340, 'Seasonic', 'seasonic', 'Taiwan', '', '', 'https://www.seasonic.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (341, 'HyperX', 'hyperx', 'USA', '', '', 'https://www.hyperxgaming.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (342, 'SteelSeries', 'steelseries', 'Denmark', '', '', 'https://www.steelseries.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (343, 'BenQ', 'benq', 'Taiwan', '', '', 'https://www.benq.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (344, 'Noctua', 'noctua', 'Austria', '', '', 'https://www.noctua.at', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (345, 'DeepCool', 'deepcool', 'China', '', '', 'https://www.deepcool.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (346, 'Arctic', 'arctic', 'Germany', '', '', 'https://www.arctic.de', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (347, 'G.Skill', 'gskill', 'Taiwan', '', '', 'https://www.gskill.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (348, 'Crucial', 'crucial', 'USA', '', '', 'https://www.crucial.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (349, 'ASRock', 'asrock', 'Taiwan', '', '', 'https://www.asrock.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (350, 'EVGA', 'evga', 'USA', '', '', 'https://www.evga.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (351, 'Fractal Design', 'fractal-design', 'Sweden', '', '', 'https://www.fractal-design.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (352, 'NZXT', 'nzxt', 'USA', '', '', 'https://www.nzxt.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (353, 'Lian Li', 'lian-li', 'Taiwan', '', '', 'https://www.lian-li.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (354, 'TeamGroup', 'teamgroup', 'Taiwan', '', '', 'https://www.teamgroup.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (355, 'Patriot', 'patriot', 'USA', '', '', 'https://www.patriot.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (356, 'Toshiba', 'toshiba', 'Japan', '', '', 'https://www.toshiba.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (357, 'Keychron', 'keychron', 'China', '', '', 'https://www.keychron.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (358, 'Ducky', 'ducky', 'Taiwan', '', '', 'https://www.duckychannel.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (359, 'Zowie', 'zowie', 'Taiwan', '', '', 'https://www.zowie.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (360, 'Apple', 'apple', 'USA', '', '', 'https://www.apple.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+INSERT INTO public.products_brand (id, name, slug, country, description, logo, website, logo_provenance, is_active) VALUES (361, 'Thermalright', 'thermalright', 'China', '', '', 'https://www.thermalright.com', 'manual', true) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, slug = EXCLUDED.slug, country = EXCLUDED.country, description = EXCLUDED.description, logo = EXCLUDED.logo, website = EXCLUDED.website, logo_provenance = EXCLUDED.logo_provenance, is_active = EXCLUDED.is_active;
+
+
+
+--
+-- Data for Name: products_category_attributes; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_category_brands; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_certificate; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_promocampaign; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_discount; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_pricehistory; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_product_brands; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (429, 395, 320) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (430, 396, 320) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (431, 397, 320) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (432, 398, 320) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (433, 399, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (434, 400, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (435, 401, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (436, 402, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (437, 403, 322) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (438, 403, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (439, 404, 322) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (440, 404, 324) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (441, 405, 322) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (442, 405, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (443, 406, 322) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (444, 406, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (445, 407, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (446, 407, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (447, 408, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (448, 408, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (449, 409, 321) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (450, 409, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (451, 410, 320) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (452, 410, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (453, 411, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (454, 412, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (455, 413, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (456, 414, 324) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (457, 415, 349) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (458, 416, 324) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (459, 417, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (460, 418, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (461, 419, 332) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (462, 420, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (463, 421, 347) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (464, 422, 348) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (465, 423, 348) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (466, 424, 354) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (467, 425, 355) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (468, 426, 332) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (469, 427, 326) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (470, 428, 334) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (471, 429, 332) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (472, 430, 348) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (473, 431, 326) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (474, 432, 334) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (475, 433, 333) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (476, 434, 334) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (477, 435, 356) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (478, 436, 333) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (479, 437, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (480, 438, 339) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (481, 439, 340) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (482, 440, 338) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (483, 441, 350) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (484, 442, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (485, 443, 345) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (486, 444, 339) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (487, 445, 338) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (488, 446, 351) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (489, 447, 352) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (490, 448, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (491, 449, 353) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (492, 450, 339) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (493, 451, 344) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (494, 452, 345) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (495, 453, 339) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (496, 454, 346) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (497, 455, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (498, 456, 338) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (499, 457, 352) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (500, 458, 361) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (501, 459, 326) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (502, 460, 327) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (503, 461, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (504, 462, 328) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (505, 463, 325) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (506, 464, 343) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (507, 465, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (508, 466, 327) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (509, 467, 323) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (510, 468, 330) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (511, 469, 337) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (512, 470, 360) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (513, 471, 360) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (514, 472, 328) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (515, 473, 329) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (516, 474, 330) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (517, 475, 335) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (518, 476, 336) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (519, 477, 335) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (520, 478, 336) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (521, 479, 342) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (522, 480, 359) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (523, 481, 342) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (524, 482, 336) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (525, 483, 335) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (526, 484, 357) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (527, 485, 358) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (528, 486, 331) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (529, 487, 341) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (530, 488, 342) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (531, 489, 336) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+INSERT INTO public.products_product_brands (id, product_id, brand_id) VALUES (532, 490, 335) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, brand_id = EXCLUDED.brand_id;
+
+
+
+--
+-- Data for Name: products_product_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (395, 395, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (396, 396, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (397, 397, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (398, 398, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (399, 399, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (400, 400, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (401, 401, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (402, 402, 200);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (403, 403, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (404, 404, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (405, 405, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (406, 406, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (407, 407, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (408, 408, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (409, 409, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (410, 410, 201);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (411, 411, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (412, 412, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (413, 413, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (414, 414, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (415, 415, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (416, 416, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (417, 417, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (418, 418, 202);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (419, 419, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (420, 420, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (421, 421, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (422, 422, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (423, 423, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (424, 424, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (425, 425, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (426, 426, 203);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (427, 427, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (428, 428, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (429, 429, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (430, 430, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (431, 431, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (432, 432, 204);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (433, 433, 205);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (434, 434, 205);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (435, 435, 205);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (436, 436, 205);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (437, 437, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (438, 438, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (439, 439, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (440, 440, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (441, 441, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (442, 442, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (443, 443, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (444, 444, 206);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (445, 445, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (446, 446, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (447, 447, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (448, 448, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (449, 449, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (450, 450, 207);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (451, 451, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (452, 452, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (453, 453, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (454, 454, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (455, 455, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (456, 456, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (457, 457, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (458, 458, 208);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (459, 459, 217);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (460, 460, 217);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (461, 461, 217);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (462, 462, 219);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (463, 463, 217);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (464, 464, 218);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (465, 465, 218);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (466, 466, 217);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (467, 467, 213);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (468, 468, 213);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (469, 469, 213);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (470, 470, 215);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (471, 471, 214);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (472, 472, 215);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (473, 473, 214);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (474, 474, 215);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (475, 475, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (476, 476, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (477, 477, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (478, 478, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (479, 479, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (480, 480, 222);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (481, 481, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (482, 482, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (483, 483, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (484, 484, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (485, 485, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (486, 486, 221);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (487, 487, 223);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (488, 488, 223);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (489, 489, 223);
+INSERT INTO public.products_product_categories (id, product_id, category_id) VALUES (490, 490, 223);
+
+
+--
+-- Data for Name: products_product_feature_tags; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1482, 395, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1483, 395, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1484, 395, 660) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1485, 395, 661) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1486, 396, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1487, 396, 660) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1488, 396, 661) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1489, 397, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1490, 397, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1491, 397, 660) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1492, 397, 661) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1493, 398, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1494, 398, 664) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1495, 398, 660) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1496, 399, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1497, 399, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1498, 399, 665) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1499, 399, 666) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1500, 400, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1501, 400, 665) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1502, 400, 666) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1503, 401, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1504, 401, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1505, 401, 666) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1506, 402, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1507, 402, 667) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1508, 402, 668) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1509, 402, 661) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1510, 403, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1511, 403, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1512, 403, 669) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1513, 403, 670) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1514, 403, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1515, 404, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1516, 404, 669) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1517, 404, 670) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1518, 404, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1519, 405, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1520, 405, 669) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1521, 405, 670) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1522, 405, 672) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1523, 406, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1524, 406, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1525, 406, 669) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1526, 406, 670) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1527, 406, 673) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1528, 407, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1529, 407, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1530, 407, 674) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1531, 407, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1532, 408, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1533, 408, 674) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1534, 408, 672) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1535, 409, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1536, 409, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1537, 409, 674) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1538, 409, 673) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1539, 410, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1540, 410, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1541, 410, 675) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1542, 410, 676) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1543, 411, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1544, 411, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1545, 411, 678) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1546, 411, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1547, 412, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1548, 412, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1549, 412, 678) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1550, 412, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1551, 413, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1552, 413, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1553, 413, 678) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1554, 413, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1555, 414, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1556, 414, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1557, 414, 680) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1558, 414, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1559, 415, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1560, 415, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1561, 415, 680) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1562, 415, 681) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1563, 416, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1564, 416, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1565, 416, 680) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1566, 416, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1567, 417, 662) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1568, 417, 682) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1569, 417, 683) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1570, 417, 679) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1571, 418, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1572, 418, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1573, 418, 680) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1574, 418, 684) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1575, 419, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1576, 419, 685) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1577, 419, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1578, 420, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1579, 420, 687) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1580, 420, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1581, 420, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1582, 421, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1583, 421, 689) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1584, 421, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1585, 421, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1586, 421, 684) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1587, 422, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1588, 422, 685) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1589, 422, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1590, 423, 682) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1591, 423, 690) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1592, 423, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1593, 423, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1594, 424, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1595, 424, 687) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1596, 424, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1597, 424, 691) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1598, 424, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1599, 425, 682) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1600, 425, 692) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1601, 425, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1602, 425, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1603, 426, 677) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1604, 426, 693) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1605, 426, 684) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1606, 426, 686) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1607, 427, 694) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1608, 427, 695) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1609, 427, 696) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1610, 428, 694) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1611, 428, 695) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1612, 428, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1613, 429, 694) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1614, 429, 695) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1615, 429, 696) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1616, 430, 694) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1617, 430, 697) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1618, 430, 696) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1619, 430, 698) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1620, 431, 699) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1621, 431, 700) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1622, 431, 701) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1623, 431, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1624, 432, 694) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1625, 432, 695) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1626, 432, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1627, 432, 664) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1628, 433, 702) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1629, 433, 703) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1630, 433, 704) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1631, 434, 702) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1632, 434, 705) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1633, 434, 706) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1634, 434, 707) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1635, 435, 702) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1636, 435, 705) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1637, 435, 706) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1638, 435, 708) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1639, 436, 702) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1640, 436, 705) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1641, 436, 709) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1642, 436, 707) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1643, 437, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1644, 437, 711) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1645, 437, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1646, 438, 713) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1647, 438, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1648, 438, 714) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1649, 438, 715) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1650, 439, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1651, 439, 716) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1652, 439, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1653, 439, 717) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1654, 440, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1655, 440, 718) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1656, 440, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1657, 440, 719) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1658, 441, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1659, 441, 711) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1660, 441, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1661, 442, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1662, 442, 716) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1663, 442, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1664, 442, 720) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1665, 443, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1666, 443, 714) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1667, 443, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1668, 443, 721) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1669, 444, 713) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1670, 444, 722) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1671, 444, 716) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1672, 444, 712) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1673, 444, 721) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1674, 445, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1675, 445, 724) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1676, 445, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1677, 445, 725) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1678, 446, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1679, 446, 726) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1680, 446, 724) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1681, 446, 727) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1682, 447, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1683, 447, 728) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1684, 447, 729) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1685, 447, 725) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1686, 448, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1687, 448, 728) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1688, 448, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1689, 448, 725) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1690, 449, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1691, 449, 730) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1692, 449, 725) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1693, 449, 731) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1694, 450, 723) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1695, 450, 732) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1696, 450, 733) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1697, 450, 710) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1698, 451, 734) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1699, 451, 735) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1700, 451, 736) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1701, 451, 713) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1702, 451, 696) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1703, 452, 734) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1704, 452, 735) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1705, 452, 737) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1706, 452, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1707, 453, 734) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1708, 453, 735) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1709, 453, 737) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1710, 453, 713) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1711, 454, 738) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1712, 454, 739) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1713, 454, 713) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1714, 454, 731) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1715, 455, 738) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1716, 455, 739) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1717, 455, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1718, 455, 740) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1719, 455, 696) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1720, 456, 734) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1721, 456, 741) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1722, 456, 737) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1723, 456, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1724, 456, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1725, 457, 738) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1726, 457, 742) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1727, 457, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1728, 457, 743) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1729, 458, 734) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1730, 458, 735) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1731, 458, 737) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1732, 458, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1733, 458, 744) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1734, 459, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1735, 459, 745) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1736, 459, 746) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1737, 459, 747) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1738, 459, 748) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1739, 460, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1740, 460, 749) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1741, 460, 750) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1742, 460, 746) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1743, 460, 751) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1744, 461, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1745, 461, 752) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1746, 461, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1747, 461, 745) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1748, 461, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1749, 462, 753) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1750, 462, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1751, 462, 754) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1752, 462, 755) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1753, 462, 667) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1754, 463, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1755, 463, 756) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1756, 463, 754) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1757, 463, 746) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1758, 463, 757) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1759, 464, 758) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1760, 464, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1761, 464, 754) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1762, 464, 759) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1763, 464, 755) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1764, 465, 758) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1765, 465, 746) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1766, 465, 754) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1767, 465, 759) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1768, 465, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1769, 466, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1770, 466, 671) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1771, 466, 760) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1772, 466, 750) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1773, 466, 761) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1774, 467, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1775, 467, 762) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1776, 467, 763) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1777, 467, 745) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1778, 467, 752) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1779, 468, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1780, 468, 764) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1781, 468, 765) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1782, 468, 749) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1783, 469, 659) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1784, 469, 762) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1785, 469, 766) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1786, 469, 745) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1787, 469, 767) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1788, 470, 768) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1789, 470, 769) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1790, 470, 770) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1791, 470, 771) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1792, 471, 772) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1793, 471, 773) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1794, 471, 774) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1795, 471, 775) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1796, 471, 771) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1797, 472, 772) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1798, 472, 776) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1799, 472, 752) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1800, 472, 667) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1801, 473, 772) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1802, 473, 777) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1803, 473, 752) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1804, 473, 778) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1805, 473, 776) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1806, 474, 779) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1807, 474, 775) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1808, 474, 780) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1809, 474, 781) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1810, 475, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1811, 475, 783) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1812, 475, 784) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1813, 475, 785) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1814, 475, 786) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1815, 476, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1816, 476, 787) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1817, 476, 788) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1818, 476, 789) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1819, 477, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1820, 477, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1821, 477, 790) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1822, 477, 791) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1823, 478, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1824, 478, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1825, 478, 788) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1826, 478, 792) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1827, 479, 793) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1828, 479, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1829, 479, 794) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1830, 479, 791) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1831, 479, 663) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1832, 480, 793) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1833, 480, 785) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1834, 480, 786) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1835, 480, 795) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1836, 480, 789) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1837, 481, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1838, 481, 796) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1839, 481, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1840, 481, 797) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1841, 481, 798) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1842, 482, 793) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1843, 482, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1844, 482, 799) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1845, 482, 800) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1846, 482, 801) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1847, 483, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1848, 483, 802) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1849, 483, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1850, 483, 797) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1851, 483, 803) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1852, 484, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1853, 484, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1854, 484, 804) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1855, 484, 805) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1856, 484, 806) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1857, 484, 807) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1858, 485, 793) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1859, 485, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1860, 485, 797) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1861, 485, 808) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1862, 485, 809) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1863, 486, 793) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1864, 486, 688) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1865, 486, 799) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1866, 486, 809) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1867, 486, 810) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1868, 487, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1869, 487, 811) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1870, 487, 812) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1871, 488, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1872, 488, 813) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1873, 488, 814) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1874, 488, 658) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1875, 488, 815) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1876, 489, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1877, 489, 816) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1878, 489, 785) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1879, 489, 786) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1880, 490, 782) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1881, 490, 817) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1882, 490, 785) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1883, 490, 786) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+INSERT INTO public.products_product_feature_tags (id, product_id, tag_id) VALUES (1884, 490, 818) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, product_id = EXCLUDED.product_id, tag_id = EXCLUDED.tag_id;
+
+
+
+--
+-- Data for Name: products_productattribute; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1363, 265, 395, NULL, '', 3, '3.2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1364, 266, 395, NULL, '', 6, '6.0', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1365, 267, 395, NULL, '', 24, '24', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1366, 268, 395, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1367, 269, 395, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1368, 271, 395, NULL, '', 253, '253', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1369, 265, 396, NULL, '', 3, '3.4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1370, 266, 396, NULL, '', 5, '5.6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1371, 267, 396, NULL, '', 20, '20', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1372, 268, 396, NULL, '', 28, '28', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1373, 269, 396, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1374, 271, 396, NULL, '', 253, '253', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1375, 265, 397, NULL, '', 3, '3.5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1376, 266, 397, NULL, '', 5, '5.3', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1377, 267, 397, NULL, '', 14, '14', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1378, 268, 397, NULL, '', 20, '20', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1379, 269, 397, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1380, 271, 397, NULL, '', 181, '181', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1381, 265, 398, NULL, '', 3, '3.5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1382, 266, 398, NULL, '', 4, '4.7', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1383, 267, 398, NULL, '', 4, '4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1384, 268, 398, NULL, '', 8, '8', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1385, 269, 398, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1386, 271, 398, NULL, '', 110, '110', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1387, 265, 399, NULL, '', 4, '4.2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1388, 266, 399, NULL, '', 5, '5.7', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1389, 267, 399, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1390, 268, 399, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1391, 269, 399, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1392, 271, 399, NULL, '', 120, '120', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1393, 265, 400, NULL, '', 4, '4.2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1394, 266, 400, NULL, '', 5, '5.0', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1395, 267, 400, NULL, '', 8, '8', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1396, 268, 400, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1397, 269, 400, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1398, 271, 400, NULL, '', 120, '120', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1399, 265, 401, NULL, '', 4, '4.7', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1400, 266, 401, NULL, '', 5, '5.3', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1401, 267, 401, NULL, '', 6, '6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1402, 268, 401, NULL, '', 12, '12', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1403, 269, 401, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1404, 271, 401, NULL, '', 105, '105', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1405, 265, 402, NULL, '', 4, '4.3', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1406, 266, 402, NULL, '', 5, '5.7', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1407, 267, 402, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1408, 268, 402, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1409, 269, 402, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1410, 271, 402, NULL, '', 170, '170', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1411, 272, 403, NULL, '', 24, '24', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1412, 273, 403, NULL, 'GDDR6X', NULL, 'GDDR6X', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1413, 274, 403, NULL, '', 384, '384', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1414, 272, 404, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1415, 273, 404, NULL, 'GDDR6X', NULL, 'GDDR6X', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1416, 274, 404, NULL, '', 256, '256', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1417, 272, 405, NULL, '', 12, '12', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1418, 273, 405, NULL, 'GDDR6X', NULL, 'GDDR6X', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1419, 274, 405, NULL, '', 192, '192', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1420, 272, 406, NULL, '', 8, '8', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1421, 273, 406, NULL, 'GDDR6', NULL, 'GDDR6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1422, 274, 406, NULL, '', 128, '128', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1423, 272, 407, NULL, '', 24, '24', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1424, 273, 407, NULL, 'GDDR6', NULL, 'GDDR6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1425, 274, 407, NULL, '', 384, '384', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1426, 272, 408, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1427, 273, 408, NULL, 'GDDR6', NULL, 'GDDR6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1428, 274, 408, NULL, '', 256, '256', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1429, 272, 409, NULL, '', 8, '8', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1430, 273, 409, NULL, 'GDDR6', NULL, 'GDDR6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1431, 274, 409, NULL, '', 128, '128', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1432, 272, 410, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1433, 273, 410, NULL, 'GDDR6', NULL, 'GDDR6', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1434, 274, 410, NULL, '', 256, '256', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1435, 269, 411, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1436, 276, 411, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1437, 281, 411, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1438, 269, 412, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1439, 276, 412, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1440, 281, 412, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1441, 269, 413, NULL, 'LGA1700', NULL, 'LGA1700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1442, 276, 413, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1443, 281, 413, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1444, 269, 414, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1445, 276, 414, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1446, 281, 414, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1447, 269, 415, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1448, 276, 415, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1449, 281, 415, NULL, 'microATX', NULL, 'microATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1450, 269, 416, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1451, 276, 416, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1452, 281, 416, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1453, 269, 417, NULL, 'AM4', NULL, 'AM4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1454, 276, 417, NULL, 'DDR4', NULL, 'DDR4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1455, 281, 417, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1456, 269, 418, NULL, 'AM5', NULL, 'AM5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1457, 276, 418, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1458, 281, 418, NULL, 'ATX', NULL, 'ATX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1459, 275, 419, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1460, 276, 419, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1461, 277, 419, NULL, '', 5600, '5600', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1462, 278, 419, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1463, 275, 420, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1464, 276, 420, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1465, 277, 420, NULL, '', 6000, '6000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1466, 278, 420, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1467, 275, 421, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1468, 276, 421, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1469, 277, 421, NULL, '', 6400, '6400', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1470, 278, 421, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1471, 275, 422, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1472, 276, 422, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1473, 277, 422, NULL, '', 5600, '5600', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1474, 278, 422, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1475, 275, 423, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1476, 276, 423, NULL, 'DDR4', NULL, 'DDR4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1477, 277, 423, NULL, '', 3200, '3200', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1478, 278, 423, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1479, 275, 424, NULL, '', 64, '64', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1480, 276, 424, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1481, 277, 424, NULL, '', 6000, '6000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1482, 278, 424, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1483, 275, 425, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1484, 276, 425, NULL, 'DDR4', NULL, 'DDR4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1485, 277, 425, NULL, '', 3600, '3600', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1486, 278, 425, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1487, 275, 426, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1488, 276, 426, NULL, 'DDR5', NULL, 'DDR5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1489, 277, 426, NULL, '', 7200, '7200', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1490, 278, 426, NULL, '', 2, '2', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1491, 279, 427, NULL, '', 2000, '2000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1492, 280, 427, NULL, 'NVMe', NULL, 'NVMe', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1493, 281, 427, NULL, 'M.2 2280', NULL, 'M.2 2280', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1494, 282, 427, NULL, '', 7450, '7450', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1495, 283, 427, NULL, '', 6900, '6900', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1496, 279, 428, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1497, 280, 428, NULL, 'NVMe', NULL, 'NVMe', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1498, 281, 428, NULL, 'M.2 2280', NULL, 'M.2 2280', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1499, 282, 428, NULL, '', 7300, '7300', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1500, 283, 428, NULL, '', 6300, '6300', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1501, 279, 429, NULL, '', 2000, '2000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1502, 280, 429, NULL, 'NVMe', NULL, 'NVMe', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1503, 281, 429, NULL, 'M.2 2280', NULL, 'M.2 2280', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1504, 282, 429, NULL, '', 7000, '7000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1505, 283, 429, NULL, '', 7000, '7000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1506, 279, 430, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1507, 280, 430, NULL, 'NVMe', NULL, 'NVMe', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1508, 281, 430, NULL, 'M.2 2280', NULL, 'M.2 2280', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1509, 282, 430, NULL, '', 11700, '11700', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1510, 283, 430, NULL, '', 9500, '9500', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1511, 279, 431, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1512, 280, 431, NULL, 'SSD', NULL, 'SSD', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1513, 281, 431, NULL, '2.5"', NULL, '2.5"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1514, 282, 431, NULL, '', 560, '560', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1515, 283, 431, NULL, '', 530, '530', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1516, 279, 432, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1517, 280, 432, NULL, 'NVMe', NULL, 'NVMe', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1518, 281, 432, NULL, 'M.2 2280', NULL, 'M.2 2280', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1519, 282, 432, NULL, '', 4150, '4150', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1520, 283, 432, NULL, '', 4150, '4150', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1521, 279, 433, NULL, '', 4000, '4000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1522, 280, 433, NULL, 'HDD', NULL, 'HDD', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1523, 281, 433, NULL, '3.5"', NULL, '3.5"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1524, 279, 434, NULL, '', 8000, '8000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1525, 280, 434, NULL, 'HDD', NULL, 'HDD', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1526, 281, 434, NULL, '3.5"', NULL, '3.5"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1527, 279, 435, NULL, '', 12000, '12000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1528, 280, 435, NULL, 'HDD', NULL, 'HDD', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1529, 281, 435, NULL, '3.5"', NULL, '3.5"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1530, 279, 436, NULL, '', 4000, '4000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1531, 280, 436, NULL, 'HDD', NULL, 'HDD', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1532, 281, 436, NULL, '3.5"', NULL, '3.5"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1533, 284, 437, NULL, '', 850, '850', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1534, 285, 437, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1535, 286, 437, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1536, 284, 438, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1537, 285, 438, NULL, '80+ Titanium', NULL, '80+ Titanium', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1538, 286, 438, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1539, 284, 439, NULL, '', 750, '750', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1548, 284, 442, NULL, '', 750, '750', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1549, 285, 442, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1550, 286, 442, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1551, 284, 443, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1552, 285, 443, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1553, 286, 443, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1554, 284, 444, NULL, '', 750, '750', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1555, 285, 444, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1556, 286, 444, NULL, 'Semi-modular', NULL, 'Semi-modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1557, 301, 445, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1558, 300, 445, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1559, 301, 446, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1560, 300, 446, NULL, '', NULL, 'Charcoal Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1540, 285, 439, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1541, 286, 439, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1561, 301, 447, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1542, 284, 440, NULL, '', 650, '650', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1543, 285, 440, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1544, 286, 440, NULL, 'Non-modular', NULL, 'Non-modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1545, 284, 441, NULL, '', 850, '850', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1546, 285, 441, NULL, '80+ Gold', NULL, '80+ Gold', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1547, 286, 441, NULL, 'Fully modular', NULL, 'Fully modular', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1562, 300, 447, NULL, '', NULL, 'White', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1563, 301, 448, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1564, 300, 448, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1565, 301, 449, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1566, 300, 449, NULL, '', NULL, 'White', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1567, 301, 450, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1568, 300, 450, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1569, 300, 451, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1570, 300, 452, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1571, 300, 453, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1572, 300, 454, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1573, 301, 455, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1574, 300, 455, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1575, 301, 456, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1576, 300, 456, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1577, 301, 457, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1578, 300, 457, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1579, 300, 458, NULL, '', NULL, 'Silver', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1580, 287, 459, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1581, 288, 459, NULL, '', NULL, '2560×1440 (QHD)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1582, 289, 459, NULL, 'VA', NULL, 'VA', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1583, 290, 459, NULL, '', 240, '240', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1603, 289, 462, NULL, 'IPS', NULL, 'IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1604, 290, 462, NULL, '', 60, '60', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1584, 291, 459, NULL, '', 1, '1', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1585, 292, 459, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1605, 291, 462, NULL, '', 4, '4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1586, 293, 459, NULL, '', 350, '350', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1587, 287, 460, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1606, 292, 462, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1607, 293, 462, NULL, '', 350, '350', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1588, 288, 460, NULL, '', NULL, '2560×1440 (QHD)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1589, 289, 460, NULL, 'Nano IPS', NULL, 'Nano IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1608, 287, 463, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1590, 290, 460, NULL, '', 165, '165', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1591, 291, 460, NULL, '', 1, '1', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1609, 288, 463, NULL, '', NULL, '2560×1440 (QHD)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1610, 289, 463, NULL, 'IPS', NULL, 'IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1592, 292, 460, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1593, 293, 460, NULL, '', 400, '400', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1611, 290, 463, NULL, '', 170, '170', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1594, 287, 461, NULL, '', NULL, '32"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1595, 288, 461, NULL, '', NULL, '3840×2160 (4K)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1612, 291, 463, NULL, '', 1, '1', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1613, 292, 463, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1596, 289, 461, NULL, 'OLED', NULL, 'OLED', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1614, 293, 463, NULL, '', 350, '350', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1615, 287, 464, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1597, 290, 461, NULL, '', 240, '240', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1598, 291, 461, NULL, '', 0, '0.03', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1599, 292, 461, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1600, 293, 461, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1601, 287, 462, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1602, 288, 462, NULL, '', NULL, '3840×2160 (4K)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1616, 288, 464, NULL, '', NULL, '3840×2160 (4K)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1617, 289, 464, NULL, 'IPS', NULL, 'IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1618, 290, 464, NULL, '', 60, '60', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1619, 291, 464, NULL, '', 5, '5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1620, 292, 464, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1621, 293, 464, NULL, '', 350, '350', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1622, 287, 465, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1623, 288, 465, NULL, '', NULL, '2560×1440 (QHD)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1624, 289, 465, NULL, 'IPS', NULL, 'IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1625, 290, 465, NULL, '', 75, '75', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1626, 291, 465, NULL, '', 5, '5', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1627, 292, 465, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1628, 293, 465, NULL, '', 350, '350', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1629, 287, 466, NULL, '', NULL, '27"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1630, 288, 466, NULL, '', NULL, '3840×2160 (4K)', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1631, 289, 466, NULL, 'Nano IPS', NULL, 'Nano IPS', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1632, 290, 466, NULL, '', 144, '144', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1633, 291, 466, NULL, '', 1, '1', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1634, 292, 466, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1635, 293, 466, NULL, '', 600, '600', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1636, 294, 467, NULL, '', NULL, '16"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1637, 295, 467, NULL, '', NULL, 'Intel Core Ultra 9 285H', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1658, 296, 471, NULL, '', NULL, 'Integrated 10-core', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1659, 297, 471, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1638, 296, 467, NULL, '', NULL, 'NVIDIA RTX 4070 8GB', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1660, 298, 471, NULL, '', 256, '256', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1639, 297, 467, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1661, 294, 472, NULL, '', NULL, '15.6"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1662, 295, 472, NULL, '', NULL, 'Intel Core i7-13700H', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1640, 298, 467, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1663, 296, 472, NULL, '', NULL, 'NVIDIA RTX 4060 6GB', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1641, 294, 468, NULL, '', NULL, '16"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1664, 297, 472, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1665, 298, 472, NULL, '', 512, '512', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1642, 295, 468, NULL, '', NULL, 'Intel Core i9-14900HX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1666, 294, 473, NULL, '', NULL, '16"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1643, 296, 468, NULL, '', NULL, 'NVIDIA RTX 4060 8GB', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1667, 295, 473, NULL, '', NULL, 'Intel Core Ultra 7 155H', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1668, 296, 473, NULL, '', NULL, 'Intel Arc Integrated', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1669, 297, 473, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1670, 298, 473, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1671, 294, 474, NULL, '', NULL, '14"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1672, 295, 474, NULL, '', NULL, 'Intel Core Ultra 7 155H', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1673, 296, 474, NULL, '', NULL, 'Intel Arc Integrated', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1674, 297, 474, NULL, '', 32, '32', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1675, 298, 474, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1676, 299, 474, NULL, '', NULL, '1.09 kg', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1677, 302, 475, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1678, 300, 475, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1679, 302, 476, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1680, 300, 476, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1644, 297, 468, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1645, 298, 468, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1646, 294, 469, NULL, '', NULL, '16"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1647, 295, 469, NULL, '', NULL, 'Intel Core i7-14700HX', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1648, 296, 469, NULL, '', NULL, 'NVIDIA RTX 4070 8GB', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1649, 297, 469, NULL, '', 16, '16', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1650, 298, 469, NULL, '', 1000, '1000', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1651, 294, 470, NULL, '', NULL, '16.2"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1652, 295, 470, NULL, '', NULL, 'Apple M4 Pro', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1653, 296, 470, NULL, '', NULL, 'Integrated 20-core', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1654, 297, 470, NULL, '', 24, '24', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1655, 298, 470, NULL, '', 512, '512', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1656, 294, 471, NULL, '', NULL, '15.3"', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1657, 295, 471, NULL, '', NULL, 'Apple M4', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1681, 302, 477, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1682, 301, 477, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1683, 300, 477, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1684, 302, 478, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1685, 301, 478, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1686, 300, 478, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1687, 302, 479, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1688, 301, 479, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1689, 300, 479, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1690, 302, 480, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1691, 301, 480, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1692, 300, 480, NULL, '', NULL, 'Black', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1693, 303, 481, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1694, 301, 481, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1695, 302, 481, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1696, 303, 482, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1697, 301, 482, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1698, 302, 482, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1699, 303, 483, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1700, 301, 483, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1701, 302, 483, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1702, 303, 484, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1703, 301, 484, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1704, 302, 484, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1705, 303, 485, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1706, 301, 485, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1707, 302, 485, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1708, 303, 486, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1709, 301, 486, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1710, 302, 486, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1711, 302, 487, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1712, 301, 487, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1713, 302, 488, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1714, 301, 488, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1715, 302, 489, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1716, 301, 489, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1717, 302, 490, true, '', NULL, 'Да', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_productattribute (id, attribute_id, product_id, value_bool, value_enum, value_int, value_str, variant_id) VALUES (1718, 301, 490, false, '', NULL, 'Нет', NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, attribute_id = EXCLUDED.attribute_id, product_id = EXCLUDED.product_id, value_bool = EXCLUDED.value_bool, value_enum = EXCLUDED.value_enum, value_int = EXCLUDED.value_int, value_str = EXCLUDED.value_str, variant_id = EXCLUDED.variant_id;
+
+
+
+--
+-- Data for Name: products_productimage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (827, 'product_images/intel-core-i9-14900k_6.png', false, 395, 'Intel Core i9-14900K', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (828, 'product_images/intel-core-i9-14900k_7.jpg', false, 395, 'Intel Core i9-14900K', 'gallery', 7, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (829, 'product_images/intel-core-i9-14900k_8.jpg', false, 395, 'Intel Core i9-14900K', 'gallery', 8, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (830, 'product_images/intel-core-i7-14700k_0_LANz8XT.jpg', true, 396, 'Intel Core i7-14700K', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (831, 'product_images/intel-core-i7-14700k_1.webp', false, 396, 'Intel Core i7-14700K', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (832, 'product_images/intel-core-i7-14700k_2.jpg', false, 396, 'Intel Core i7-14700K', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (833, 'product_images/intel-core-i5-14600k_0_BowjtCV.jpg', true, 397, 'Intel Core i5-14600K', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (834, 'product_images/intel-core-i5-14600k_1.jpg', false, 397, 'Intel Core i5-14600K', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (835, 'product_images/intel-core-i5-14600k_2.webp', false, 397, 'Intel Core i5-14600K', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (836, 'product_images/intel-core-i3-14100f_0_m9wuPdA.jpg', true, 398, 'Intel Core i3-14100F', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (837, 'product_images/intel-core-i3-14100f_2_pvL9KHi.jpg', false, 398, 'Intel Core i3-14100F', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (838, 'product_images/intel-core-i3-14100f_3.jpg', false, 398, 'Intel Core i3-14100F', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (839, 'product_images/amd-ryzen-9-7950x3d_1_MLkWiMV.jpg', false, 399, 'AMD Ryzen 9 7950X3D', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (840, 'product_images/amd-ryzen-9-7950x3d_5.jpg', false, 399, 'AMD Ryzen 9 7950X3D', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (841, 'product_images/amd-ryzen-9-7950x3d_6.jpg', false, 399, 'AMD Ryzen 9 7950X3D', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (842, 'product_images/amd-ryzen-7-7800x3d_0_Sc8B1pD.jpg', true, 400, 'AMD Ryzen 7 7800X3D', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (843, 'product_images/amd-ryzen-7-7800x3d_1_xunNSkj.jpg', false, 400, 'AMD Ryzen 7 7800X3D', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (844, 'product_images/amd-ryzen-7-7800x3d_2.jpg', false, 400, 'AMD Ryzen 7 7800X3D', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (845, 'product_images/amd-ryzen-5-7600x_2.jpg', false, 401, 'AMD Ryzen 5 7600X', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (846, 'product_images/amd-ryzen-5-7600x_3_cG8A5AP.jpg', false, 401, 'AMD Ryzen 5 7600X', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (847, 'product_images/amd-ryzen-5-7600x_4.jpg', false, 401, 'AMD Ryzen 5 7600X', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (848, 'product_images/amd-ryzen-9-9950x_2.jpg', false, 402, 'AMD Ryzen 9 9950X', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (849, 'product_images/amd-ryzen-9-9950x_3_Cnd3xLu.jpg', false, 402, 'AMD Ryzen 9 9950X', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (850, 'product_images/amd-ryzen-9-9950x_4.jpg', false, 402, 'AMD Ryzen 9 9950X', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (851, 'product_images/nvidia-geforce-rtx-4090_0.jpg', true, 403, 'NVIDIA GeForce RTX 4090', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (852, 'product_images/nvidia-geforce-rtx-4090_1_Blidz1t.jpg', false, 403, 'NVIDIA GeForce RTX 4090', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (853, 'product_images/nvidia-geforce-rtx-4090_3_YK8kywr.jpg', false, 403, 'NVIDIA GeForce RTX 4090', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (854, 'product_images/nvidia-geforce-rtx-4080-super_0_T5ACgE1.jpg', true, 404, 'NVIDIA GeForce RTX 4080 Super', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (855, 'product_images/nvidia-geforce-rtx-4080-super_1.jpg', false, 404, 'NVIDIA GeForce RTX 4080 Super', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (856, 'product_images/nvidia-geforce-rtx-4080-super_2.jpg', false, 404, 'NVIDIA GeForce RTX 4080 Super', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (857, 'product_images/nvidia-geforce-rtx-4070-super_0.jpg', true, 405, 'NVIDIA GeForce RTX 4070 Super', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (858, 'product_images/nvidia-geforce-rtx-4070-super_1_96KEjB4.jpg', false, 405, 'NVIDIA GeForce RTX 4070 Super', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (859, 'product_images/nvidia-geforce-rtx-4070-super_2_mQ2BzVz.jpg', false, 405, 'NVIDIA GeForce RTX 4070 Super', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (860, 'product_images/nvidia-geforce-rtx-4060-ti_1.png', false, 406, 'NVIDIA GeForce RTX 4060 Ti', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (861, 'product_images/nvidia-geforce-rtx-4060-ti_2.jpg', false, 406, 'NVIDIA GeForce RTX 4060 Ti', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (862, 'product_images/nvidia-geforce-rtx-4060-ti_3_rrlJ8Gc.jpg', false, 406, 'NVIDIA GeForce RTX 4060 Ti', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (863, 'product_images/amd-radeon-rx-7900-xtx_1.jpg', false, 407, 'AMD Radeon RX 7900 XTX', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (864, 'product_images/amd-radeon-rx-7900-xtx_2.jpg', false, 407, 'AMD Radeon RX 7900 XTX', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (865, 'product_images/amd-radeon-rx-7900-xtx_3_2ATbSQA.jpg', false, 407, 'AMD Radeon RX 7900 XTX', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (866, 'product_images/amd-radeon-rx-7800-xt_1_k4JzLuv.jpg', false, 408, 'AMD Radeon RX 7800 XT', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (867, 'product_images/amd-radeon-rx-7800-xt_2_RrH8ELO.jpg', false, 408, 'AMD Radeon RX 7800 XT', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (868, 'product_images/amd-radeon-rx-7800-xt_3.jpg', false, 408, 'AMD Radeon RX 7800 XT', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (869, 'product_images/amd-radeon-rx-7600_0_qFgEUxx.jpg', true, 409, 'AMD Radeon RX 7600', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (870, 'product_images/amd-radeon-rx-7600_2.webp', false, 409, 'AMD Radeon RX 7600', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (871, 'product_images/amd-radeon-rx-7600_3.jpg', false, 409, 'AMD Radeon RX 7600', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (872, 'product_images/intel-arc-a770-16gb_0.png', true, 410, 'Intel Arc A770 16GB', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (873, 'product_images/intel-arc-a770-16gb_1.png', false, 410, 'Intel Arc A770 16GB', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (874, 'product_images/intel-arc-a770-16gb_2.jpg', false, 410, 'Intel Arc A770 16GB', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (875, 'product_images/asus-rog-strix-z790-f-gaming-wifi_0.jpg', true, 411, 'ASUS ROG STRIX Z790-F Gaming WiFi', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (876, 'product_images/asus-rog-strix-z790-f-gaming-wifi_1_eLJBY5x.png', false, 411, 'ASUS ROG STRIX Z790-F Gaming WiFi', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (877, 'product_images/asus-rog-strix-z790-f-gaming-wifi_2.png', false, 411, 'ASUS ROG STRIX Z790-F Gaming WiFi', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (878, 'product_images/gigabyte-z790-aorus-elite-ax_0_k2ZdlmP.jpg', true, 412, 'Gigabyte Z790 AORUS Elite AX', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (879, 'product_images/gigabyte-z790-aorus-elite-ax_1.png', false, 412, 'Gigabyte Z790 AORUS Elite AX', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (880, 'product_images/gigabyte-z790-aorus-elite-ax_2.jpg', false, 412, 'Gigabyte Z790 AORUS Elite AX', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (881, 'product_images/asus-tuf-gaming-b760-plus-wifi_2.png', false, 413, 'ASUS TUF Gaming B760-PLUS WiFi', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (882, 'product_images/asus-tuf-gaming-b760-plus-wifi_3.png', false, 413, 'ASUS TUF Gaming B760-PLUS WiFi', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (883, 'product_images/asus-tuf-gaming-b760-plus-wifi_5.jpg', false, 413, 'ASUS TUF Gaming B760-PLUS WiFi', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (884, 'product_images/msi-mag-b650-tomahawk-wifi_1.png', false, 414, 'MSI MAG B650 TOMAHAWK WiFi', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (885, 'product_images/msi-mag-b650-tomahawk-wifi_2.png', false, 414, 'MSI MAG B650 TOMAHAWK WiFi', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (886, 'product_images/msi-mag-b650-tomahawk-wifi_3.jpg', false, 414, 'MSI MAG B650 TOMAHAWK WiFi', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (887, 'product_images/asrock-b650m-pro-rs-wifi_0_imkC4pY.png', true, 415, 'ASRock B650M Pro RS WiFi', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (888, 'product_images/asrock-b650m-pro-rs-wifi_2_WEmaQIt.png', false, 415, 'ASRock B650M Pro RS WiFi', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (889, 'product_images/asrock-b650m-pro-rs-wifi_3.png', false, 415, 'ASRock B650M Pro RS WiFi', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (890, 'product_images/msi-mpg-x670e-carbon-wifi_1_lM4ox8j.png', false, 416, 'MSI MPG X670E Carbon WiFi', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (891, 'product_images/msi-mpg-x670e-carbon-wifi_2.jpg', false, 416, 'MSI MPG X670E Carbon WiFi', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (892, 'product_images/msi-mpg-x670e-carbon-wifi_3.jpg', false, 416, 'MSI MPG X670E Carbon WiFi', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (893, 'product_images/gigabyte-b550-aorus-elite-v2_0.png', true, 417, 'Gigabyte B550 AORUS Elite V2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (894, 'product_images/gigabyte-b550-aorus-elite-v2_1.jpg', false, 417, 'Gigabyte B550 AORUS Elite V2', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (895, 'product_images/gigabyte-b550-aorus-elite-v2_2_3pNAFkL.jpg', false, 417, 'Gigabyte B550 AORUS Elite V2', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (896, 'product_images/asus-rog-crosshair-x670e-hero_0_PTuIIbr.jpg', true, 418, 'ASUS ROG Crosshair X670E Hero', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (897, 'product_images/asus-rog-crosshair-x670e-hero_1_2QBvBwn.jpg', false, 418, 'ASUS ROG Crosshair X670E Hero', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (898, 'product_images/asus-rog-crosshair-x670e-hero_2.png', false, 418, 'ASUS ROG Crosshair X670E Hero', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (899, 'product_images/kingston-fury-beast-ddr5-32gb-2x16-5600mhz_0.png', true, 419, 'Kingston Fury Beast DDR5 32GB (2×16GB) 5600MHz', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (900, 'product_images/kingston-fury-beast-ddr5-32gb-2x16-5600mhz_1_xjpxMxN.jpg', false, 419, 'Kingston Fury Beast DDR5 32GB (2×16GB) 5600MHz', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (901, 'product_images/kingston-fury-beast-ddr5-32gb-2x16-5600mhz_2.jpg', false, 419, 'Kingston Fury Beast DDR5 32GB (2×16GB) 5600MHz', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (902, 'product_images/corsair-vengeance-ddr5-32gb-2x16-6000mhz-rgb_3.jpg', false, 420, 'Corsair Vengeance DDR5 32GB (2×16GB) 6000MHz RGB', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (903, 'product_images/corsair-vengeance-ddr5-32gb-2x16-6000mhz-rgb_5.webp', false, 420, 'Corsair Vengeance DDR5 32GB (2×16GB) 6000MHz RGB', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (904, 'product_images/corsair-vengeance-ddr5-32gb-2x16-6000mhz-rgb_8.jpg', false, 420, 'Corsair Vengeance DDR5 32GB (2×16GB) 6000MHz RGB', 'gallery', 8, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (905, 'product_images/gskill-trident-z5-rgb-ddr5-32gb-2x16-6400mhz_1.jpg', false, 421, 'G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6400MHz', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (906, 'product_images/gskill-trident-z5-rgb-ddr5-32gb-2x16-6400mhz_2.jpg', false, 421, 'G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6400MHz', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (907, 'product_images/gskill-trident-z5-rgb-ddr5-32gb-2x16-6400mhz_4_ppzYht8.webp', false, 421, 'G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6400MHz', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (908, 'product_images/crucial-pro-ddr5-32gb-2x16-5600mhz_1.jpg', false, 422, 'Crucial Pro DDR5 32GB (2×16GB) 5600MHz', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (909, 'product_images/crucial-pro-ddr5-32gb-2x16-5600mhz_4_WntYMJy.jpg', false, 422, 'Crucial Pro DDR5 32GB (2×16GB) 5600MHz', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (910, 'product_images/crucial-pro-ddr5-32gb-2x16-5600mhz_8.jpg', false, 422, 'Crucial Pro DDR5 32GB (2×16GB) 5600MHz', 'gallery', 8, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (911, 'product_images/crucial-pro-ddr4-32gb-2x16-3200mhz_2.jpg', false, 423, 'Crucial Pro DDR4 32GB (2×16GB) 3200MHz', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (912, 'product_images/crucial-pro-ddr4-32gb-2x16-3200mhz_6.jpg', false, 423, 'Crucial Pro DDR4 32GB (2×16GB) 3200MHz', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (913, 'product_images/crucial-pro-ddr4-32gb-2x16-3200mhz_7.jpg', false, 423, 'Crucial Pro DDR4 32GB (2×16GB) 3200MHz', 'gallery', 7, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (914, 'product_images/teamgroup-t-force-delta-rgb-ddr5-64gb-2x32-6000mhz_0_kOVOwxm.jpg', true, 424, 'TeamGroup T-Force Delta RGB DDR5 64GB (2×32GB) 6000MHz', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (915, 'product_images/teamgroup-t-force-delta-rgb-ddr5-64gb-2x32-6000mhz_3.jpg', false, 424, 'TeamGroup T-Force Delta RGB DDR5 64GB (2×32GB) 6000MHz', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (916, 'product_images/teamgroup-t-force-delta-rgb-ddr5-64gb-2x32-6000mhz_4.jpg', false, 424, 'TeamGroup T-Force Delta RGB DDR5 64GB (2×32GB) 6000MHz', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (917, 'product_images/patriot-viper-steel-ddr4-16gb-2x8-3600mhz_0_yB5Kh72.jpg', true, 425, 'Patriot Viper Steel DDR4 16GB (2×8GB) 3600MHz', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (918, 'product_images/patriot-viper-steel-ddr4-16gb-2x8-3600mhz_4_WLv7vgi.jpg', false, 425, 'Patriot Viper Steel DDR4 16GB (2×8GB) 3600MHz', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (919, 'product_images/patriot-viper-steel-ddr4-16gb-2x8-3600mhz_5.jpg', false, 425, 'Patriot Viper Steel DDR4 16GB (2×8GB) 3600MHz', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (920, 'product_images/kingston-fury-renegade-ddr5-32gb-2x16-7200mhz_0.jpg', true, 426, 'Kingston Fury Renegade DDR5 32GB (2×16GB) 7200MHz', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (921, 'product_images/kingston-fury-renegade-ddr5-32gb-2x16-7200mhz_1.png', false, 426, 'Kingston Fury Renegade DDR5 32GB (2×16GB) 7200MHz', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (922, 'product_images/kingston-fury-renegade-ddr5-32gb-2x16-7200mhz_3.webp', false, 426, 'Kingston Fury Renegade DDR5 32GB (2×16GB) 7200MHz', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (923, 'product_images/samsung-990-pro-2tb-nvme-m2_0.png', true, 427, 'Samsung 990 PRO 2TB NVMe M.2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (924, 'product_images/samsung-990-pro-2tb-nvme-m2_3.jpg', false, 427, 'Samsung 990 PRO 2TB NVMe M.2', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (925, 'product_images/samsung-990-pro-2tb-nvme-m2_6.jpg', false, 427, 'Samsung 990 PRO 2TB NVMe M.2', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (926, 'product_images/wd-black-sn850x-1tb-nvme-m2_0.jpg', true, 428, 'WD Black SN850X 1TB NVMe M.2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (927, 'product_images/wd-black-sn850x-1tb-nvme-m2_7_Hp59cIl.jpg', false, 428, 'WD Black SN850X 1TB NVMe M.2', 'gallery', 7, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (928, 'product_images/kingston-kc3000-2tb-nvme-m2_5.jpg', false, 429, 'Kingston KC3000 2TB NVMe M.2', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (929, 'product_images/kingston-kc3000-2tb-nvme-m2_8.jpg', false, 429, 'Kingston KC3000 2TB NVMe M.2', 'gallery', 8, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (930, 'product_images/crucial-t700-1tb-nvme-m2-pcie-5_3.jpg', false, 430, 'Crucial T700 1TB NVMe M.2 PCIe 5.0', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (931, 'product_images/crucial-t700-1tb-nvme-m2-pcie-5_4.jpg', false, 430, 'Crucial T700 1TB NVMe M.2 PCIe 5.0', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (932, 'product_images/crucial-t700-1tb-nvme-m2-pcie-5_6_JXFYlho.jpg', false, 430, 'Crucial T700 1TB NVMe M.2 PCIe 5.0', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (933, 'product_images/samsung-870-evo-1tb-sata-25_0_x52bdEV.jpg', true, 431, 'Samsung 870 EVO 1TB SATA 2.5"', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (934, 'product_images/samsung-870-evo-1tb-sata-25_1_YRBLeKA.jpg', false, 431, 'Samsung 870 EVO 1TB SATA 2.5"', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (935, 'product_images/samsung-870-evo-1tb-sata-25_3_4KubMwU.jpg', false, 431, 'Samsung 870 EVO 1TB SATA 2.5"', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (936, 'product_images/wd-blue-sn580-1tb-nvme-m2_0_23XnP6D.jpg', true, 432, 'WD Blue SN580 1TB NVMe M.2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (937, 'product_images/wd-blue-sn580-1tb-nvme-m2_1_U59W4sn.jpg', false, 432, 'WD Blue SN580 1TB NVMe M.2', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (938, 'product_images/wd-blue-sn580-1tb-nvme-m2_2_abp7XUT.jpg', false, 432, 'WD Blue SN580 1TB NVMe M.2', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (939, 'product_images/seagate-barracuda-4tb-hdd-35_2_PhhnGt1.jpg', false, 433, 'Seagate BarraCuda 4TB HDD 3.5"', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (940, 'product_images/seagate-barracuda-4tb-hdd-35_3.jpg', false, 433, 'Seagate BarraCuda 4TB HDD 3.5"', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (941, 'product_images/seagate-barracuda-4tb-hdd-35_4_LqDRVEj.jpg', false, 433, 'Seagate BarraCuda 4TB HDD 3.5"', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (942, 'product_images/wd-red-plus-8tb-nas-hdd-35_2.png', false, 434, 'WD Red Plus 8TB NAS HDD 3.5"', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (943, 'product_images/wd-red-plus-8tb-nas-hdd-35_3.jpg', false, 434, 'WD Red Plus 8TB NAS HDD 3.5"', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (944, 'product_images/wd-red-plus-8tb-nas-hdd-35_4.png', false, 434, 'WD Red Plus 8TB NAS HDD 3.5"', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (945, 'product_images/toshiba-n300-12tb-nas-hdd-35_0_xVWdla1.jpg', true, 435, 'Toshiba N300 12TB NAS HDD 3.5"', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (946, 'product_images/toshiba-n300-12tb-nas-hdd-35_2.jpg', false, 435, 'Toshiba N300 12TB NAS HDD 3.5"', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (947, 'product_images/toshiba-n300-12tb-nas-hdd-35_3.jpg', false, 435, 'Toshiba N300 12TB NAS HDD 3.5"', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (948, 'product_images/seagate-ironwolf-4tb-nas-hdd-35_0_iluogX8.jpg', true, 436, 'Seagate IronWolf 4TB NAS HDD 3.5"', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (949, 'product_images/seagate-ironwolf-4tb-nas-hdd-35_1.jpg', false, 436, 'Seagate IronWolf 4TB NAS HDD 3.5"', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (950, 'product_images/seagate-ironwolf-4tb-nas-hdd-35_3.jpg', false, 436, 'Seagate IronWolf 4TB NAS HDD 3.5"', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (951, 'product_images/corsair-rm850x-2024-850w-80plus-gold_0.png', true, 437, 'Corsair RM850x (2024) 850W 80+ Gold', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (952, 'product_images/corsair-rm850x-2024-850w-80plus-gold_1_FnoAmgK.jpg', false, 437, 'Corsair RM850x (2024) 850W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (953, 'product_images/corsair-rm850x-2024-850w-80plus-gold_3.jpg', false, 437, 'Corsair RM850x (2024) 850W 80+ Gold', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (954, 'product_images/be-quiet-dark-power-13-1000w-80plus-titanium_0_hdW1x9a.jpg', true, 438, 'be quiet! Dark Power 13 1000W 80+ Titanium', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (955, 'product_images/be-quiet-dark-power-13-1000w-80plus-titanium_1_eGqO6sS.jpg', false, 438, 'be quiet! Dark Power 13 1000W 80+ Titanium', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (956, 'product_images/be-quiet-dark-power-13-1000w-80plus-titanium_2_10TT4EK.jpg', false, 438, 'be quiet! Dark Power 13 1000W 80+ Titanium', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (957, 'product_images/seasonic-focus-gx-750-750w-80plus-gold_1_590N1SN.jpg', false, 439, 'Seasonic Focus GX-750 750W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (958, 'product_images/seasonic-focus-gx-750-750w-80plus-gold_2.jpg', false, 439, 'Seasonic Focus GX-750 750W 80+ Gold', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (959, 'product_images/seasonic-focus-gx-750-750w-80plus-gold_3.jpg', false, 439, 'Seasonic Focus GX-750 750W 80+ Gold', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (960, 'product_images/cooler-master-mwe-gold-650-v2-650w-80plus-gold_0_3lKVAN8.jpg', true, 440, 'Cooler Master MWE Gold 650 V2 650W 80+ Gold', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (961, 'product_images/cooler-master-mwe-gold-650-v2-650w-80plus-gold_1.png', false, 440, 'Cooler Master MWE Gold 650 V2 650W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (962, 'product_images/cooler-master-mwe-gold-650-v2-650w-80plus-gold_2_Kmpm5PY.jpg', false, 440, 'Cooler Master MWE Gold 650 V2 650W 80+ Gold', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (963, 'product_images/evga-supernova-850-gt-850w-80plus-gold_0.png', true, 441, 'EVGA SuperNOVA 850 GT 850W 80+ Gold', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (964, 'product_images/evga-supernova-850-gt-850w-80plus-gold_1_RW9P09i.jpg', false, 441, 'EVGA SuperNOVA 850 GT 850W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (965, 'product_images/evga-supernova-850-gt-850w-80plus-gold_2_6t47kDx.png', false, 441, 'EVGA SuperNOVA 850 GT 850W 80+ Gold', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (966, 'product_images/corsair-rm750e-750w-80plus-gold_0_gpmq2AV.jpg', true, 442, 'Corsair RM750e 750W 80+ Gold', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (967, 'product_images/corsair-rm750e-750w-80plus-gold_1.jpg', false, 442, 'Corsair RM750e 750W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (968, 'product_images/corsair-rm750e-750w-80plus-gold_2.png', false, 442, 'Corsair RM750e 750W 80+ Gold', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (969, 'product_images/deepcool-pq1000m-1000w-80plus-gold_1.jpg', false, 443, 'DeepCool PQ1000M 1000W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (970, 'product_images/deepcool-pq1000m-1000w-80plus-gold_3.jpg', false, 443, 'DeepCool PQ1000M 1000W 80+ Gold', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (971, 'product_images/deepcool-pq1000m-1000w-80plus-gold_5.jpg', false, 443, 'DeepCool PQ1000M 1000W 80+ Gold', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (972, 'product_images/be-quiet-pure-power-12-m-750w-80plus-gold_0_FhuWUYx.jpg', true, 444, 'be quiet! Pure Power 12 M 750W 80+ Gold', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (973, 'product_images/be-quiet-pure-power-12-m-750w-80plus-gold_1_KlaVW0C.jpg', false, 444, 'be quiet! Pure Power 12 M 750W 80+ Gold', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (974, 'product_images/be-quiet-pure-power-12-m-750w-80plus-gold_2_Uz7QL0s.jpg', false, 444, 'be quiet! Pure Power 12 M 750W 80+ Gold', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (975, 'product_images/cooler-master-masterbox-td500-mesh-v2_0.jpg', true, 445, 'Cooler Master MasterBox TD500 Mesh V2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (976, 'product_images/cooler-master-masterbox-td500-mesh-v2_1_gX7A2vz.jpg', false, 445, 'Cooler Master MasterBox TD500 Mesh V2', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (977, 'product_images/cooler-master-masterbox-td500-mesh-v2_2_bqbyAzF.jpg', false, 445, 'Cooler Master MasterBox TD500 Mesh V2', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (978, 'product_images/fractal-design-north-charcoal-black_0_tUdjaZV.jpg', true, 446, 'Fractal Design North Charcoal Black', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (979, 'product_images/fractal-design-north-charcoal-black_1_9YkDJ2f.jpg', false, 446, 'Fractal Design North Charcoal Black', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (980, 'product_images/fractal-design-north-charcoal-black_2_lG1YJ1H.jpg', false, 446, 'Fractal Design North Charcoal Black', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (981, 'product_images/nzxt-h7-flow_1_RqEqIub.jpg', false, 447, 'NZXT H7 Flow', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (982, 'product_images/nzxt-h7-flow_2.jpg', false, 447, 'NZXT H7 Flow', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (983, 'product_images/nzxt-h7-flow_3.png', false, 447, 'NZXT H7 Flow', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (984, 'product_images/corsair-4000d-airflow_0.jpg', true, 448, 'Corsair 4000D Airflow', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (985, 'product_images/corsair-4000d-airflow_1.jpg', false, 448, 'Corsair 4000D Airflow', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (986, 'product_images/corsair-4000d-airflow_2.jpg', false, 448, 'Corsair 4000D Airflow', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (987, 'product_images/lian-li-o11-dynamic-evo_0.jpg', true, 449, 'Lian Li O11 Dynamic EVO', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (988, 'product_images/lian-li-o11-dynamic-evo_1_d9xTqq4.jpg', false, 449, 'Lian Li O11 Dynamic EVO', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (989, 'product_images/lian-li-o11-dynamic-evo_2_vo0qnxG.jpg', false, 449, 'Lian Li O11 Dynamic EVO', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (990, 'product_images/be-quiet-silent-base-802_0_LybM5Xt.jpg', true, 450, 'be quiet! Silent Base 802', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (991, 'product_images/be-quiet-silent-base-802_1_8fKJbmi.jpg', false, 450, 'be quiet! Silent Base 802', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (992, 'product_images/be-quiet-silent-base-802_2_mp4SFQz.jpg', false, 450, 'be quiet! Silent Base 802', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (993, 'product_images/noctua-nh-d15-chromax-black_0_I96xRzD.jpg', true, 451, 'Noctua NH-D15 chromax.black', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (994, 'product_images/noctua-nh-d15-chromax-black_1.png', false, 451, 'Noctua NH-D15 chromax.black', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (995, 'product_images/noctua-nh-d15-chromax-black_2_LLmkhAu.jpg', false, 451, 'Noctua NH-D15 chromax.black', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (996, 'product_images/deepcool-ak620_0.jpg', true, 452, 'DeepCool AK620', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (997, 'product_images/deepcool-ak620_1.jpg', false, 452, 'DeepCool AK620', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (998, 'product_images/deepcool-ak620_2.jpg', false, 452, 'DeepCool AK620', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (999, 'product_images/be-quiet-dark-rock-pro-4_2.jpg', false, 453, 'be quiet! Dark Rock Pro 4', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1000, 'product_images/be-quiet-dark-rock-pro-4_5.jpg', false, 453, 'be quiet! Dark Rock Pro 4', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1001, 'product_images/be-quiet-dark-rock-pro-4_6.jpg', false, 453, 'be quiet! Dark Rock Pro 4', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1002, 'product_images/arctic-liquid-freezer-ii-360_0.jpg', true, 454, 'Arctic Liquid Freezer II 360', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1003, 'product_images/arctic-liquid-freezer-ii-360_1_crpnUHo.png', false, 454, 'Arctic Liquid Freezer II 360', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1004, 'product_images/arctic-liquid-freezer-ii-360_2_iGjUV0j.jpg', false, 454, 'Arctic Liquid Freezer II 360', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1005, 'product_images/corsair-icue-h150i-elite-lcd-xt_0_NEzLAvG.webp', true, 455, 'Corsair iCUE H150i Elite LCD XT', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1006, 'product_images/corsair-icue-h150i-elite-lcd-xt_3.png', false, 455, 'Corsair iCUE H150i Elite LCD XT', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1007, 'product_images/corsair-icue-h150i-elite-lcd-xt_4.jpg', false, 455, 'Corsair iCUE H150i Elite LCD XT', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1008, 'product_images/cooler-master-hyper-212-halo-black_0.jpg', true, 456, 'Cooler Master Hyper 212 Halo Black', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1009, 'product_images/cooler-master-hyper-212-halo-black_1_u9eS0dP.jpg', false, 456, 'Cooler Master Hyper 212 Halo Black', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1010, 'product_images/cooler-master-hyper-212-halo-black_2.jpg', false, 456, 'Cooler Master Hyper 212 Halo Black', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1011, 'product_images/nzxt-kraken-x63-rgb-280mm_0.png', true, 457, 'NZXT Kraken X63 RGB 280mm', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1012, 'product_images/nzxt-kraken-x63-rgb-280mm_2.png', false, 457, 'NZXT Kraken X63 RGB 280mm', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1013, 'product_images/nzxt-kraken-x63-rgb-280mm_3.jpg', false, 457, 'NZXT Kraken X63 RGB 280mm', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1014, 'product_images/thermalright-peerless-assassin-120-se_0.jpg', true, 458, 'Thermalright Peerless Assassin 120 SE', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1015, 'product_images/thermalright-peerless-assassin-120-se_1_CREv3sT.jpg', false, 458, 'Thermalright Peerless Assassin 120 SE', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1016, 'product_images/thermalright-peerless-assassin-120-se_3_gueDsWh.jpg', false, 458, 'Thermalright Peerless Assassin 120 SE', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1017, 'product_images/samsung-odyssey-g7-27-qhd-240hz-curved_1_wAJOGvp.jpg', false, 459, 'Samsung Odyssey G7 27" QHD 240Hz Curved', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1018, 'product_images/samsung-odyssey-g7-27-qhd-240hz-curved_5.jpg', false, 459, 'Samsung Odyssey G7 27" QHD 240Hz Curved', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1019, 'product_images/samsung-odyssey-g7-27-qhd-240hz-curved_6.jpg', false, 459, 'Samsung Odyssey G7 27" QHD 240Hz Curved', 'gallery', 6, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1020, 'product_images/lg-ultragear-27gp850-b-27-qhd-165hz-nano-ips_0_gAAgr1v.jpg', true, 460, 'LG UltraGear 27GP850-B 27" QHD 165Hz Nano IPS', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1021, 'product_images/lg-ultragear-27gp850-b-27-qhd-165hz-nano-ips_1_ZhxRfkq.jpg', false, 460, 'LG UltraGear 27GP850-B 27" QHD 165Hz Nano IPS', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1022, 'product_images/lg-ultragear-27gp850-b-27-qhd-165hz-nano-ips_2_ZvGqN6o.jpg', false, 460, 'LG UltraGear 27GP850-B 27" QHD 165Hz Nano IPS', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1023, 'product_images/asus-rog-swift-pg32ucdm-32-4k-240hz-oled_0_ZzhkV1x.jpg', true, 461, 'ASUS ROG Swift PG32UCDM 32" 4K 240Hz OLED', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1024, 'product_images/asus-rog-swift-pg32ucdm-32-4k-240hz-oled_2_NagKfLr.jpg', false, 461, 'ASUS ROG Swift PG32UCDM 32" 4K 240Hz OLED', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1025, 'product_images/asus-rog-swift-pg32ucdm-32-4k-240hz-oled_3.png', false, 461, 'ASUS ROG Swift PG32UCDM 32" 4K 240Hz OLED', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1026, 'product_images/dell-s2722qc-27-4k-60hz-ips_0.jpg', true, 462, 'Dell S2722QC 27" 4K 60Hz IPS', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1027, 'product_images/dell-s2722qc-27-4k-60hz-ips_1.jpg', false, 462, 'Dell S2722QC 27" 4K 60Hz IPS', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1028, 'product_images/dell-s2722qc-27-4k-60hz-ips_3_rBcf2Ux.jpg', false, 462, 'Dell S2722QC 27" 4K 60Hz IPS', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1029, 'product_images/gigabyte-m27q-27-qhd-170hz-ips_1.jpg', false, 463, 'Gigabyte M27Q 27" QHD 170Hz IPS', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1030, 'product_images/gigabyte-m27q-27-qhd-170hz-ips_5.jpg', false, 463, 'Gigabyte M27Q 27" QHD 170Hz IPS', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1031, 'product_images/benq-pd2705u-27-4k-60hz-ips-designer_0.jpg', true, 464, 'BenQ PD2705U 27" 4K 60Hz IPS Designer Monitor', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1032, 'product_images/benq-pd2705u-27-4k-60hz-ips-designer_2_BMDMWgo.jpg', false, 464, 'BenQ PD2705U 27" 4K 60Hz IPS Designer Monitor', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1033, 'product_images/benq-pd2705u-27-4k-60hz-ips-designer_5.jpg', false, 464, 'BenQ PD2705U 27" 4K 60Hz IPS Designer Monitor', 'gallery', 5, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1034, 'product_images/asus-proart-pa278qv-27-qhd-75hz-ips_0.jpg', true, 465, 'ASUS ProArt PA278QV 27" QHD 75Hz IPS', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1035, 'product_images/asus-proart-pa278qv-27-qhd-75hz-ips_3.png', false, 465, 'ASUS ProArt PA278QV 27" QHD 75Hz IPS', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1036, 'product_images/asus-proart-pa278qv-27-qhd-75hz-ips_4.webp', false, 465, 'ASUS ProArt PA278QV 27" QHD 75Hz IPS', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1037, 'product_images/lg-27gn950-b-27-4k-144hz-nano-ips_0_L8KiL27.jpg', true, 466, 'LG 27GN950-B 27" 4K 144Hz Nano IPS', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1038, 'product_images/lg-27gn950-b-27-4k-144hz-nano-ips_1.png', false, 466, 'LG 27GN950-B 27" 4K 144Hz Nano IPS', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1039, 'product_images/lg-27gn950-b-27-4k-144hz-nano-ips_2_5isKK4i.jpg', false, 466, 'LG 27GN950-B 27" 4K 144Hz Nano IPS', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1040, 'product_images/asus-rog-zephyrus-g16-2025-ultra9-rtx4070_0.jpg', true, 467, 'ASUS ROG Zephyrus G16 (2025) 16" Ultra 9 / RTX 4070', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1041, 'product_images/asus-rog-zephyrus-g16-2025-ultra9-rtx4070_1.jpg', false, 467, 'ASUS ROG Zephyrus G16 (2025) 16" Ultra 9 / RTX 4070', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1042, 'product_images/asus-rog-zephyrus-g16-2025-ultra9-rtx4070_2.png', false, 467, 'ASUS ROG Zephyrus G16 (2025) 16" Ultra 9 / RTX 4070', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1043, 'product_images/lenovo-legion-pro-5-16irx9-i9-rtx4060_0.jpg', true, 468, 'Lenovo Legion Pro 5 16IRX9 16" i9 / RTX 4060', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1044, 'product_images/lenovo-legion-pro-5-16irx9-i9-rtx4060_2.webp', false, 468, 'Lenovo Legion Pro 5 16IRX9 16" i9 / RTX 4060', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1045, 'product_images/lenovo-legion-pro-5-16irx9-i9-rtx4060_3.jpg', false, 468, 'Lenovo Legion Pro 5 16IRX9 16" i9 / RTX 4060', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1046, 'product_images/acer-predator-helios-16-i7-rtx4070_0_8AfFxWA.jpg', true, 469, 'Acer Predator Helios 16 16" i7 / RTX 4070', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1047, 'product_images/acer-predator-helios-16-i7-rtx4070_1_Wej9l37.jpg', false, 469, 'Acer Predator Helios 16 16" i7 / RTX 4070', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1048, 'product_images/acer-predator-helios-16-i7-rtx4070_2.jpg', false, 469, 'Acer Predator Helios 16 16" i7 / RTX 4070', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1049, 'product_images/apple-macbook-pro-16-m4-pro_1.jpg', false, 470, 'Apple MacBook Pro 16" M4 Pro', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1050, 'product_images/apple-macbook-pro-16-m4-pro_2_QNyffEX.jpg', false, 470, 'Apple MacBook Pro 16" M4 Pro', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1051, 'product_images/apple-macbook-pro-16-m4-pro_3_01kPeBu.jpg', false, 470, 'Apple MacBook Pro 16" M4 Pro', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1052, 'product_images/apple-macbook-air-15-m4_0_SPXKHg8.jpg', true, 471, 'Apple MacBook Air 15" M4', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1053, 'product_images/apple-macbook-air-15-m4_1_sfojOAo.jpg', false, 471, 'Apple MacBook Air 15" M4', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1054, 'product_images/apple-macbook-air-15-m4_2_SL8jJxC.jpg', false, 471, 'Apple MacBook Air 15" M4', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1055, 'product_images/dell-xps-15-9530-i7-rtx4060_0.png', true, 472, 'Dell XPS 15 9530 15.6" i7 / RTX 4060', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1056, 'product_images/dell-xps-15-9530-i7-rtx4060_3.jpg', false, 472, 'Dell XPS 15 9530 15.6" i7 / RTX 4060', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1057, 'product_images/dell-xps-15-9530-i7-rtx4060_4.jpg', false, 472, 'Dell XPS 15 9530 15.6" i7 / RTX 4060', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1058, 'product_images/hp-spectre-x360-16-ultra7-intel-arc_0_nfgJcZv.jpg', true, 473, 'HP Spectre x360 16" Ultra 7 / Intel Arc', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1059, 'product_images/hp-spectre-x360-16-ultra7-intel-arc_1.png', false, 473, 'HP Spectre x360 16" Ultra 7 / Intel Arc', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1060, 'product_images/hp-spectre-x360-16-ultra7-intel-arc_2.jpg', false, 473, 'HP Spectre x360 16" Ultra 7 / Intel Arc', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1061, 'product_images/lenovo-thinkpad-x1-carbon-gen12-ultra7_0.png', true, 474, 'Lenovo ThinkPad X1 Carbon Gen 12 14" Ultra 7', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1062, 'product_images/lenovo-thinkpad-x1-carbon-gen12-ultra7_1_ao7tfp7.jpg', false, 474, 'Lenovo ThinkPad X1 Carbon Gen 12 14" Ultra 7', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1063, 'product_images/lenovo-thinkpad-x1-carbon-gen12-ultra7_2.jpg', false, 474, 'Lenovo ThinkPad X1 Carbon Gen 12 14" Ultra 7', 'gallery', 2, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1064, 'product_images/logitech-g-pro-x-superlight-2_0.png', true, 475, 'Logitech G Pro X Superlight 2', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1065, 'product_images/logitech-g-pro-x-superlight-2_3.jpg', false, 475, 'Logitech G Pro X Superlight 2', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1066, 'product_images/logitech-g-pro-x-superlight-2_4_xOXMbEd.jpg', false, 475, 'Logitech G Pro X Superlight 2', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1067, 'product_images/razer-deathadder-v3-pro_1.jpg', false, 476, 'Razer DeathAdder V3 Pro', 'gallery', 1, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1068, 'product_images/razer-deathadder-v3-pro_3_8vyCXzs.jpg', false, 476, 'Razer DeathAdder V3 Pro', 'gallery', 3, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1069, 'product_images/razer-deathadder-v3-pro_4.png', false, 476, 'Razer DeathAdder V3 Pro', 'gallery', 4, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+INSERT INTO public.products_productimage (id, image, is_main, product_id, alt_text, image_type, sort_order, variant_id, provenance) VALUES (1070, 'product_images/logitech-g502-x-plus_0.jpg', true, 477, 'Logitech G502 X Plus', 'main', 0, NULL, 'web') ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, image = EXCLUDED.image, is_main = EXCLUDED.is_main, product_id = EXCLUDED.product_id, alt_text = EXCLUDED.alt_text, image_type = EXCLUDED.image_type, sort_order = EXCLUDED.sort_order, variant_id = EXCLUDED.variant_id, provenance = EXCLUDED.provenance;
+
+
+
+--
+-- Data for Name: products_productvideo; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_promotionblock; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_promotionblock_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_promotionblock_products; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_review; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_reviewimage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_stock; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (477, 'default', 50, 0, 395, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (478, 'default', 50, 0, 396, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (479, 'default', 50, 0, 397, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (480, 'default', 50, 0, 398, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (481, 'default', 50, 0, 399, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (482, 'default', 50, 0, 400, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (483, 'default', 50, 0, 401, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (484, 'default', 50, 0, 402, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (485, 'default', 50, 0, 403, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (486, 'default', 50, 0, 404, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (487, 'default', 50, 0, 405, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (488, 'default', 50, 0, 406, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (489, 'default', 50, 0, 407, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (490, 'default', 50, 0, 408, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (491, 'default', 50, 0, 409, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (492, 'default', 50, 0, 410, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (493, 'default', 50, 0, 411, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (494, 'default', 50, 0, 412, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (495, 'default', 50, 0, 413, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (496, 'default', 50, 0, 414, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (497, 'default', 50, 0, 415, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (498, 'default', 50, 0, 416, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (499, 'default', 50, 0, 417, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (500, 'default', 50, 0, 418, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (501, 'default', 50, 0, 419, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (502, 'default', 50, 0, 420, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (503, 'default', 30, 0, NULL, 85) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (504, 'default', 30, 0, NULL, 86) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (505, 'default', 50, 0, 421, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (506, 'default', 50, 0, 422, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (507, 'default', 50, 0, 423, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (508, 'default', 50, 0, 424, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (509, 'default', 50, 0, 425, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (510, 'default', 50, 0, 426, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (511, 'default', 50, 0, 427, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (512, 'default', 30, 0, NULL, 87) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (513, 'default', 30, 0, NULL, 88) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (514, 'default', 30, 0, NULL, 89) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (515, 'default', 50, 0, 428, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (516, 'default', 50, 0, 429, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (517, 'default', 50, 0, 430, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (518, 'default', 50, 0, 431, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (519, 'default', 50, 0, 432, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (520, 'default', 50, 0, 433, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (521, 'default', 50, 0, 434, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (522, 'default', 50, 0, 435, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (523, 'default', 50, 0, 436, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (524, 'default', 50, 0, 437, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (525, 'default', 50, 0, 438, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (526, 'default', 50, 0, 439, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (527, 'default', 50, 0, 440, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (528, 'default', 50, 0, 441, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (529, 'default', 50, 0, 442, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (530, 'default', 50, 0, 443, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (531, 'default', 50, 0, 444, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (532, 'default', 50, 0, 445, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (533, 'default', 50, 0, 446, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (534, 'default', 50, 0, 447, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (535, 'default', 50, 0, 448, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (536, 'default', 50, 0, 449, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (537, 'default', 50, 0, 450, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (538, 'default', 50, 0, 451, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (539, 'default', 50, 0, 452, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (540, 'default', 50, 0, 453, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (541, 'default', 50, 0, 454, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (542, 'default', 50, 0, 455, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (543, 'default', 50, 0, 456, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (544, 'default', 50, 0, 457, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (545, 'default', 50, 0, 458, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (546, 'default', 50, 0, 459, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (547, 'default', 50, 0, 460, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (548, 'default', 50, 0, 461, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (549, 'default', 50, 0, 462, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (550, 'default', 50, 0, 463, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (551, 'default', 50, 0, 464, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (552, 'default', 50, 0, 465, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (553, 'default', 50, 0, 466, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (554, 'default', 50, 0, 467, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (555, 'default', 30, 0, NULL, 90) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (556, 'default', 30, 0, NULL, 91) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (557, 'default', 50, 0, 468, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (558, 'default', 50, 0, 469, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (559, 'default', 50, 0, 470, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (560, 'default', 30, 0, NULL, 92) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (561, 'default', 30, 0, NULL, 93) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (562, 'default', 50, 0, 471, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (563, 'default', 50, 0, 472, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (564, 'default', 50, 0, 473, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (565, 'default', 50, 0, 474, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (566, 'default', 50, 0, 475, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (567, 'default', 30, 0, NULL, 94) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (568, 'default', 30, 0, NULL, 95) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (569, 'default', 30, 0, NULL, 96) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (570, 'default', 50, 0, 476, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (571, 'default', 50, 0, 477, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (572, 'default', 50, 0, 478, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (573, 'default', 50, 0, 479, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (574, 'default', 50, 0, 480, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (575, 'default', 50, 0, 481, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (576, 'default', 50, 0, 482, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (577, 'default', 50, 0, 483, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (578, 'default', 50, 0, 484, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (579, 'default', 50, 0, 485, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (580, 'default', 50, 0, 486, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (581, 'default', 50, 0, 487, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (582, 'default', 50, 0, 488, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (583, 'default', 50, 0, 489, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+INSERT INTO public.products_stock (id, warehouse, quantity, reserved, product_id, variant_id) VALUES (584, 'default', 50, 0, 490, NULL) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, warehouse = EXCLUDED.warehouse, quantity = EXCLUDED.quantity, reserved = EXCLUDED.reserved, product_id = EXCLUDED.product_id, variant_id = EXCLUDED.variant_id;
+
+
+
+--
+-- Data for Name: products_supplier; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: products_warranty; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: services_serviceitem; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.services_serviceitem (id, name, price, category, is_active, sort_order) VALUES (2, 'Заправка картриджа (1010/1005)', 250.00, 'maintenance', true, 0) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, price = EXCLUDED.price, category = EXCLUDED.category, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.services_serviceitem (id, name, price, category, is_active, sort_order) VALUES (3, 'Заправка картриджа (132)', 300.00, 'repair', true, 0) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, price = EXCLUDED.price, category = EXCLUDED.category, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order;
+
+INSERT INTO public.services_serviceitem (id, name, price, category, is_active, sort_order) VALUES (4, 'Переустановка Windows', 1000.00, 'repair', true, 0) ON CONFLICT (id) DO UPDATE SET id = EXCLUDED.id, name = EXCLUDED.name, price = EXCLUDED.price, category = EXCLUDED.category, is_active = EXCLUDED.is_active, sort_order = EXCLUDED.sort_order;
+
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 184, true);
+
+
+--
+-- Name: customers_address_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_address_id_seq', 1, false);
+
+
+--
+-- Name: customers_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_cart_id_seq', 1, false);
+
+
+--
+-- Name: customers_changelog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_changelog_id_seq', 1, false);
+
+
+--
+-- Name: customers_coupon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_coupon_id_seq', 1, false);
+
+
+--
+-- Name: customers_couponusage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_couponusage_id_seq', 1, false);
+
+
+--
+-- Name: customers_customer_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_customer_groups_id_seq', 1, false);
+
+
+--
+-- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 4, true);
+
+
+--
+-- Name: customers_customer_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_customer_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: customers_customerloyalty_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_customerloyalty_id_seq', 1, false);
+
+
+--
+-- Name: customers_delivery_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_delivery_id_seq', 1, false);
+
+
+--
+-- Name: customers_loyaltyprogram_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_loyaltyprogram_id_seq', 1, false);
+
+
+--
+-- Name: customers_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_order_id_seq', 15, true);
+
+
+--
+-- Name: customers_orderitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_orderitem_id_seq', 16, true);
+
+
+--
+-- Name: customers_orderstatushistory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_orderstatushistory_id_seq', 15, true);
+
+
+--
+-- Name: customers_payment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_payment_id_seq', 1, false);
+
+
+--
+-- Name: customers_viewedproduct_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_viewedproduct_id_seq', 1, false);
+
+
+--
+-- Name: customers_wishlist_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.customers_wishlist_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 29, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 45, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 40, true);
+
+
+--
+-- Name: notifications_notificationlog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.notifications_notificationlog_id_seq', 1, false);
+
+
+--
+-- Name: notifications_notificationsettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.notifications_notificationsettings_id_seq', 1, true);
+
+
+--
+-- Name: products_adminsection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_adminsection_id_seq', 22, true);
+
+
+--
+-- Name: products_attribute_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_attribute_id_seq', 303, true);
+
+
+--
+-- Name: products_banner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_banner_id_seq', 1, false);
+
+
+--
+-- Name: products_blogpost_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_blogpost_id_seq', 1, false);
+
+
+--
+-- Name: products_blogpost_related_products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_blogpost_related_products_id_seq', 1, false);
+
+
+--
+-- Name: products_blogpost_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_blogpost_tags_id_seq', 1, false);
+
+
+--
+-- Name: products_category_attributes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_category_attributes_id_seq', 1, false);
+
+
+--
+-- Name: products_category_brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_category_brands_id_seq', 1, false);
+
+
+--
+-- Name: products_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_category_id_seq', 231, true);
+
+
+--
+-- Name: products_certificate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_certificate_id_seq', 1, false);
+
+
+--
+-- Name: products_discount_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_discount_id_seq', 1, false);
+
+
+--
+-- Name: products_pricehistory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_pricehistory_id_seq', 1, false);
+
+
+--
+-- Name: products_product_brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_product_brands_id_seq', 532, true);
+
+
+--
+-- Name: products_product_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_product_categories_id_seq', 490, true);
+
+
+--
+-- Name: products_product_feature_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_product_feature_tags_id_seq', 1884, true);
+
+
+--
+-- Name: products_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_product_id_seq', 490, true);
+
+
+--
+-- Name: products_productattribute_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_productattribute_id_seq', 1718, true);
+
+
+--
+-- Name: products_productimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_productimage_id_seq', 1070, true);
+
+
+--
+-- Name: products_productvariant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_productvariant_id_seq', 96, true);
+
+
+--
+-- Name: products_productvideo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_productvideo_id_seq', 1, false);
+
+
+--
+-- Name: products_promocampaign_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_promocampaign_id_seq', 1, false);
+
+
+--
+-- Name: products_promotionblock_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_promotionblock_categories_id_seq', 1, false);
+
+
+--
+-- Name: products_promotionblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_promotionblock_id_seq', 1, false);
+
+
+--
+-- Name: products_promotionblock_products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_promotionblock_products_id_seq', 1, false);
+
+
+--
+-- Name: products_review_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_review_id_seq', 1, false);
+
+
+--
+-- Name: products_reviewimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_reviewimage_id_seq', 1, false);
+
+
+--
+-- Name: products_stock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_stock_id_seq', 584, true);
+
+
+--
+-- Name: products_supplier_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_supplier_id_seq', 1, false);
+
+
+--
+-- Name: products_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_tag_id_seq', 361, true);
+
+
+--
+-- Name: products_tag_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_tag_id_seq1', 818, true);
+
+
+--
+-- Name: products_warranty_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.products_warranty_id_seq', 1, false);
+
+
+--
+-- Name: services_serviceitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.services_serviceitem_id_seq', 4, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict dyocrVhyha0XOPzGDnLct3Q5j6NP0t6P5OynSCRgUA7ifep29hp5IgmQXxYIseq
+
