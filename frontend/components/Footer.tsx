@@ -149,6 +149,22 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Powered by */}
+        <div className="mt-4 text-center">
+          <p className="text-[#bfbfbf] text-xs">
+            Powered by{' '}
+            <a
+              href="https://busisart.space"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#bfbfbf] hover:text-primary transition-colors duration-200 underline"
+            >
+              busisart.space
+            </a>{' '}
+            (c) 2026
+          </p>
+        </div>
       </div>
     </footer>
   );
