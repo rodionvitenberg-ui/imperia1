@@ -61,12 +61,17 @@ class Category(models.Model):
     brands = models.ManyToManyField(Brand, blank=True, verbose_name="Бренды категории")
     attributes = models.ManyToManyField('Attribute', blank=True, verbose_name="Атрибуты категории")
 
+    # Контент категории
+    page_description = models.TextField(blank=True, verbose_name="Описание категории",
+                                        help_text="Текстовый блок перед списком товаров. Поддерживает HTML.")
     # SEO-поля
     meta_title = models.CharField(max_length=255, blank=True, verbose_name="Meta Title",
                                   help_text="Если не указан, используется название категории.")
     meta_description = models.TextField(blank=True, verbose_name="Meta Description")
     h1 = models.CharField(max_length=255, blank=True, verbose_name="Заголовок H1",
                           help_text="Если не указан, используется название категории.")
+    noindex = models.BooleanField(default=False, verbose_name="Запретить индексацию",
+                                  help_text="Если включено, страница не будет индексироваться поисковиками.")
 
     class Meta:
         verbose_name = "Категория"
@@ -141,6 +146,8 @@ class Product(models.Model):
     meta_description = models.TextField(blank=True, verbose_name="Meta Description")
     h1 = models.CharField(max_length=255, blank=True, verbose_name="Заголовок H1",
                           help_text="Если не указан, используется название товара.")
+    noindex = models.BooleanField(default=False, verbose_name="Запретить индексацию",
+                                  help_text="Если включено, страница товара не будет индексироваться поисковиками.")
 
     class Meta:
         verbose_name = "Товар"
@@ -266,6 +273,22 @@ class ProductImage(models.Model):
             raise ValidationError(_('Изображение должно быть привязано либо к товару, либо к варианту.'))
         if self.product and self.variant:
             raise ValidationError(_('Изображение не может быть привязано одновременно к товару и варианту.'))
+
+    def save(self, *args, **kwargs):
+        # Автоматически генерируем alt_text из названия товара, если не задан
+        if not self.alt_text:
+            target = self.product or (self.variant.product if self.variant else None)
+            if target:
+                image_type_label = dict(self.IMAGE_TYPE_CHOICES).get(self.image_type, '')
+                parts = [target.name]
+                if self.image_type == 'main':
+                    parts.append('— основное фото')
+                elif self.image_type == 'gallery' and image_type_label:
+                    pass  # для галереи не добавляем уточнение
+                elif image_type_label:
+                    parts.append(f'— {image_type_label.lower()}')
+                self.alt_text = ' '.join(parts)[:255]
+        super().save(*args, **kwargs)
 
 
 class ProductAttribute(models.Model):
@@ -740,6 +763,8 @@ class BlogPost(models.Model):
     related_products = models.ManyToManyField(Product, blank=True, verbose_name="Связанные товары")
     meta_title = models.CharField(max_length=255, blank=True, verbose_name="Meta Title")
     meta_description = models.TextField(blank=True, verbose_name="Meta Description")
+    noindex = models.BooleanField(default=False, verbose_name="Запретить индексацию",
+                                  help_text="Если включено, статья не будет индексироваться поисковиками.")
     published_at = models.DateTimeField(null=True, blank=True, verbose_name="Дата публикации")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")

@@ -13,7 +13,6 @@ backend/remote_db.env
 backend/staticfiles/
 # Медиа-файлы (картинки товаров) обычно не хранят в гите, но для старта можно оставить.
 # Если папка станет тяжелой — раскомментируй строку ниже:
-# backend/media/
 
 # --- NODE / NEXT.JS (Frontend) ---
 frontend/node_modules/

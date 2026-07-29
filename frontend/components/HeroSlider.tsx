@@ -273,14 +273,14 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
           aria-hidden
           fetchPriority={slide.key === 'welcome' ? 'high' : 'auto'}
           loading="eager"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full ${slide.key === 'welcome' ? 'object-contain object-right' : 'object-cover'}`}
           onLoad={(e) => {
             const img = e.currentTarget;
             img.style.opacity = '0';
           }}
           style={{ opacity: 0, pointerEvents: 'none' }}
         />
-        <div className="absolute inset-0 h-full w-full bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
+        <div className={`absolute inset-0 h-full w-full ${slide.key === 'welcome' ? 'bg-contain bg-no-repeat bg-right' : 'bg-cover bg-center'}`} style={{ backgroundImage: `url('${slide.image}')` }} />
         <div className="absolute inset-0" style={{
           background: slide.key === 'welcome'
             ? slide.gradientDirection === 'l'

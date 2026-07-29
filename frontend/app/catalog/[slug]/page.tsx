@@ -1,6 +1,7 @@
 // src/app/catalog/[slug]/page.tsx
 
 import { fetchCategories, buildCategoryTree, fetchProductsByCategorySlugs, Product, Category, NestedCategory } from '@/lib/api';
+import { API_CONFIG } from '@/lib/config';
 import CatalogClient from '@/components/CatalogClient';
 import { Metadata } from 'next';
 
@@ -123,15 +124,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       "item": `https://imperia-electroniki.kg/catalog/${cat.slug}`
     }));
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg';
+    const canonicalUrl = `${siteUrl}/catalog/${slug}`;
+
     return {
       title,
       description,
+      metadataBase: new URL(siteUrl),
+      alternates: {
+        canonical: canonicalUrl,
+        languages: {
+          'ru': canonicalUrl,
+        },
+      },
       openGraph: {
         title,
         description,
         type: 'website',
         locale: 'ru_KG',
         siteName: 'Империя Электроники',
+        url: canonicalUrl,
       },
       twitter: {
         card: 'summary',
@@ -203,11 +215,47 @@ export default async function CatalogPage({ params }: { params: Promise<{ slug: 
   
   console.log(`[page.tsx] Rendering CatalogPage for "${slug}" (raw: "${rawSlug}") → ${products.length} products, path: ${categoryPath.length}`);
 
+  // ItemList structured data для страницы каталога
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg';
+  const canonicalUrl = `${siteUrl}/catalog/${slug}`;
+  
+  const itemListSchema = products.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": products.map((product, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.name,
+        "url": `${siteUrl}/products/${product.slug}`,
+        ...(product.main_image && {
+          "image": `${API_CONFIG.BASE_URL}${product.main_image.image}`,
+        }),
+        "offers": {
+          "@type": "Offer",
+          "price": String(product.price),
+          "priceCurrency": "KGS",
+        },
+      },
+    })),
+  } : null;
+
   return (
-    <CatalogClient 
-      initialProducts={products}
-      categoryPath={categoryPath}
-      categorySlugs={allSlugs}
-    />
+    <>
+      {itemListSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(itemListSchema),
+          }}
+        />
+      )}
+      <CatalogClient 
+        initialProducts={products}
+        categoryPath={categoryPath}
+        categorySlugs={allSlugs}
+      />
+    </>
   );
 }

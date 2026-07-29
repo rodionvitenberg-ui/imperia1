@@ -17,9 +17,11 @@ export interface Category {
   parent: number | null;
   header_order?: number;
   children?: Category[];
+  page_description?: string;
   meta_title?: string;
   meta_description?: string;
   h1?: string;
+  noindex?: boolean;
 }
 
 export interface ServiceItem {
@@ -249,13 +251,12 @@ export const buildProductCategoryPath = async (product: Product): Promise<Nested
   }
 };
 
-export const fetchAllProducts = async (): Promise<{ slug: string }[]> => {
+export const fetchAllProducts = async (): Promise<Product[]> => {
   try {
     const res = await fetch(API_CONFIG.PRODUCTS.PRODUCTS);
     if (!res.ok) return [];
     const products: Product[] = await res.json();
-    // Возвращаем только то, что нужно для generateStaticParams
-    return products.map(p => ({ slug: p.slug }));
+    return products;
   } catch (error) {
     console.error("Failed to fetch all products:", error);
     return [];
@@ -667,5 +668,18 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     return await res.json();
   } catch {
     return [];
+  }
+}
+
+export async function fetchBlogPost(slug: string): Promise<BlogPostDetail | null> {
+  try {
+    const res = await fetch(`${API_CONFIG.PRODUCTS.BLOG}${slug}/`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error(`Failed to fetch blog post ${slug}:`, error);
+    return null;
   }
 }

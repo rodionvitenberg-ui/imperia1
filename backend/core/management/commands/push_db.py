@@ -1,14 +1,3 @@
-"""
-Management command to push local database dump to remote server.
-Reads credentials from backend/remote_db.env and executes complete_dump.sql
-with ON CONFLICT DO UPDATE to overwrite duplicate records.
-
-Usage:
-    python manage.py push_db [--dump PATH]
-
-    --dump PATH   Path to dump file (default: ../complete_dump.sql)
-"""
-
 import os
 import sys
 from pathlib import Path

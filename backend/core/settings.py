@@ -186,10 +186,10 @@ SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'False') == 'True'
 
 # Статика и Медиа
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/imperia/static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/imperia/media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # CKEditor 5
 CKEDITOR_5_CONFIGS = {

@@ -20,16 +20,25 @@ const openSans = Open_Sans({
   variable: '--font-open-sans',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg';
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Империя Электроники — Каракол',
   description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
+  alternates: {
+    canonical: '/',
+    languages: {
+      'ru': '/',
+    },
+  },
   openGraph: {
     title: 'Империя Электроники — компьютерная техника в Караколе',
     description: 'Компьютерное оборудование и электроника в Караколе. Доступные цены, доставка, гарантия.',
     type: 'website',
     locale: 'ru_KG',
     siteName: 'Империя Электроники',
-    url: 'https://imperia-electroniki.kg',
+    url: siteUrl,
   },
   twitter: {
     card: 'summary_large_image',
@@ -55,13 +64,33 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://imperia-electroniki.kg';
 
-  const organizationSchema = {
+  const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ComputerStore",
     "name": "Империя Электроники",
     "url": siteUrl,
     "description": "Продажа компьютеров, ноутбуков и комплектующих в Караколе. Сборка ПК, ремонт, гарантийное обслуживание.",
     "logo": `${siteUrl}/logo.png`,
+    "image": `${siteUrl}/logo.png`,
+    "telephone": ["+996555953475", "+996555953466"],
+    "email": "info@imperia-electroniki.kg",
+    "priceRange": "KGS",
+    "currenciesAccepted": "KGS",
+    "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "10:00",
+        "closes": "16:00"
+      }
+    ],
     "contactPoint": [
       {
         "@type": "ContactPoint",
@@ -81,7 +110,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       "streetAddress": "ул. Гагарина, 28",
       "addressLocality": "Каракол",
       "addressCountry": "KG"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 42.4907,
+      "longitude": 78.3936
+    },
+    "sameAs": [
+      "https://www.instagram.com/imperia_electroniki",
+      "https://wa.me/996555953475"
+    ]
   };
 
   const websiteSchema = {
@@ -106,7 +144,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: JSON.stringify(localBusinessSchema),
           }}
         />
         <script

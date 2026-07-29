@@ -213,6 +213,20 @@ const CatalogClient: React.FC<CatalogClientProps> = ({
       showSidebar={!isMobile && showFilters}
       maxWidth="full"
     >
+      {/* Описание категории (видимый текст) */}
+      {categoryPath.length > 0 && categoryPath[categoryPath.length - 1].page_description && (
+        <div
+          className="mb-8 p-6 bg-white rounded-[8px] border border-[#e5e7eb] text-[15px] leading-relaxed text-[#444] prose prose-sm max-w-none
+            prose-headings:text-[#212121] prose-headings:font-semibold
+            prose-h2:text-[20px] prose-h2:mt-6 prose-h2:mb-3
+            prose-h3:text-[17px] prose-h3:mt-4 prose-h3:mb-2
+            prose-p:mb-3 prose-p:text-[#555]
+            prose-a:text-[#1061cd] prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-[#212121]
+            prose-ul:my-3 prose-li:text-[#555]"
+          dangerouslySetInnerHTML={{ __html: categoryPath[categoryPath.length - 1].page_description || '' }}
+        />
+      )}
       {loading && <div className="text-center py-8">Загрузка...</div>}
       {!loading && products.length > 0 && <ProductGrid products={products} />}
       {!loading && products.length === 0 && (

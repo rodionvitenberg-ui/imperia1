@@ -34,7 +34,9 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'slug', 'parent', 'header_order', 'children',
             'brands', 'attributes',
+            'page_description',
             'meta_title', 'meta_description', 'h1',
+            'noindex',
         ]
 
     def get_children(self, obj):
