@@ -3,6 +3,8 @@ import { fetchCategories, buildCategoryTree, NestedCategory } from '@/lib/api';
 import CatalogGrid from '@/components/CatalogGrid';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Каталог — Империя Электроники',
   description:

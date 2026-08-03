@@ -167,13 +167,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-// Эта функция говорит Next.js, какие страницы создавать
-export async function generateStaticParams() {
-  const categories = await fetchCategories();
-  return categories.map((category) => ({
-    slug: category.slug,
-  }));
-}
+// Страницы каталога рендерятся динамически на каждый запрос:
+// это гарантирует, что на проде пользователь всегда видит актуальные
+// категории, товары и фильтры, а не "запечённые" при сборке пустые данные.
+export const dynamic = 'force-dynamic';
 
 // Оптимизированная функция для получения всех товаров включая дочерние категории
 async function getProductsForCategory(slug: string): Promise<{

@@ -213,5 +213,3 @@ class Command(BaseCommand):
                 self.stdout.write(f'  ✅ {brand.slug}: {rel_path}')
             else:
                 brand.logo = rel_path
-                brand.save(update_fields=['logo'])
-                self.stdout.write(f'  ✅ {brand.slug}: логотип обновлён → {rel_path}')

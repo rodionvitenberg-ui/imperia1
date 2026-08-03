@@ -179,7 +179,9 @@ export const fetchCategories = async (): Promise<Category[]> => {
     
     return data;
   } catch (error) {
-    // В случае ошибки возвращаем пустой массив
+    // В случае ошибки возвращаем пустой массив, но явно логируем причину,
+    // чтобы пустые страницы каталога на проде было легко диагностировать.
+    console.error('[fetchCategories] Failed to load categories:', error);
     return [];
   }
 };
@@ -270,8 +272,12 @@ export const fetchProductsByCategorySlugs = async (slugs: string[]): Promise<Pro
     const query = slugs.map(slug => `categories__slug=${encodeURIComponent(slug)}`).join('&');
     const url = `${API_CONFIG.PRODUCTS.PRODUCTS}?${query}`;
     
+    // cache: 'no-store' — товары каталога всегда запрашиваются заново
+    // (revalidate: 0 в Next.js 15+ больше не запрещает fetch-кэш).
+    // tags: ['products'] — чтобы Django-сигнал revalidateTag('products')
+    // мог инвалидировать ISR-кэш страниц каталога.
     console.log(`[SSR] fetchProductsByCategorySlugs → ${url}`);
-    const res = await fetch(url, { next: { revalidate: 0 } });
+    const res = await fetch(url, { cache: 'no-store', next: { tags: ['products'] } });
     console.log(`[SSR] fetchProductsByCategorySlugs → status ${res.status}`);
     if (!res.ok) {
       const errorText = await res.text();
@@ -657,16 +663,22 @@ export interface BlogPostDetail extends BlogPost {
 }
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
-  const res = await fetch(API_CONFIG.PRODUCTS.BLOG, {
-    next: { revalidate: 300 },
-  });
-  if (!res.ok) {
-    console.error(`Failed to fetch blog posts, status: ${res.status}`);
-    return [];
-  }
   try {
-    return await res.json();
-  } catch {
+    const res = await fetch(API_CONFIG.PRODUCTS.BLOG, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) {
+      console.error(`Failed to fetch blog posts, status: ${res.status}`);
+      return [];
+    }
+    try {
+      return await res.json();
+    } catch {
+      return [];
+    }
+  } catch (error) {
+    // Сетевая ошибка (бэкенд недоступен) не должна ронять prerender билда.
+    console.error('[fetchBlogPosts] Failed to fetch blog posts:', error);
     return [];
   }
 }
