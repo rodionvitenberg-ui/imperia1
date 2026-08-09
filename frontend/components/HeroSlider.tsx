@@ -205,12 +205,51 @@ const slides: SlideData[] = [
 /* ─── Single slide component ───────────────── */
 function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
   const isLeft = slide.imageSide === 'right';
+  const isWelcome = slide.key === 'welcome';
 
   return (
-    <section className="relative h-[80vh] w-full overflow-hidden flex items-center">
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-5">
-        <div className={`w-full py-16 md:py-24 ${
-          slide.key === 'welcome' ? 'lg:w-2/5' : 'lg:w-1/2'
+    <section className={`relative w-full overflow-hidden ${
+      isWelcome ? 'h-[85vh] md:h-[88vh]' : 'h-[80vh]'
+    } flex items-stretch`}>
+      {/* ── Фоновое изображение (full-bleed) ── */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          // Ken Burns: медленный zoom для глубины
+          initial={false}
+          animate={active ? { scale: 1.08 } : { scale: 1 }}
+          transition={{ duration: 40, ease: 'easeOut' }}
+          className="absolute inset-0 h-full w-full"
+        >
+          <img
+            src={slide.image}
+            alt=""
+            aria-hidden
+            fetchPriority={isWelcome ? 'high' : 'auto'}
+            loading="eager"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            onLoad={(e) => {
+              const img = e.currentTarget;
+              img.style.opacity = '0.99';
+            }}
+            style={{ pointerEvents: 'none' }}
+          />
+        </motion.div>
+      </div>
+
+      {/* ── Подложка на весь слайд: тёмная, изображение просвечивает ── */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background: 'linear-gradient(to right, rgba(8,12,20,0.9) 0%, rgba(8,12,20,0.82) 45%, rgba(8,12,20,0.68) 100%)',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
+        }}
+      />
+
+      {/* ── Контент поверх подложки ── */}
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-5 md:px-10">
+        <div className={`flex flex-col justify-center h-full w-full ${
+          isWelcome ? 'lg:max-w-2xl' : 'lg:w-[58%]'
         } ${isLeft ? 'lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
         {active && (
           <>
@@ -219,7 +258,7 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] text-[#212121] max-w-xl"
+              className="font-sans text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] max-w-xl text-white"
             >
               {slide.headline}
             </motion.h1>
@@ -228,7 +267,7 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-5 max-w-md text-base md:text-lg leading-relaxed md:text-gray-500 text-[#212121]"
+              className="mt-5 max-w-md text-base md:text-lg leading-relaxed text-white/90"
             >
               {slide.subhead}
             </motion.p>
@@ -250,50 +289,18 @@ function HeroSlide({ slide, active }: { slide: SlideData; active: boolean }) {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-6 md:mt-10 flex gap-8 pt-4 md:pt-6"
+              className="mt-6 md:mt-10 flex gap-8 pt-4 md:pt-6 border-t border-white/15"
             >
               {slide.benefits.map((b) => (
                 <div key={b.value} className="flex flex-col">
-                  <span className="text-xs font-semibold uppercase tracking-wide md:text-gray-400 text-[#212121]">{b.label}</span>
-                  <span className="mt-1 text-sm font-bold text-[#212121]">{b.value}</span>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-white/60">{b.label}</span>
+                  <span className="mt-1 text-sm font-bold text-white">{b.value}</span>
                 </div>
               ))}
             </motion.div>
           </>
         )}
         </div>
-      </div>
-
-      <div className={`hidden lg:block lg:absolute lg:inset-y-0 ${
-        slide.key === 'welcome' ? 'lg:w-3/5' : 'lg:w-1/2'
-      } ${slide.imageSide === 'right' ? 'lg:right-0' : 'lg:left-0'}`}>
-        <img
-          src={slide.image}
-          alt=""
-          aria-hidden
-          fetchPriority={slide.key === 'welcome' ? 'high' : 'auto'}
-          loading="eager"
-          className={`absolute inset-0 h-full w-full ${slide.key === 'welcome' ? 'object-contain object-right' : 'object-cover'}`}
-          onLoad={(e) => {
-            const img = e.currentTarget;
-            img.style.opacity = '0';
-          }}
-          style={{ opacity: 0, pointerEvents: 'none' }}
-        />
-        <div className={`absolute inset-0 h-full w-full ${slide.key === 'welcome' ? 'bg-contain bg-no-repeat bg-right' : 'bg-cover bg-center'}`} style={{ backgroundImage: `url('${slide.image}')` }} />
-        <div className="absolute inset-0" style={{
-          background: slide.key === 'welcome'
-            ? slide.gradientDirection === 'l'
-              ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)'
-              : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)'
-            : slide.gradientDirection === 'l'
-              ? 'linear-gradient(to left, transparent, rgba(248,249,251,0.3), #f8f9fb)'
-              : 'linear-gradient(to right, transparent, rgba(248,249,251,0.3), #f8f9fb)'
-        }} />
-      </div>
-
-      <div className="absolute inset-0 z-0 lg:hidden">
-        <div className="h-full w-full bg-cover bg-center opacity-[0.1]" style={{ backgroundImage: `url('${slide.image}')` }} />
       </div>
     </section>
   );

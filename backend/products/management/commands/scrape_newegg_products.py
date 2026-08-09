@@ -17,8 +17,15 @@ import json
 import random
 import requests
 from urllib.parse import quote_plus, urljoin
+from decimal import Decimal
 from django.core.management.base import BaseCommand
+from django.db import transaction
+from django.utils.text import slugify as _django_slugify
 from bs4 import BeautifulSoup
+
+from products.models import (
+    Product, ProductAttribute, Attribute, Brand, Category, Tag, Stock,
+)
 
 NEWEGG_BASE = 'https://www.newegg.com'
 NEWEGG_SEARCH_URL = f'{NEWEGG_BASE}/p/pl?d={{query}}'
@@ -330,6 +337,123 @@ def map_specs_to_attributes(raw_specs: dict) -> list[dict]:
     return attributes
 
 
+def import_product_to_db(prod: dict, section_key: str = 'default') -> tuple[str, Product | None]:
+    """
+    Записывает спарсенный товар Newegg в БД через модель Product.
+    Возвращает (status, product): 'created' | 'updated' | 'existing'.
+    """
+    name = prod.get('name', '').strip()
+    if not name:
+        return ('existing', None)
+
+    brand_name = prod.get('brand') or 'Generic'
+
+    # Уникальный slug
+    base_slug = slugify_compat(name)
+    slug_candidate = base_slug
+    i = 1
+    while Product.objects.filter(slug=slug_candidate).exists():
+        i += 1
+        slug_candidate = f'{base_slug}-{i}'
+
+    # Категория — определяем по ключевым словам
+    category_slug = 'components'
+    cat_name = 'Комплектующие'
+    lower_name = name.lower()
+    if any(k in lower_name for k in ('monitor', 'screen', 'display')):
+        category_slug = 'monitors'
+        cat_name = 'Мониторы'
+    elif any(k in lower_name for k in ('keyboard',)):
+        category_slug = 'keyboards'
+        cat_name = 'Клавиатуры'
+    elif any(k in lower_name for k in ('mouse',)):
+        category_slug = 'mice'
+        cat_name = 'Мыши'
+    elif any(k in lower_name for k in ('laptop', 'notebook')):
+        category_slug = 'work-laptops'
+        cat_name = 'Рабочие ноутбуки'
+    cat, _ = Category.objects.get_or_create(
+        slug=category_slug,
+        defaults={'name': cat_name},
+    )
+
+    # Бренд
+    brand, _ = Brand.objects.get_or_create(
+        slug=slugify_compat(brand_name),
+        defaults={'name': brand_name},
+    )
+
+    # Цена
+    price = Decimal(str(prod.get('price') or 0))
+
+    # Ищем существующий по названию
+    existing = Product.objects.filter(name__iexact=name).first()
+    if existing:
+        if existing.price != price:
+            existing.price = price
+            existing.save()
+        return ('updated', existing)
+
+    # Создаём
+    description = prod.get('description') or f'{name} — оригинальный {brand_name}. Гарантия до 2 лет, доставка по Караколу.'
+    product = Product.objects.create(
+        name=name,
+        slug=slug_candidate,
+        description=description,
+        price=price,
+    )
+    product.categories.add(cat)
+    product.brands.add(brand)
+
+    # Атрибуты (EAV)
+    for attr in prod.get('attributes', []):
+        attr_name = attr['name']
+        attr_value = attr['value']
+        if attr_value is None:
+            continue
+        # Тип значения
+        from products.models import Attribute
+        attribute, _ = Attribute.objects.get_or_create(
+            slug=slugify_compat(attr_name),
+            defaults={'name': attr_name, 'type': 'str'},
+        )
+        pa, _ = ProductAttribute.objects.get_or_create(
+            product=product,
+            attribute=attribute,
+        )
+        try:
+            pa.set_typed_value(attr_value)
+            pa.save()
+        except (TypeError, ValueError):
+            continue
+
+    Stock.objects.get_or_create(
+        product=product,
+        warehouse='default',
+        defaults={'quantity': 10, 'reserved': 0},
+    )
+
+    return ('created', product)
+
+
+def slugify_compat(value: str) -> str:
+    """Транслитерация кириллицы + slugify."""
+    CYRILLIC_TO_LATIN = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+        'А': 'a', 'Б': 'b', 'В': 'v', 'Г': 'g', 'Д': 'd', 'Е': 'e', 'Ё': 'yo',
+        'Ж': 'zh', 'З': 'z', 'И': 'i', 'Й': 'y', 'К': 'k', 'Л': 'l', 'М': 'm',
+        'Н': 'n', 'О': 'o', 'П': 'p', 'Р': 'r', 'С': 's', 'Т': 't', 'У': 'u',
+        'Ф': 'f', 'Х': 'h', 'Ц': 'ts', 'Ч': 'ch', 'Ш': 'sh', 'Щ': 'sch',
+        'Ъ': '', 'Ы': 'y', 'Ь': '', 'Э': 'e', 'Ю': 'yu', 'Я': 'ya',
+    }
+    transliterated = ''.join(CYRILLIC_TO_LATIN.get(ch, ch) for ch in value)
+    return _django_slugify(transliterated)
+
+
 # ---------------------------------------------------------------------------
 # MAIN COMMAND
 # ---------------------------------------------------------------------------
@@ -346,6 +470,8 @@ class Command(BaseCommand):
                             help='Путь к файлу для сохранения результата (JSON)')
         parser.add_argument('--pages', type=int, default=1,
                             help='Количество страниц результатов для обхода')
+        parser.add_argument('--import-db', action='store_true',
+                            help='Записывать спарсенные товары напрямую в БД')
 
     def handle(self, *args, **options):
         search = options['search']
@@ -353,6 +479,7 @@ class Command(BaseCommand):
         limit = options['limit']
         output_file = options['output']
         pages = options['pages']
+        import_db = options.get('import_db', False)
 
         # Формируем URL для поиска
         if category_url:
@@ -416,6 +543,22 @@ class Command(BaseCommand):
 
             if page < pages:
                 time.sleep(REQUEST_DELAY)
+
+        # Запись в БД, если запрошено
+        if import_db:
+            self.stdout.write('\n💾 Запись товаров в БД...')
+            created = 0
+            updated = 0
+            with transaction.atomic():
+                for prod in all_products:
+                    status, product = import_product_to_db(prod)
+                    if status == 'created':
+                        created += 1
+                    elif status == 'updated':
+                        updated += 1
+            self.stdout.write(self.style.SUCCESS(
+                f'   ✅ Записано: {created} создано, {updated} обновлено'
+            ))
 
         # Вывод результата
         self.stdout.write('')

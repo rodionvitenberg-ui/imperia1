@@ -91,6 +91,21 @@ A customer's rating (1–5) and optional text for a Product. One review per cust
 
 ---
 
+## Price Sheet Import (Импорт прайса)
+
+**Price Sheet (Прайс-лист)**
+A supplier spreadsheet (e.g., «прайс для Родиона.xlsx») containing exactly two columns: a human-readable product title and a price. Rows without a price are **Section headers**, not products. Imported via the `import_price_sheet` management command.
+
+**Section (Секция прайса)**
+A header row in the Price Sheet that groups subsequent product rows, e.g., «HDD», «Monitors TFT», «Processor». Each Section maps to exactly one or more Categories. Section mapping can create new Categories when no existing Category fits (e.g., «Сетевое оборудование», «Источники бесперебойного питания», «Офисная мебель»).
+
+**Price Sheet Row (Строка прайса)**
+A title + numeric price pair. The importer normalizes the title (strips tender/broken markers), detects Brand and Attribute values embedded in the title text, rounds the price **up to the nearest 5 som** (e.g., 422 → 425), and creates or updates a Product.
+
+**Tender marker (Тендерная пометка)**
+A token in a Row title such as «- тендер» or «б\у». Tender products are still imported but the marker is stripped from the display name.
+
+---
 ## Cross-cutting
 
 **Slug (ЧПУ)**

@@ -45,7 +45,7 @@ const structuredData = {
   ],
   priceRange: '$$',
   image: '/store-front.jpg',
-  sameAs: ['https://wa.me/996555953475', 'https://t.me/imperia_electroniki'],
+  sameAs: ['https://wa.me/996555953475', 'https://wa.me/996555953466'],
 };
 
 const API_KEY = 'd3859a87-54b0-43f0-8f55-16bc9b15192a';
